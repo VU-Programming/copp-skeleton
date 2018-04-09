@@ -1,0 +1,303 @@
+//SimpleCalc.jas by Ronald Bethlehem
+//Includes the recursive function for factorial and printing a number
+//Utilises reverse polish notation
+//Also tests the SWAP and IF_ICMPEQ operators
+//Can read larger numbers, all undefined characters delimit
+//Valid example:
+//99 5 + 4 / 22 1*- ! ? 99 5+4/22v1*-!?. (prints 24\n24\n)
+
+.constant
+OBJREF		0xDEAD
+ZERO 		0x30
+NINE		0x39
+FACTORIAL	0x21
+DUPLICATE	0x26
+MULTIPLY	0x2A
+PLUS		0x2B
+MINUS		0x2D
+DIVIDE		0x2F
+PRINT		0x3F
+END			0x2E
+.end-constant
+
+.main
+.var
+mode //0 for end, 1 for numberreading, 2 for other
+tmp
+.end-var
+  // Add some things to the stack
+  BIPUSH 0x0
+  BIPUSH 0x0
+  BIPUSH 0x0
+	BIPUSH 2
+	ISTORE mode
+
+readchar:
+	ILOAD mode
+	IFEQ end
+
+	IN
+	//Is is a number?
+	DUP
+	LDC_W ZERO
+	ISUB
+	IFLT continue
+	DUP
+	LDC_W NINE
+	BIPUSH 1
+	IADD
+	ISUB
+	IFLT read_number
+
+	//Set mode to not number (aka delimited)
+continue:
+	BIPUSH 2
+	ISTORE mode
+
+	//Check for operators
+	DUP
+	LDC_W END
+	IF_ICMPEQ read_end
+
+	DUP
+	LDC_W FACTORIAL
+	IF_ICMPEQ read_factorial
+
+	DUP
+	LDC_W DUPLICATE
+	IF_ICMPEQ read_duplicate
+
+	DUP
+	LDC_W MULTIPLY
+	IF_ICMPEQ read_multiply
+
+	DUP
+	LDC_W PLUS
+	IF_ICMPEQ read_plus
+
+	DUP
+	LDC_W MINUS
+	IF_ICMPEQ read_minus
+
+	DUP
+	LDC_W DIVIDE
+	IF_ICMPEQ read_divide
+
+	DUP
+	LDC_W PRINT
+	IF_ICMPEQ read_print
+
+	//Ignore character
+	POP
+	GOTO readchar
+
+read_end:
+	POP
+	BIPUSH 0
+	ISTORE mode
+	GOTO readchar
+
+read_factorial:
+	POP
+	ISTORE tmp
+	LDC_W OBJREF
+	SWAP
+	ILOAD tmp
+	INVOKEVIRTUAL factorial
+	GOTO readchar
+
+read_duplicate:
+	POP
+	DUP
+	GOTO readchar
+
+read_multiply:
+	POP
+	ISTORE tmp
+	LDC_W OBJREF
+	SWAP
+	ILOAD tmp
+	INVOKEVIRTUAL mul
+	GOTO readchar
+
+read_plus:
+	POP
+	IADD
+	GOTO readchar
+
+read_minus:
+	POP
+	ISUB
+	GOTO readchar
+
+read_divide:
+	POP
+	ISTORE tmp
+	LDC_W OBJREF
+	SWAP
+	ILOAD tmp
+	INVOKEVIRTUAL divide
+	GOTO readchar
+
+read_print:
+	POP
+	LDC_W OBJREF
+	SWAP
+	INVOKEVIRTUAL printNumber
+	POP
+	BIPUSH 0xA //newline
+	OUT
+	GOTO readchar
+
+read_number:
+	LDC_W ZERO
+	ISUB
+	ILOAD mode
+	BIPUSH 1
+	IF_ICMPEQ read_number_continue
+	BIPUSH 1
+	ISTORE mode
+	GOTO readchar
+
+read_number_continue:
+	SWAP
+	LDC_W OBJREF
+	SWAP
+	BIPUSH 10
+	INVOKEVIRTUAL mul
+	IADD
+	GOTO readchar
+
+end:
+	HALT
+
+.end-main
+
+.method printNumber(a)
+	ILOAD a
+	BIPUSH 10
+	ISUB
+	IFLT small
+recurse:
+	LDC_W OBJREF
+	LDC_W OBJREF
+	ILOAD a
+	BIPUSH 10
+	INVOKEVIRTUAL mod
+	LDC_W OBJREF
+	LDC_W OBJREF
+	ILOAD a
+	BIPUSH 10
+	INVOKEVIRTUAL divide
+	INVOKEVIRTUAL printNumber
+	POP
+	INVOKEVIRTUAL printNum
+  POP
+	IRETURN
+small:
+	LDC_W OBJREF
+	ILOAD a
+	INVOKEVIRTUAL printNum
+  POP
+	IRETURN
+.end-method
+
+.method printNum(a)
+	ILOAD a
+	LDC_W ZERO
+	IADD
+	OUT
+  BIPUSH 0x0
+	IRETURN
+.end-method
+
+.method mul(a,b)
+	ILOAD b
+	ILOAD a
+	ISUB
+	IFLT noswap
+	ILOAD a
+	ILOAD b
+	SWAP
+	ISTORE b
+	ISTORE a
+noswap:
+	BIPUSH 0
+loop:
+	ILOAD b
+	IFEQ bzero
+bpos:
+	ILOAD b
+	BIPUSH 1
+	ISUB
+	ISTORE b
+add:
+	ILOAD a
+	IADD
+	GOTO loop
+bzero:
+	IRETURN
+.end-method
+
+.method divide(a,b)
+.var
+	count
+.end-var
+	ILOAD b
+	IFEQ err
+	BIPUSH 0
+	ISTORE count
+	ILOAD a
+loop:
+	ILOAD a
+	ILOAD b
+	ISUB
+	DUP
+	IFLT done
+	ISTORE a
+inc:
+	ILOAD count
+	BIPUSH 1
+	IADD
+	ISTORE count
+	GOTO loop
+done:
+	ILOAD count
+	IRETURN
+err:
+	ERR
+.end-method
+
+.method mod(a,b)
+	LDC_W OBJREF
+	LDC_W OBJREF
+	ILOAD a
+	ILOAD b
+	INVOKEVIRTUAL divide
+	ILOAD b
+	INVOKEVIRTUAL mul
+	ILOAD a
+	SWAP // yeah I know, I could also have pushed a at the start, but its a test, who gives a carp about performance
+	ISUB
+	IRETURN
+.end-method
+
+.method factorial(i)
+.var
+		tmp
+.end-var
+		LDC_W OBJREF
+		ILOAD i
+		ILOAD i
+		BIPUSH 1
+		ISUB
+		ISTORE tmp
+		ILOAD tmp
+		IFEQ one
+		LDC_W OBJREF
+		ILOAD tmp
+		INVOKEVIRTUAL factorial
+		INVOKEVIRTUAL mul
+one:
+		IRETURN
+.end-method

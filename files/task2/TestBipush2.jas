@@ -1,0 +1,4 @@
+.main
+    BIPUSH -42
+    HALT
+.end-main

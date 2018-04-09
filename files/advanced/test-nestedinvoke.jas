@@ -1,0 +1,36 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+a  5
+b  15
+.end-constant
+
+.main
+    LDC_W objref
+    BIPUSH 0x1 
+    LDC_W a 
+    INVOKEVIRTUAL magic
+    NOP
+.end-main
+
+.method addone(var)
+    ILOAD var
+    BIPUSH 0x1
+    IADD
+    DUP
+    IRETURN
+.end-method
+
+
+.method magic(x, y)
+    LDC_W b
+    ILOAD x
+    ILOAD y
+    IADD
+    ISUB
+    DUP
+    LDC_W objref
+    SWAP
+    INVOKEVIRTUAL addone
+    DUP
+    IRETURN
+.end-method

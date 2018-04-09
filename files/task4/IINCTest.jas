@@ -1,0 +1,19 @@
+.main
+
+.var
+hi
+there
+.end-var
+L1:
+    BIPUSH 0
+    DUP
+    ISTORE hi
+    ISTORE there
+    IINC hi 0
+    IINC hi 1
+    IINC hi 3
+    IINC there 0
+    IINC there -1
+    IINC there -3
+    HALT
+.end-main

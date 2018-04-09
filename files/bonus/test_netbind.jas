@@ -1,0 +1,13 @@
+.constant
+    port 5555
+.end-constant
+
+.main
+    LDC_W port
+    NETBIND
+    NETIN
+    NETIN
+    NETOUT
+    NETOUT
+    NETCLOSE
+.end-main

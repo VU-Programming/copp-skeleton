@@ -1,0 +1,489 @@
+//
+// Name
+//
+//   ijvmtest.jas
+//
+// Description
+//
+//   This program tests the IJVM instruction set.
+//
+// Author
+//
+//   Andrew S. Tanenbaum  February 16, 1999
+//
+// Modification History
+//
+//   Ray Ontko  April 11, 1999
+//   Added tests for LDC_W, ILOAD, ISTORE, INVOKEVIRTUAL and IRETURN
+//   Also added OUT instructions to help identify which ERROR occurred.
+//
+// Notes
+//
+//   The INP instruction is not tested by this program.
+//   The ERR instruction is not tested by this program.
+//
+
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+my_max  100
+.end-constant
+
+.main
+.var
+my_var
+.end-var
+
+	BIPUSH 19	// mark the bottom of the stack
+	BIPUSH 20	// # iterations
+
+L1:	BIPUSH 3
+	BIPUSH 3
+	IF_ICMPEQ L2
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L2:	BIPUSH -1
+	BIPUSH -1
+	IF_ICMPEQ L3
+	BIPUSH 48
+	BIPUSH 2
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L3:	BIPUSH 4	// start testing IADD
+	BIPUSH 7
+	IADD
+	BIPUSH 11
+	IF_ICMPEQ L4
+	BIPUSH 48
+	BIPUSH 3
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L4:	BIPUSH -5
+	BIPUSH -9
+	IADD
+	BIPUSH -14
+	IF_ICMPEQ L5
+	BIPUSH 48
+	BIPUSH 4
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L5:	BIPUSH 10	// start testing ISUB
+	BIPUSH 7
+	ISUB
+	BIPUSH 3
+	IF_ICMPEQ L6
+	BIPUSH 48
+	BIPUSH 5
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L6:	BIPUSH -3
+	BIPUSH -7
+	ISUB
+	BIPUSH 4
+	IF_ICMPEQ L7
+	BIPUSH 48
+	BIPUSH 6
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L7:	BIPUSH 0xF2	// start testing IAND
+	BIPUSH 0x31
+	IAND
+	BIPUSH 0x30
+	IF_ICMPEQ L8
+	BIPUSH 48
+	BIPUSH 7
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L8:	BIPUSH 0xF2	// start testing IOR
+	BIPUSH 0x31
+	IOR
+	BIPUSH 0xF3
+	IF_ICMPEQ L9
+	BIPUSH 48
+	BIPUSH 8
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L9:	BIPUSH 20	// start testing DUP
+	DUP
+	IADD
+	BIPUSH 40
+	IF_ICMPEQ L10
+	BIPUSH 48
+	BIPUSH 9
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L10:	BIPUSH 32	// start testing POP
+	BIPUSH 17
+	POP
+	BIPUSH 32
+	IF_ICMPEQ L11
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 0
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L11:	BIPUSH 9	// start test of IFLT
+	IFLT ERR
+	BIPUSH 0
+	IFLT ERR
+	BIPUSH -1
+	IFLT L12
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L12:	BIPUSH 1	// start testing IFEQ
+	IFEQ ERR
+	BIPUSH 0
+	IFEQ L13
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 2
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L13:	BIPUSH 16	// start testing SWAP
+	BIPUSH -5
+	SWAP
+	BIPUSH 16
+	IF_ICMPEQ L14
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 3
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L14:	BIPUSH -5
+	IF_ICMPEQ L15
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 4
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L15:	LDC_W my_max    // start testing LDC_W
+	BIPUSH 100
+	IF_ICMPEQ L16
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 5
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR       
+
+L16:	BIPUSH 83	// start testing ISTORE, IINC and ILOAD
+	ISTORE my_var
+	IINC my_var 4
+	BIPUSH 99
+	POP
+	ILOAD my_var
+	BIPUSH 87
+	IF_ICMPEQ L17
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 6
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L17:	LDC_W objref   // start testing INVOKEVIRTUAL and IRETURN
+	BIPUSH -1
+	BIPUSH -10
+	INVOKEVIRTUAL cmp
+	BIPUSH 1
+	IF_ICMPEQ L18
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 7
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L18:	LDC_W objref
+	BIPUSH -10
+	BIPUSH -1
+	INVOKEVIRTUAL cmp
+	BIPUSH -1
+	IF_ICMPEQ L19
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 8
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L19:	LDC_W objref
+	BIPUSH -10
+	BIPUSH -10
+	INVOKEVIRTUAL cmp
+	BIPUSH 0
+	IF_ICMPEQ L20
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 9
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L20:	LDC_W objref
+	BIPUSH -10
+	BIPUSH 10
+	INVOKEVIRTUAL cmp
+	BIPUSH -1
+	IF_ICMPEQ L21
+	BIPUSH 48
+	BIPUSH 2
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 0
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L21:	LDC_W objref
+	BIPUSH 10
+	BIPUSH -10
+	INVOKEVIRTUAL cmp
+	BIPUSH 1
+	IF_ICMPEQ L22
+	BIPUSH 48
+	BIPUSH 2
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L22:	LDC_W objref
+	BIPUSH 0
+	BIPUSH 0
+	INVOKEVIRTUAL cmp
+	BIPUSH 0
+	IF_ICMPEQ L23
+	BIPUSH 48
+	BIPUSH 2
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 2
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L23:	LDC_W objref
+	BIPUSH 1
+	BIPUSH 10
+	INVOKEVIRTUAL cmp
+	BIPUSH -1
+	IF_ICMPEQ L24
+	BIPUSH 48
+	BIPUSH 2
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 3
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L24:	LDC_W objref
+	BIPUSH 10
+	BIPUSH 1
+	INVOKEVIRTUAL cmp
+	BIPUSH 1
+	IF_ICMPEQ L25
+	BIPUSH 48
+	BIPUSH 2
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 4
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L25:	LDC_W objref
+	BIPUSH 10
+	BIPUSH 10
+	INVOKEVIRTUAL cmp
+	BIPUSH 0
+	IF_ICMPEQ L26
+	BIPUSH 48
+	BIPUSH 1
+	IADD
+	OUT
+	BIPUSH 48
+	BIPUSH 8
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+L26:	NOP		// test NOP
+
+			// iterate
+	BIPUSH 1
+	ISUB
+	DUP
+	IFEQ FINAL
+	GOTO L1
+
+FINAL:	POP		// see if the marker is still there
+	BIPUSH 19
+	IF_ICMPEQ OK
+	BIPUSH 48
+	BIPUSH 0
+	IADD
+	OUT
+	BIPUSH 32
+	OUT
+	GOTO ERR
+
+OK:	BIPUSH 79
+	OUT
+	BIPUSH 75
+	OUT
+	HALT
+ERR:
+	BIPUSH 69
+	OUT
+	BIPUSH 82
+	OUT
+	BIPUSH 82
+	OUT
+	BIPUSH 79
+	OUT
+	BIPUSH 82
+	OUT
+	HALT
+.end-main 
+
+// cmp returns -1 if p1 < p2, 0 if p1 = p2, and 1 if p1 > p2
+.method cmp(p1,p2)
+.var
+temp
+.end-var
+	ILOAD p1
+	ILOAD p2
+	ISUB
+	ISTORE temp
+	ILOAD temp
+	IFLT lt
+	ILOAD temp
+        IFEQ eq
+gt:	BIPUSH 1
+        GOTO done
+lt:	BIPUSH -1
+	GOTO done
+eq:	BIPUSH 0
+done:   IRETURN
+.end-method

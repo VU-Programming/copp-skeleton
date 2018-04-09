@@ -1,0 +1,20 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+    LDC_W objref
+    INVOKEVIRTUAL magic
+.end-main
+
+.method addone()
+    BIPUSH 0x0
+    IRETURN
+.end-method
+
+
+.method magic()
+    LDC_W objref
+    INVOKEVIRTUAL addone
+    IRETURN
+.end-method

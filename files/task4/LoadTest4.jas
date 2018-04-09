@@ -1,0 +1,43 @@
+.main
+
+.var
+i
+a
+b
+c
+d
+e
+f
+g
+.end-var
+		BIPUSH 10
+		ISTORE i
+L1:		ILOAD i
+		DUP
+		BIPUSH 97
+		IADD
+		OUT
+		IFEQ END
+		BIPUSH 97
+		ISTORE a
+		BIPUSH 98
+		ISTORE b
+		BIPUSH 99
+		ISTORE c
+		BIPUSH 100
+		ISTORE d
+		ILOAD i
+		BIPUSH 1
+		ISUB
+		ISTORE i
+		GOTO L1
+END:	ILOAD d
+		ILOAD c
+		ILOAD b
+		ILOAD a
+		OUT
+		OUT
+		OUT
+		OUT
+    HALT
+.end-main

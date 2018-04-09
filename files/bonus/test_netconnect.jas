@@ -1,0 +1,15 @@
+.constant
+    host 2130706433 // 127.0.0.1 -> 0x7F000001
+    port 5555
+.end-constant
+
+.main
+    LDC_W port
+    LDC_W host
+    NETCONNECT
+    NETIN
+    NETIN
+    NETOUT
+    NETOUT
+    NETCLOSE
+.end-main

@@ -1,0 +1,11 @@
+.main
+    BIPUSH 0x1
+    L1:
+    BIPUSH 0x2
+    GOTO L1
+    BIPUSH 0x4
+    OUT
+    HALT
+.end-main
+
+

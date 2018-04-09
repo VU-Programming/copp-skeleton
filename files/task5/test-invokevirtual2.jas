@@ -1,0 +1,18 @@
+.main
+    BIPUSH 0x0
+    BIPUSH 0x0
+    BIPUSH 0x0
+    BIPUSH 0x2
+    BIPUSH 0x3
+    INVOKEVIRTUAL add
+    BIPUSH 0x2
+    HALT
+.end-main
+
+.method add(a, b)
+      ILOAD a
+      ILOAD b
+      IADD
+      IRETURN
+.end-method
+

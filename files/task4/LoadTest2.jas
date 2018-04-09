@@ -1,0 +1,34 @@
+.constant
+henk 2
+piet 3
+kees 2
+.end-constant
+
+.main
+
+.var
+pew
+.end-var
+		BIPUSH 42
+		LDC_W henk
+		LDC_W kees
+		ISUB
+		IFEQ good
+		GOTO err
+good:	LDC_W piet
+		ISTORE pew
+		BIPUSH 0
+		ILOAD pew
+		BIPUSH 79
+		OUT
+		BIPUSH 75
+		OUT
+    HALT
+err:	BIPUSH 69
+		OUT
+		BIPUSH 82
+		OUT
+		BIPUSH 82
+		OUT
+    HALT
+.end-main

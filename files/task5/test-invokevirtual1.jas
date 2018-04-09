@@ -1,0 +1,14 @@
+.main
+    BIPUSH 0x0
+    BIPUSH 0x0
+    BIPUSH 0x0
+    INVOKEVIRTUAL test
+    BIPUSH 0x2
+    HALT
+.end-main
+
+.method test()
+      BIPUSH 0x1
+      IRETURN
+.end-method
+

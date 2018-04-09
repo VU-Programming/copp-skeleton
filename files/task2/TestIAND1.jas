@@ -1,0 +1,9 @@
+.main
+    BIPUSH 11
+    BIPUSH 13
+    BIPUSH -25
+    IAND
+    IAND
+    OUT
+    HALT
+.end-main

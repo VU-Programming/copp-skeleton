@@ -1,0 +1,8 @@
+.main
+    BIPUSH 10
+    BIPUSH 20
+    SWAP
+    POP
+    OUT
+    HALT
+.end-main

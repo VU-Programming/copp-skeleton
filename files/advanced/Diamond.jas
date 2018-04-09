@@ -1,0 +1,121 @@
+// Recursive diamond by George Karlos
+//
+// print a pyramid of characters starting from input char and
+// going down to ascii 0x31 (1) using nested recursions
+//
+
+.constant
+    NEWLINE 0xA
+    OBJREF 0xDEAD
+    ZERO 0x30
+    ONE 0x31
+    SPACE 0x20
+.end-constant
+
+.main
+    LDC_W OBJREF
+prompt:
+    IN
+
+    DUP
+    LDC_W ZERO
+    ISUB
+    IFLT prompt
+
+    LDC_W ONE
+    INVOKEVIRTUAL diamond
+
+done:
+    HALT
+.end-main
+
+.method diamond(n,i)
+.var
+backupn
+backupi
+.end-var
+
+    ILOAD n
+    LDC_W ZERO
+    SWAP
+    ISUB
+    IFEQ return
+
+    //print empty spaces
+    LDC_W OBJREF
+    LDC_W SPACE
+    ILOAD n
+    INVOKEVIRTUAL printntimes
+
+    //print char
+    LDC_W OBJREF
+    ILOAD n
+    ILOAD i
+    INVOKEVIRTUAL printntimes
+
+    LDC_W NEWLINE
+    OUT
+
+    ILOAD n
+    ISTORE backupn
+    IINC n -1
+    ILOAD i
+    ISTORE backupi
+    IINC i 2
+
+    LDC_W OBJREF
+    ILOAD n
+    ILOAD i
+    INVOKEVIRTUAL diamond
+
+    //dont print 1's again
+    ILOAD backupn
+    LDC_W ONE
+    ISUB
+    IFEQ return
+
+    //print empty spaces
+    LDC_W OBJREF
+    LDC_W SPACE
+    ILOAD backupn
+    INVOKEVIRTUAL printntimes
+
+
+    //print char
+    LDC_W OBJREF
+    ILOAD backupn
+    ILOAD backupi
+    INVOKEVIRTUAL printntimes
+
+    LDC_W NEWLINE
+    OUT
+
+return:
+    BIPUSH 0x1 //Just a return value
+    IRETURN
+.end-method
+
+
+.method printntimes(c,n)
+    ILOAD n
+    LDC_W ZERO
+    SWAP
+    ISUB
+    IFEQ return
+
+    ILOAD c
+    OUT
+
+    IINC n -1
+    LDC_W OBJREF
+    ILOAD c
+    ILOAD n
+    INVOKEVIRTUAL printntimes
+
+return:
+    BIPUSH 0x2 //Just a return value
+    IRETURN
+
+.end-method
+
+

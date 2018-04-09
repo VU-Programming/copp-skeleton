@@ -1,0 +1,31 @@
+.constant
+.end-constant
+
+.main
+
+L1:
+    BIPUSH 0x00
+    BIPUSH 0x01
+    IF_ICMPEQ L5
+L2:
+    BIPUSH 0x00
+    BIPUSH 0x01
+    ISUB
+    BIPUSH 0x01
+    IF_ICMPEQ L5
+L3:
+    BIPUSH 0x00
+    BIPUSH 0x01
+    BIPUSH 0x02
+    BIPUSH 0x03
+L4:
+    BIPUSH 0x00
+    IF_ICMPEQ L6
+    GOTO L4
+L5:
+    HALT
+L6:
+    BIPUSH 0x13
+    HALT
+
+.end-main

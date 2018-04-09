@@ -1,0 +1,16 @@
+.constant
+.end-constant
+
+.main
+L1:
+    BIPUSH 0x31
+    OUT
+    GOTO L3
+L2:
+    BIPUSH 0x32
+    OUT
+L3:
+    BIPUSH 0x33
+    OUT
+    HALT
+.end-main

@@ -1,0 +1,96 @@
+// Massive test containing all normal instructions.
+//
+// NOTE:
+// - if ERR is being executed, something is wrong.
+// - the stack is the state AFTER execution
+.constant
+    OBJREF  0xdeaddead
+    ASCII_A 0x41
+.end-constant
+
+.main
+.var
+    i
+.end-var
+
+    BIPUSH 0x10     // stack [16]
+    DUP             // stack [16, 16]
+    GOTO skipErr1   // skip a byte
+    ERR
+skipErr1:
+    IADD            // stack [32]
+    BIPUSH 33       // stack [33, 32]
+    IAND            // stack [32]
+
+    BIPUSH 0x1      // stack [1, 32]
+    BIPUSH 0x2      // stack [2, 1, 32]
+    IOR             // stack [3, 32]
+    ISUB            // stack [29]
+    NOP             // stack [29]
+    BIPUSH 68       // stack [68, 29]
+    IADD            // stack [97]
+    OUT             // stack []
+
+    BIPUSH 0        // stack [0]
+    IFEQ skipErr2   // stack []
+    ERR
+skipErr2:
+    BIPUSH -22      // stack [-22]
+    IFLT skipErr3   // stack []
+    ERR
+skipErr3:
+    LDC_W ASCII_A   // stack [65]
+    BIPUSH 0x41     // stack [65, 65]
+    IF_ICMPEQ skipErr4 // stack []
+    ERR
+skipErr4:
+    BIPUSH 0x1      // stack [1]
+    ISTORE i        // stack [], i = 1
+    ILOAD i         // stack [1]
+    POP             // stack []
+    IINC i 1        // stack [], i = 2
+    ILOAD i         // stack [2]
+    POP
+
+    IN              // stack [65]    get's actual input 'A'
+    IN              // stack [0, 65] get's EOF
+    IFEQ skipErr5   // stack [65]
+    ERR
+skipErr5:
+    BIPUSH 0        // stack [0, 65]
+    BIPUSH 1        // stack [1, 0, 65]
+    BIPUSH 2        // stack [2, 1, 0, 65]
+    BIPUSH 3        // stack [3, 2, 1, 0, 65]
+    INVOKEVIRTUAL func1 // stack [10, 65]
+    POP             // stack [65]
+    HALT            // stack [65]
+.end-main
+
+.method func1(a,b,c)
+    ILOAD a             // stack [1]
+    POP                 // stack []
+    ILOAD b             // stack [2]
+    POP                 // stack []
+    ILOAD c             // stack [3]
+    POP                 // stack []
+    BIPUSH 0            // stack [0]
+    BIPUSH 5            // stack [5, 0]
+    INVOKEVIRTUAL func2 // stack [10]
+    NOP                 // stack [10]
+    IRETURN
+.end-method
+
+.method func2(a)
+    BIPUSH 10           // stack [10]
+    BIPUSH 0            // stack [0, 10]
+    BIPUSH 1            // stack [1, 0, 10]
+    ILOAD a             // stack [5, 1, 0, 10]
+    INVOKEVIRTUAL func3 // stack [5, 10]
+    POP                 // stack [10]
+    IRETURN
+.end-method
+
+.method func3(b, a)
+    ILOAD a             // stack [5]
+    IRETURN
+.end-method

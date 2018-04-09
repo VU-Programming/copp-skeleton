@@ -1,0 +1,12 @@
+.constant
+henk 1
+piet 2
+kees 3
+.end-constant
+
+.main
+		LDC_W henk
+		LDC_W piet
+		LDC_W kees
+    HALT
+.end-main

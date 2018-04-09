@@ -1,0 +1,11 @@
+.main
+    BIPUSH 10
+    BIPUSH 20
+    POP
+    BIPUSH 42
+    BIPUSH 8
+    IADD
+    POP
+    OUT
+    HALT
+.end-main

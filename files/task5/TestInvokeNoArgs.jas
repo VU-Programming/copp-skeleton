@@ -1,0 +1,11 @@
+.main
+      BIPUSH 0x42
+      BIPUSH 0x42
+      INVOKEVIRTUAL test
+      HALT     
+.end-main
+.method test
+      BIPUSH 0x43
+      BIPUSH 0x43
+      IRETURN
+.end-method
