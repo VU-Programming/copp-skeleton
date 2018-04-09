@@ -1,0 +1,529 @@
+// 888      .d888d8b
+// 888     d88P" Y8P
+// 888     888
+// 88888b. 888888888
+// 888 "88b888   888
+// 888  888888   888
+// 888 d88P888   888
+// 88888P" 888   888
+//
+// bfi.jas, the brainfuck interpreter.
+// by Arthur de Fluiter, 2017
+// https://en.wikipedia.org/wiki/Brainfuck
+//
+// REQUIRES: Heap opeartions & simple invokevirtual
+//
+// Note: Since brainfuck has the ',' operator which
+// reads from input and we only have one input for IJVM
+// programs, we need to somehow pass both the program and
+// input via stdin. This is done by delimiting the input
+// with a ':'. Aka the following program will output 'd'
+// ,+++.:a
+//
+// Note 2: This might be a difficult program to debug, especially
+// given the fact that you interpret (brainfuck) on an interpreted (IJVM) platform.
+
+.constant
+    OBJREF          0xdead
+
+    STACK_SIZE      0x100  // support for 160 levels of nested []
+    MEMORY_SIZE     0x1000 // size of the bfi's memory (needs to be a power of 2)
+    INIT_TEXT_SIZE  0x4    // initial size of the bfi program buffer
+    INIT_INPUT_SIZE 0x4    // initial size of the bfi input buffer
+
+    // configurable to conform with indecisive bf community
+    EOF             0
+    CELL_MIN        0    // adjustable to not upset the brainfuck community
+    CELL_MAX        255  // (they're not entirely sure whether signed/unsigned word/quadword)
+
+    // delimiter for seperating bf program and bf input
+    DELIMITER   0x3a       // :
+
+    // characters used in brainfuck
+    ASCII_PLUS  0x2b       // +
+    ASCII_MINUS 0x2d       // -
+    ASCII_LT    0x3c       // <
+    ASCII_GT    0x3e       // >
+    ASCII_BO    0x5b       // [
+    ASCII_BC    0x5d       // ]
+    ASCII_DOT   0x2e       // .
+    ASCII_COMMA 0x2c       // ,
+.end-constant
+
+.main
+.var
+    text      // the bf program buffer
+    textcap   // capacity of the program buffer
+    textsize  // size of of the program buffer
+    input     // the bf program's input
+    inputcap  // capacity of the input
+    inputsize // size of of the input
+    char      // read in char
+.end-var
+
+    // first setting up the variables
+    BIPUSH 0x0            // textsize = 0
+    ISTORE textsize
+    LDC_W INIT_TEXT_SIZE  // textcap = INIT_TEXT_SIZE
+    ISTORE textcap
+    LDC_W INIT_TEXT_SIZE  // text = new array[INIT_TEXT_SIZE]
+    NEWARRAY
+    ISTORE text
+    BIPUSH 0x0            // inputsize = 0
+    ISTORE inputsize
+    LDC_W INIT_INPUT_SIZE // inputcap = INIT_TEXT_SIZE
+    ISTORE inputcap
+    LDC_W INIT_INPUT_SIZE // input = new array[INIT_INPUT_SIZE]
+    NEWARRAY
+    ISTORE input
+
+slurp_program_loop:
+    // if (textsize == text capacity) -> realloc text
+    ILOAD textsize
+    ILOAD textcap
+    ISUB
+    IFEQ text_grow
+
+    // char = IN;
+    IN
+    ISTORE char
+
+    // if (char == 0) -> we're done reading
+    ILOAD char
+    IFEQ done
+
+    // if (char == DELIMETER) -> read input
+    ILOAD char
+    LDC_W DELIMITER
+    IF_ICMPEQ slurp_input_loop
+
+    // if (!checkBF(char)) goto next char, aka eliminating unnecessary chars
+    LDC_W OBJREF
+    ILOAD char
+    INVOKEVIRTUAL checkBF
+    IFEQ slurp_program_loop
+
+    // text[textsize++] = char
+    ILOAD char
+    ILOAD textsize
+    IINC  textsize 0x1
+    ILOAD text
+    IASTORE
+    GOTO slurp_program_loop
+
+slurp_input_loop:
+    // if (input size == input capacity) -> realloc input
+    ILOAD inputsize
+    ILOAD inputcap
+    ISUB
+    IFEQ input_grow
+
+    // char = IN; if (char == 0) -> we're done reading
+    IN
+    DUP
+    ISTORE char
+    IFEQ done
+
+    // input[inputsize++] = char
+    ILOAD char
+    ILOAD inputsize
+    IINC  inputsize 0x1
+    ILOAD input
+    IASTORE
+    GOTO slurp_input_loop
+
+text_grow:
+    // text = realloc(text, textcap, (textcap *= 2))
+    LDC_W OBJREF
+    ILOAD text
+    ILOAD textcap
+    DUP
+    DUP
+    IADD
+    DUP
+    ISTORE textcap
+    INVOKEVIRTUAL realloc
+    ISTORE text
+    GOTO slurp_program_loop
+
+input_grow:
+    // input = realloc(input, inputcap, (inputcap *= 2))
+    LDC_W OBJREF
+    ILOAD input
+    ILOAD inputcap
+    DUP
+    DUP
+    IADD
+    DUP
+    ISTORE inputcap
+    INVOKEVIRTUAL realloc
+    ISTORE input
+    GOTO slurp_input_loop
+
+done:
+    LDC_W OBJREF
+    ILOAD text
+    ILOAD textsize
+    ILOAD input
+    ILOAD inputsize
+    INVOKEVIRTUAL exec
+    POP
+    HALT
+.end-main
+
+// checkBF whether a char is a brainfuck symbol or not
+// @param symbol
+// @return 0 if not bf 1 if bf
+.method checkBF(symbol)
+    ILOAD symbol
+    LDC_W ASCII_PLUS
+    IF_ICMPEQ ret1
+
+    ILOAD symbol
+    LDC_W ASCII_MINUS
+    IF_ICMPEQ ret1
+
+    ILOAD symbol
+    LDC_W ASCII_LT
+    IF_ICMPEQ ret1
+
+    ILOAD symbol
+    LDC_W ASCII_GT
+    IF_ICMPEQ ret1
+
+    ILOAD symbol
+    LDC_W ASCII_BO
+    IF_ICMPEQ ret1
+
+    ILOAD symbol
+    LDC_W ASCII_BC
+    IF_ICMPEQ ret1
+
+    ILOAD symbol
+    LDC_W ASCII_DOT
+    IF_ICMPEQ ret1
+
+    ILOAD symbol
+    LDC_W ASCII_COMMA
+    IF_ICMPEQ ret1
+
+    BIPUSH 0
+    IRETURN
+ret1:
+    BIPUSH 1
+    IRETURN
+.end-method
+
+
+// realloc, 'reallocating' a buffer
+// @param buffer, original buffer
+// @param curSize, size to be copied
+// @param newSize, size that it should become
+//
+// @return new buffer of newSize, with the contents of the last buffer
+.method realloc(buffer, curSize, newSize)
+.var
+    newBuffer
+    i
+.end-var
+
+    ILOAD newSize
+    NEWARRAY
+    ISTORE newBuffer
+
+    BIPUSH 0
+    ISTORE i
+loop:
+    ILOAD i
+    ILOAD curSize
+    IF_ICMPEQ end
+
+    ILOAD i
+    ILOAD buffer
+    IALOAD
+    ILOAD i
+    ILOAD newBuffer
+    IASTORE
+
+    IINC i 0x1
+    GOTO loop
+
+end:
+    ILOAD newBuffer
+    IRETURN
+.end-method
+
+// exec, runs a brainfuck program
+// @param text, program text (not containing anything but raw bf)
+// @param textsize, program size
+// @param input, the stdin of the program
+// @param size of input
+// @return garbage
+.method exec(text, textsize, input, inputsize)
+.var
+    pc       // keeps track of where we are in the bf program
+    memory   // the memory array
+    memptr   // points to offset in the memory array
+    stack    // keeps track of where to return bcs of []
+    stackptr // pointer to last one
+    instr    // holds current instruction
+    inputptr // points to what input symbol we're at
+    tmp      // used as temporary value in seeking operation
+.end-var
+
+    BIPUSH 0          // pc = 0
+    ISTORE pc
+    BIPUSH 0          // inputptr = 0
+    ISTORE inputptr
+    BIPUSH 0          // memptr = 0
+    ISTORE memptr
+    LDC_W MEMORY_SIZE // memory = NEWARRAY(MEMORY_SIZE)
+    NEWARRAY
+    ISTORE memory
+    BIPUSH -1         // stackptr = -1
+    ISTORE stackptr
+    LDC_W STACK_SIZE  // stack = NEWARRAY(STACK_SIZE)
+    NEWARRAY
+    ISTORE stack
+
+// since the memory technically doesn't have to be initialised to 0, I put this in for safety
+init_mem_loop:
+    LDC_W MEMORY_SIZE
+    ILOAD memptr
+    IF_ICMPEQ done_init_mem
+
+    BIPUSH 0
+    ILOAD memptr
+    ILOAD memory
+    IASTORE
+
+    IINC memptr 1
+    GOTO init_mem_loop
+
+done_init_mem:
+    BIPUSH 0
+    ISTORE memptr
+
+exec_loop:
+    // if we're at the end of the program, return
+    ILOAD pc
+    ILOAD textsize
+    IF_ICMPEQ done
+
+    // instr = text[pc++]
+    ILOAD pc
+    IINC pc 1
+    ILOAD text
+    IALOAD
+    ISTORE instr
+
+    ILOAD instr
+    LDC_W ASCII_PLUS
+    IF_ICMPEQ plus
+
+    ILOAD instr
+    LDC_W ASCII_MINUS
+    IF_ICMPEQ minus
+
+    ILOAD instr
+    LDC_W ASCII_DOT
+    IF_ICMPEQ dot
+
+    ILOAD instr
+    LDC_W ASCII_COMMA
+    IF_ICMPEQ comma
+
+    ILOAD instr
+    LDC_W ASCII_LT
+    IF_ICMPEQ lessthan
+
+    ILOAD instr
+    LDC_W ASCII_GT
+    IF_ICMPEQ greaterthan
+
+    ILOAD instr
+    LDC_W ASCII_BO
+    IF_ICMPEQ blockopen
+
+    ILOAD instr
+    LDC_W ASCII_BC
+    IF_ICMPEQ blockclose
+    GOTO exec_loop
+
+plus:
+    ILOAD memptr
+    ILOAD memory
+    IALOAD
+
+    DUP
+    LDC_W CELL_MAX
+    IF_ICMPEQ plus_overflow
+
+    BIPUSH 1
+    IADD
+
+    ILOAD memptr
+    ILOAD memory
+    IASTORE
+
+    GOTO exec_loop
+
+plus_overflow:
+    POP
+    LDC_W CELL_MIN
+
+    ILOAD memptr
+    ILOAD memory
+    IASTORE
+    GOTO exec_loop
+
+minus:
+    ILOAD memptr
+    ILOAD memory
+    IALOAD
+
+    DUP
+    LDC_W CELL_MIN
+    IF_ICMPEQ minus_underflow
+
+    BIPUSH -1
+    IADD
+
+    ILOAD memptr
+    ILOAD memory
+    IASTORE
+    GOTO exec_loop
+
+minus_underflow:
+    POP
+
+    LDC_W CELL_MAX
+    ILOAD memptr
+    ILOAD memory
+    IASTORE
+
+    GOTO exec_loop
+
+dot:
+    ILOAD memptr
+    ILOAD memory
+    IALOAD
+    OUT
+    GOTO exec_loop
+
+comma:
+    ILOAD inputptr
+    ILOAD inputsize
+    IF_ICMPEQ comma_noinput
+
+    // memory[memptr] = input[inputptr++]
+    ILOAD inputptr
+    IINC  inputptr 1
+    ILOAD input
+    IALOAD
+
+    ILOAD memptr
+    ILOAD memory
+    IASTORE
+
+    GOTO exec_loop
+
+comma_noinput:
+    LDC_W EOF
+    ILOAD memptr
+    ILOAD memory
+    IASTORE
+    GOTO exec_loop
+
+lessthan:
+    ILOAD memptr
+    BIPUSH -1
+    IADD
+    LDC_W MEMORY_SIZE
+    BIPUSH -1
+    IADD
+    IAND
+    ISTORE memptr
+    GOTO exec_loop
+
+greaterthan:
+    ILOAD memptr
+    BIPUSH 1
+    IADD
+    LDC_W MEMORY_SIZE
+    BIPUSH -1
+    IADD
+    IAND
+    ISTORE memptr
+
+    GOTO exec_loop
+
+blockopen:
+    // let's first check if we should seek to after the closing ]
+    ILOAD memptr
+    ILOAD memory
+    IALOAD
+    IFEQ blockopen_seek
+
+    // if not, we'll add pc to the return stack and continue normal execution
+    IINC stackptr 1
+
+    // push the address of the [ on stack, we'll jump back to blockopen
+    ILOAD  pc       // pc counter was already updated
+    BIPUSH -1       // so we need to subtract 1
+    IADD
+    ILOAD stackptr
+    ILOAD stack
+    IASTORE
+
+    // go back to normal execution loop
+    GOTO exec_loop
+
+blockopen_seek:
+    // we increase tmp when a [ is encountered and decrease if a ] is encountered
+    // when tmp reaches 0, we'll have reached the correct one
+    BIPUSH 1
+    ISTORE tmp
+
+blockopen_seekloop:
+    //
+    ILOAD pc
+    IINC pc 1
+    ILOAD program
+    IALOAD
+    ISTORE instr
+
+    // if instr == '[' goto inc
+    ILOAD instr
+    LDC_W ASCII_BO
+    IF_ICMP blockopen_inc
+
+    // if instr == ']' goto dec
+    ILOAD instr
+    LDC_W ASCII_BC
+    IF_ICMP blockopen_dec
+
+    // if it was neither a [ or ], just go to next instruction
+    GOTO blockopen_seekloop
+
+blockopen_inc:
+    IINC tmp 1
+    GOTO blockopen_seekloop
+
+blockopen_dec:
+    IINC tmp -1
+    IFEQ exec_loop
+    GOTO blockopen_seekloop
+
+blockclose:
+    // we have to return to the last [
+    ILOAD stackptr
+    ILOAD stack
+    IALOAD
+    ISTORE pc
+    GOTO exec_loop
+
+done:
+    LDC_W OBJREF
+    IRETURN
+.end-method
