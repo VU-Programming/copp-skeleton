@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include "ijvm.h"
@@ -66,8 +65,7 @@ void test_nested_invoke()
 
 int main()
 {
-    test_nested_invoke_simple();
-    test_nested_invoke();
-    printf("## PASSED ALL TESTS FOR ADVANCED 2 ##\n");
-    return 0;
+    RUN_TEST(test_nested_invoke_simple);
+    RUN_TEST(test_nested_invoke);
+    return END_TEST();
 }

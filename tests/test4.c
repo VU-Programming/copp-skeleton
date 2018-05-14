@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include "ijvm.h"
@@ -134,11 +133,10 @@ void test_iinc()
 
 int main()
 {
-    test_ldcw1();
-    test_simple_load();
-    test_complex_load();
-    test_iteration_load();
-    test_iinc();
-    printf("## PASSED ALL TESTS FOR TASK 4 ##\n");
-    return 0;
+    RUN_TEST(test_ldcw1);
+    RUN_TEST(test_simple_load);
+    RUN_TEST(test_complex_load);
+    RUN_TEST(test_iteration_load);
+    RUN_TEST(test_iinc);
+    return END_TEST();
 }

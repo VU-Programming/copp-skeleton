@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include "ijvm.h"
@@ -80,11 +79,10 @@ void test_ireturn2()
 
 int main()
 {
-    test_invokenoargs();
-    test_invoke1();
-    test_ireturn1();
-    test_invoke2();
-    test_ireturn2();
-    printf("## PASSED ALL TESTS FOR TASK 5 ##\n");
-    return 0;
+    RUN_TEST(test_invokenoargs);
+    RUN_TEST(test_invoke1);
+    RUN_TEST(test_ireturn1);
+    RUN_TEST(test_invoke2);
+    RUN_TEST(test_ireturn2);
+    return END_TEST();
 }

@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdio.h>
 #include "ijvm.h"
 #include "testutil.h"
@@ -131,16 +130,15 @@ void test_simple_stack_operations()
 
 int main()
 {
-    test_simple_bipush();
-    test_signed_bipush();
-    test_simple_iadd();
-    test_signed_iadd();
-    test_simple_isub();
-    test_signed_isub();
-    test_simple_iand();
-    test_simple_ior();
-    test_swap();
-    test_simple_stack_operations();
-    printf("## PASSED ALL TESTS FOR TASK 2 ##\n");
-    return 0;
+    RUN_TEST(test_simple_bipush);
+    RUN_TEST(test_signed_bipush);
+    RUN_TEST(test_simple_iadd);
+    RUN_TEST(test_signed_iadd);
+    RUN_TEST(test_simple_isub);
+    RUN_TEST(test_signed_isub);
+    RUN_TEST(test_simple_iand);
+    RUN_TEST(test_simple_ior);
+    RUN_TEST(test_swap);
+    RUN_TEST(test_simple_stack_operations);
+    return END_TEST();
 }

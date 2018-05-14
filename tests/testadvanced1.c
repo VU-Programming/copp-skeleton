@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <ijvm.h>
+#include "testutil.h"
 
 /*
  * You seriously do not wanna know how much effort it cost to
@@ -47,9 +48,9 @@ _assert_equal(int line, const char *a_expr, word_t a, const char *b_expr, word_t
 #endif
 
 /*
- * Actual main function, this is the only stuff you'll need to read
+ * Actual test function, this is the only stuff you'll need to read
  */
-int main(int argc, char *argv[])
+void test_advanced_1()
 {
     FILE *input, *output;
 
@@ -287,7 +288,10 @@ int main(int argc, char *argv[])
     remove("tmp_input");
     remove("tmp_output");
 
-    printf("## PASSED ALL TESTS FOR ADVANCED 1 ##\n");
-    return 0;
 }
 
+int main()
+{
+  RUN_TEST(test_advanced_1);
+  return END_TEST();
+}

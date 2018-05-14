@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdio.h>
 #include "ijvm.h"
 #include "testutil.h"
@@ -7,6 +6,8 @@ void test_goto1()
 {
     int res = init_ijvm("files/task3/GOTO1.ijvm");
     assert(res != -1);
+
+    set_null_output();
 
     step();
     assert(tos() == 0x31);
@@ -22,6 +23,8 @@ void test_goto2()
 {
     int res = init_ijvm("files/task3/GOTO2.ijvm");
     assert(res != -1);
+
+    set_null_output();
 
     step();
     assert(tos() == 0x31);
@@ -41,6 +44,7 @@ void test_ifeq1()
 {
     int res = init_ijvm("files/task3/IFEQ1.ijvm");
     assert(res != -1);
+    set_null_output();
 
     int startpc = 0;
 
@@ -88,6 +92,9 @@ void test_iflt1()
     int res = init_ijvm("files/task3/IFLT1.ijvm");
     assert(res != -1);
 
+    set_null_output();
+
+
     int oldpc = get_program_counter();
 
     // L1
@@ -117,6 +124,8 @@ void test_ificmpeq1()
 {
     int res = init_ijvm("files/task3/IFICMPEQ1.ijvm");
     assert(res != -1);
+
+    set_null_output();
 
     int oldpc = get_program_counter();
 
@@ -152,11 +161,10 @@ void test_ificmpeq1()
 
 int main()
 {
-    test_goto1();
-    test_goto2();
-    test_ifeq1();
-    test_iflt1();
-    test_ificmpeq1();
-    printf("## PASSED ALL TESTS FOR TASK 3 ##\n");
-    return 0;
+    RUN_TEST(test_goto1);
+    RUN_TEST(test_goto2);
+    RUN_TEST(test_ifeq1);
+    RUN_TEST(test_iflt1);
+    RUN_TEST(test_ificmpeq1);
+    return END_TEST();
 }

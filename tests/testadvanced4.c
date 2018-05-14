@@ -1,7 +1,7 @@
-#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include "ijvm.h"
+#include "testutil.h"
 
 
 void test_tanenbaum()
@@ -29,7 +29,6 @@ void test_tanenbaum()
 
 int main()
 {
-    test_tanenbaum();
-    printf("## PASSED ALL TESTS FOR ADVANCED 4 ##\n");
-    return 0;
+    RUN_TEST(test_tanenbaum);
+    return END_TEST();
 }

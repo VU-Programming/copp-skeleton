@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include "ijvm.h"
@@ -94,11 +93,10 @@ void test_method_stack()
 }
 int main()
 {
-    test_stack_100();
-    test_stack_3000();
-    test_stack_50000();
-    test_get_stack_contents();
-    test_method_stack();
-    printf("## PASSED ALL TESTS FOR ADVANCED STACK TEST ##\n");
-    return 0;
+    RUN_TEST(test_stack_100);
+    RUN_TEST(test_stack_3000);
+    RUN_TEST(test_stack_50000);
+    RUN_TEST(test_get_stack_contents);
+    RUN_TEST(test_method_stack);
+    return END_TEST();
 }

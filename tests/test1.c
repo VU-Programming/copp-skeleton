@@ -1,6 +1,6 @@
-#include <assert.h>
 #include <stdio.h>
 #include "ijvm.h"
+#include "testutil.h"
 
 void test_program_1()
 {
@@ -50,9 +50,8 @@ void test_program_counter()
 
 int main()
 {
-    //test_program_counter();
-    test_program_1();
-    test_program_2();
-    printf("## PASSED ALL TESTS FOR TASK 1 ##\n");
-    return 0;
+    RUN_TEST(test_program_counter);
+    RUN_TEST(test_program_1);
+    RUN_TEST(test_program_2);
+    return END_TEST();
 }
