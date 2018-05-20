@@ -153,8 +153,8 @@ int init_ijvm(char *binary_path);
 
 
 /**
- * Destroys a vm, that is to say, free memory associated with the machine and
- * close files that were attached (unless they are still stdin/stdout)
+ * Destroys a vm, that is to say, free all memory associated with the machine
+ * and allow for a new call to init_ijvm().
  */
 void destroy_ijvm(void);
 
