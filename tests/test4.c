@@ -84,6 +84,7 @@ void test_complex_load()
     destroy_ijvm();
 }
 
+#define LOADTEST4_OUTPUT "kjihgfedcbaabcd"
 void test_iteration_load()
 {
     FILE *output_file;
@@ -99,7 +100,7 @@ void test_iteration_load()
 
     rewind(output_file);
     fread(buf, 1, 127, output_file);
-    assert(strncmp(buf, "kjihgfedcbaabcd", 15) == 0);
+    assert(strncmp(buf, LOADTEST4_OUTPUT, strlen(LOADTEST4_OUTPUT) + 1) == 0);
 
     destroy_ijvm();
 
