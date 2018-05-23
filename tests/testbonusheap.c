@@ -41,15 +41,17 @@ void run_bfi(const char *bf_file, const char *expected)
     /* re-open it for reading, since the ijvm closed it anyway */
     output = fopen("tmp_output", "r");
 
-    if ((bytes_read = fread(buffer, 1, 1024, output)) < 0)
+    if ((bytes_read = fread(buffer, 1, 1023, output)) < 0)
     {
         destroy_ijvm();
         eprintf("Couldn't read the output of the ijvm for program %s", bf_file);
         remove("tmp_output");
         exit(1);
     }
+    /* add NIL byte at the end of the buffer */
+    buffer[bytes_read] = 0;
 
-    if (memcmp(buffer, expected, strlen(expected) - 1) != 0)
+    if (memcmp(buffer, expected, strlen(expected)+1) != 0)
     {
         eprintf("Incorrect output, got %s expected %s", buffer, expected);
         exit(1);
@@ -62,7 +64,7 @@ void run_bfi(const char *bf_file, const char *expected)
 
 void test_bfi_1()
 {
-    run_bfi(HELLO_WORLD, "Hello World!");
+    run_bfi(HELLO_WORLD, "Hello World!\n");
 }
 
 void test_bfi_2()
@@ -70,7 +72,7 @@ void test_bfi_2()
     run_bfi(DANKNESS, "MoarTests");
 }
 
-int main(int argc, char *argv[])
+int main(void)
 {
     RUN_TEST(test_bfi_1);
     RUN_TEST(test_bfi_2);
