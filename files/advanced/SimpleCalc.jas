@@ -192,13 +192,13 @@ recurse:
 	INVOKEVIRTUAL printNumber
 	POP
 	INVOKEVIRTUAL printNum
-  POP
+  //POP
 	IRETURN
 small:
 	LDC_W OBJREF
 	ILOAD a
 	INVOKEVIRTUAL printNum
-  POP
+  //POP
 	IRETURN
 .end-method
 

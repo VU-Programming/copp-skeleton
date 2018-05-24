@@ -1,0 +1,31 @@
+.constant
+.end-constant
+
+.main
+
+L1:
+    BIPUSH 0x00
+    IFLT L6
+L2:
+    BIPUSH 0x01
+    IFLT L6
+L3:
+    BIPUSH 0x02
+    IFLT L6
+L4:
+    BIPUSH 0x10
+    BIPUSH 0x11
+    ISUB
+    IFLT L6
+L5:
+    BIPUSH 0x00
+    BIPUSH 0x00
+    BIPUSH 0x00
+    BIPUSH 0x00
+    BIPUSH 0x00
+    HALT
+L6:
+    BIPUSH 0x37
+    HALT
+.end-main
+

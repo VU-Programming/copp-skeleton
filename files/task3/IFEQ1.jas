@@ -1,0 +1,27 @@
+.constant
+.end-constant
+
+.main
+
+L1:
+    BIPUSH 0x05
+L2:
+    DUP
+    BIPUSH 0x30
+    IADD
+    OUT
+    BIPUSH 0x01
+    ISUB
+    DUP
+    IFEQ L3
+    GOTO L2
+L3:
+    BIPUSH 0x65
+    BIPUSH 0x6E
+    BIPUSH 0x6F
+    BIPUSH 0x64
+    OUT
+    OUT
+    OUT
+    OUT
+.end-main

@@ -65,9 +65,9 @@ run_test%: test%
 
 
 testbasic: run_test1 run_test2 run_test3 run_test4 run_test5
-testadvanced: run_testadvanced1 run_testadvanced2 run_testadvanced3 run_testadvanced4 run_testadvancedstack
+testadvanced: run_testadvanced1 run_testadvanced2 run_testadvanced3 run_testadvanced4 run_testadvanced5 run_testadvanced6 run_testadvancedstack 
 testall: testbasic testadvanced
-build_tests: test1 test2 test3 test4 test5 testadvanced1 testadvanced2 testadvanced3 testadvanced4 testadvancedstack
+build_tests: test1 test2 test3 test4 test5 testadvanced1 testadvanced2 testadvanced3 testadvanced4 testadvanced5 testadvanced6 testadvancedstack
 
 # Uses LLVM sanitizers
 testasan: CC=clang
@@ -94,6 +94,8 @@ testleaks: build_tests
 	valgrind --leak-check=full ./testadvanced2
 	valgrind --leak-check=full ./testadvanced3
 	valgrind --leak-check=full ./testadvanced4
+	valgrind --leak-check=full ./testadvanced5
+	valgrind --leak-check=full ./testadvanced6
 	valgrind --leak-check=full ./testadvancedstack
 
 coverage: CFLAGS+=-fprofile-instr-generate -fcoverage-mapping
