@@ -29,11 +29,27 @@ Generate a gzipped tarball of your project using the `make dist` command.
 Make sure to double check that all your required files are included in the tarball.
 
 # Compatibility
-You need a valid C11 compiler, such as clang or gcc.
+You need a valid C11 compiler, such as clang or gcc, as well as glibc. Do not 
+use any non-standard libraries.
 
-This skeleton works on Linux and macOS. It should work on Windows using the
-[Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-Install the required packages using `sudo apt-get update && sudo apt-get install build-essential`.
+This skeleton works on Linux and MacOS. Windows users can install a Linux VM, or
+follow the instructions below.
+
+# Windows
+To develop on Windows, we recommend using the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10),
+and installing Ubuntu from the Microsoft Store. Once you have gone through the
+setup steps, you can access the Linux command line by executing `bash` from
+the Windows command line. You can access your files in the Windows file system
+through mount points (e.g. `cd /mnt/c/Users/<username>/Desktop`).
+
+Both glibc, gcc, and make are included in the package `build-essential`. To 
+install this package, execute the following commands:
+
+* `sudo apt-get update`
+* `sudo apt-get install build-essential`
+
+Now you can compile the project by navigating to this directory and executing
+the `make` command.
 
 # Tools
 You can install the goJASM assembler by executing `make tools`. This will
