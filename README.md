@@ -53,4 +53,4 @@ the `make` command.
 
 # Tools
 You can install the goJASM assembler by executing `make tools`. This will
-download a goJASM aexecutable in the tools directory.
+download a goJASM executable in the tools directory.
