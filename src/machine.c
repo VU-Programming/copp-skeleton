@@ -15,3 +15,13 @@ void run()
 {
   // Step while you can
 }
+
+void set_input(FILE *fp)
+{
+  // TODO: implement me
+}
+
+void set_output(FILE *fp)
+{
+  // TODO: implement me
+}
