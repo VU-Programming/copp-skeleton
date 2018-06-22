@@ -126,18 +126,12 @@ byte_t get_instruction(void);
 
 /**
  * Sets the output of the IJVM instance to the provided file
- *
- * If the output is not stdout or stderr, it should be closed when the IJVM is
- * destroyed or set_output is called again
  **/
 void set_output(FILE *f);
 
 
 /**
  * Sets the input of the IJVM instance to the provided file.
- *
- * If the output is not stdin, it should be closed when the IJVM is destroyed
- * or set_input is called again
  **/
 void set_input(FILE *f);
 
