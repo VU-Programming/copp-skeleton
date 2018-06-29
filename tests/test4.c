@@ -88,7 +88,7 @@ void test_complex_load()
 void test_iteration_load()
 {
     FILE *output_file;
-    char buf[128];
+    char buf[128] = {0};
 
     int res = init_ijvm("files/task4/LoadTest4.ijvm");
     assert(res != -1);

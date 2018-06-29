@@ -7,7 +7,7 @@
 void test_tanenbaum()
 {
     FILE *output_file;
-    char buf[128];
+    char buf[128] = {0};
 
     memset(buf, '\0', 128);
 
