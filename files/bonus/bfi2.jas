@@ -1,0 +1,772 @@
+// 888       .d888 d8b  .d8888b.
+// 888      d88P"  Y8P d88P  Y88b
+// 888      888               888
+// 88888b.  888888 888      .d88P
+// 888 "88b 888    888  .od888P"
+// 888  888 888    888 d88P"
+// 888 d88P 888    888 888"
+// 88888P"  888    888 888888888
+// 
+// The new and improved brainfuck 'interpreter'
+// 
+// Steps of process:
+//   > Compile code into bytecode
+//   > Run said bytecode :)
+//   > Profit ?
+// 
+
+.constant
+    BF_MEM_MASK     0x0fff
+    BF_MEM_SIZE     0x1000
+    BYTECODE_ADD    0
+    BYTECODE_CLR    6
+    BYTECODE_IN     5
+    BYTECODE_JNZ    3
+    BYTECODE_JZ     2
+    BYTECODE_MEM    1
+    BYTECODE_OUT    4
+    INITIAL_CAPACITY 126
+    _OBJREF         0xdeadc001
+.end-constant
+
+.main
+  LDC_W _OBJREF
+  INVOKEVIRTUAL _main
+  IFEQ success
+error:
+  ERR
+success:
+  HALT
+.end-main
+
+.method _main()
+.var
+  txt
+  input
+.end-var
+
+  // compile brainfuck at stdin to bytecode
+  LDC_W _OBJREF
+  INVOKEVIRTUAL bytecode_compile
+  ISTORE txt
+
+  // get input
+  LDC_W _OBJREF
+  INVOKEVIRTUAL get_input
+  ISTORE input
+
+  LDC_W _OBJREF
+  ILOAD txt
+  ILOAD input
+  INVOKEVIRTUAL bytecode_execute
+  POP
+
+  BIPUSH 0
+  IRETURN
+.end-method
+
+.method bytecode_compile()
+.var
+  txt
+  char
+  tmp
+  quotes_stack
+.end-var
+
+  LDC_W _OBJREF
+  LDC_W INITIAL_CAPACITY
+  INVOKEVIRTUAL list_new
+  ISTORE txt
+  LDC_W _OBJREF
+  LDC_W INITIAL_CAPACITY
+  INVOKEVIRTUAL list_new
+  ISTORE quotes_stack
+  BIPUSH 0
+  ISTORE tmp
+
+pl:
+  IN
+  ISTORE char
+l:
+  ILOAD char
+  BIPUSH 58
+  IF_ICMPEQ ret
+  ILOAD char
+  IFEQ ret
+
+  ILOAD char
+  BIPUSH 43
+  ISUB
+  IFLT pl
+  ILOAD char
+  BIPUSH 43
+  IF_ICMPEQ plus_compile
+  ILOAD char
+  BIPUSH 45
+  IF_ICMPEQ hyphen_compile
+  ILOAD char
+  BIPUSH 60
+  IF_ICMPEQ lt_compile
+  ILOAD char
+  BIPUSH 62
+  IF_ICMPEQ gt_compile
+  ILOAD char
+  BIPUSH 91
+  IF_ICMPEQ bq_open_compile
+  ILOAD char
+  BIPUSH 93
+  IF_ICMPEQ bq_close_compile
+  ILOAD char
+  BIPUSH 46
+  IF_ICMPEQ period_compile
+  ILOAD char
+  BIPUSH 44
+  IF_ICMPEQ comma_compile
+  GOTO pl
+
+next_add_char:
+  IN
+  ISTORE char
+  ILOAD char
+  BIPUSH 43
+  IF_ICMPEQ plus_compile
+  ILOAD char
+  BIPUSH 45
+  IF_ICMPEQ hyphen_compile
+  ILOAD char
+  BIPUSH 60
+  IF_ICMPEQ add_compile
+  ILOAD char
+  BIPUSH 62
+  IF_ICMPEQ add_compile
+  ILOAD char
+  BIPUSH 91
+  IF_ICMPEQ add_compile
+  ILOAD char
+  BIPUSH 93
+  IF_ICMPEQ add_compile
+  ILOAD char
+  BIPUSH 46
+  IF_ICMPEQ add_compile
+  ILOAD char
+  BIPUSH 44
+  IF_ICMPEQ add_compile
+  GOTO next_add_char
+
+add_compile:
+  ILOAD tmp
+  IFEQ l
+
+  // write ADD x to txt
+  LDC_W _OBJREF
+  ILOAD txt
+  LDC_W BYTECODE_ADD
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  LDC_W _OBJREF
+  ILOAD txt
+  ILOAD tmp
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  BIPUSH 0
+  ISTORE tmp
+  GOTO l
+
+plus_compile:
+  IINC tmp 1
+  GOTO next_add_char
+
+hyphen_compile:
+  IINC tmp -1
+  GOTO next_add_char
+
+next_mem_char:
+  IN
+  ISTORE char
+  ILOAD char
+  BIPUSH 60
+  IF_ICMPEQ lt_compile
+  ILOAD char
+  BIPUSH 62
+  IF_ICMPEQ gt_compile
+  ILOAD char
+  BIPUSH 43
+  IF_ICMPEQ mem_compile
+  ILOAD char
+  BIPUSH 45
+  IF_ICMPEQ mem_compile
+  ILOAD char
+  BIPUSH 91
+  IF_ICMPEQ mem_compile
+  ILOAD char
+  BIPUSH 93
+  IF_ICMPEQ mem_compile
+  ILOAD char
+  BIPUSH 46
+  IF_ICMPEQ mem_compile
+  ILOAD char
+  BIPUSH 44
+  IF_ICMPEQ mem_compile
+  GOTO next_mem_char
+
+mem_compile:
+  ILOAD tmp
+  IFEQ l
+
+  // write MEM x to txt
+  LDC_W _OBJREF
+  ILOAD txt
+  LDC_W BYTECODE_MEM
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  LDC_W _OBJREF
+  ILOAD txt
+  ILOAD tmp
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  BIPUSH 0
+  ISTORE tmp
+  GOTO l
+
+lt_compile:
+  IINC tmp -1
+  GOTO next_mem_char
+
+gt_compile:
+  IINC tmp 1
+  GOTO next_mem_char
+
+bq_open_compile:
+  // quotes_stack.append(txt.ptr)
+  LDC_W _OBJREF
+  ILOAD quotes_stack
+  BIPUSH 1
+ILOAD txt
+IALOAD
+  INVOKEVIRTUAL list_append
+  ISTORE quotes_stack
+
+  // txt.append(JZ 0), 0 is later filled in
+  LDC_W _OBJREF
+  ILOAD txt
+  LDC_W BYTECODE_JZ
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  LDC_W _OBJREF
+  ILOAD txt
+  BIPUSH 0
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  GOTO pl
+
+bq_close_compile:
+  LDC_W _OBJREF
+  ILOAD quotes_stack
+  INVOKEVIRTUAL list_pop
+  ISTORE tmp
+
+  // check if we have the following situation: [+] or [-]
+  // lab_a: JZ lab_d
+  // lab_b: ADD -1
+  // lab_c: JNZ lab_b
+  //
+  // In this case, txt.rsize - jz.pos == 4 and txt[jz.pos + 2] == ADD
+  BIPUSH 1
+  ILOAD txt
+  IALOAD
+  ILOAD tmp
+  ISUB
+  BIPUSH 4
+  IF_ICMPEQ possible_clear
+
+jnz_write:
+  // JNZ after [
+  LDC_W _OBJREF
+  ILOAD txt
+  LDC_W BYTECODE_JNZ
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  LDC_W _OBJREF
+  ILOAD txt
+  ILOAD tmp
+BIPUSH 2
+IADD
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+
+  // the JZ before needs to jump after the JNZ x instruction
+  BIPUSH 1
+  ILOAD txt
+  IALOAD
+  ILOAD tmp
+  BIPUSH 1
+  IADD
+  ILOAD txt
+  IASTORE
+
+  BIPUSH 0
+  ISTORE tmp
+  GOTO pl
+
+possible_clear:
+  // if txt[jz.pos + 2] == ADD (0)
+  ILOAD tmp
+  BIPUSH 2
+  IADD
+  ILOAD txt
+  IALOAD
+  IFEQ emit_clear
+  GOTO jnz_write
+
+emit_clear:
+  // pop the add and jz
+  LDC_W _OBJREF
+  ILOAD txt
+  INVOKEVIRTUAL list_pop
+  LDC_W _OBJREF
+  ILOAD txt
+  INVOKEVIRTUAL list_pop
+  LDC_W _OBJREF
+  ILOAD txt
+  INVOKEVIRTUAL list_pop
+  LDC_W _OBJREF
+  ILOAD txt
+  INVOKEVIRTUAL list_pop
+
+  // add clear opcode
+  LDC_W _OBJREF
+  ILOAD txt
+  LDC_W BYTECODE_CLR
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+
+  // reset tmp
+  BIPUSH 0
+  ISTORE tmp
+
+  // jump back
+  GOTO pl
+
+period_compile:
+  LDC_W _OBJREF
+  ILOAD txt
+  LDC_W BYTECODE_OUT
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  GOTO pl
+
+comma_compile:
+  LDC_W _OBJREF
+  ILOAD txt
+  LDC_W BYTECODE_IN
+  INVOKEVIRTUAL list_append
+  ISTORE txt
+  GOTO pl
+
+ret:
+  ILOAD txt
+  IRETURN
+.end-method
+
+.method bytecode_execute(txt, input)
+.var
+  mem
+  mem_val
+  mem_ptr
+  pc
+  last_pc
+  op
+  i_ptr
+  i_end
+.end-var
+  // initialize brainfuck memory
+  LDC_W BF_MEM_SIZE
+  NEWARRAY
+  ISTORE mem
+  BIPUSH 0
+  ISTORE mem_ptr
+  BIPUSH 0
+  ISTORE mem_val
+
+  // set program counter
+  BIPUSH 2
+  ISTORE pc
+  BIPUSH 1
+  ILOAD txt
+  IALOAD
+  BIPUSH -1
+  IADD
+  ISTORE last_pc
+
+  // set input counter and end of input
+  BIPUSH 2
+  ISTORE i_ptr
+  BIPUSH 1
+  ILOAD input
+  IALOAD
+  ISTORE i_end
+
+exec_loop:
+  // if last_pc < pc
+  ILOAD last_pc
+  ILOAD pc
+  ISUB
+  IFLT exec_done
+
+  // read op
+  ILOAD pc
+  ILOAD txt
+  IALOAD
+  ISTORE op
+
+  // move pc past op
+  IINC pc 1
+
+  // do a small binary tree lookup, 1 < op => JZ/JNZ/OUT/IN else ADD/MEM
+  BIPUSH 1
+  ILOAD op
+  ISUB
+  IFLT exec_rest
+
+  // if (op == 0) goto exec_add
+  ILOAD op
+  IFEQ exec_add
+
+exec_mem:
+  // mem[mem_ptr] = mem_val
+  ILOAD mem_val
+  ILOAD mem_ptr
+  ILOAD mem
+  IASTORE
+
+  // mem_ptr += txt[pc]
+  ILOAD mem_ptr
+  ILOAD pc
+  ILOAD txt
+  IALOAD
+  IADD
+  ISTORE mem_ptr
+
+  // apply memory mask (wrap around)
+  ILOAD mem_ptr
+  LDC_W BF_MEM_MASK
+  IAND
+  ISTORE mem_ptr
+
+  // retrieve mem_val
+  ILOAD mem_ptr
+  ILOAD mem
+  IALOAD
+  ISTORE mem_val
+
+  // pc is increased by 1 for MEM's argument
+  IINC pc 1
+  GOTO exec_loop
+
+exec_add:
+  // mem_val += txt[pc]
+  ILOAD mem_val
+  ILOAD pc
+  ILOAD txt
+  IALOAD
+  IADD
+  ISTORE mem_val
+
+  // pc is increased by 1, for ADD's argument
+  IINC pc 1
+  GOTO exec_loop
+
+exec_rest:
+  ILOAD op
+  BIPUSH 4
+  ISUB
+  IFLT exec_jumps
+  ILOAD op
+  BIPUSH 4
+  IF_ICMPEQ exec_out
+  ILOAD op
+  BIPUSH 5
+  IF_ICMPEQ exec_in
+  ILOAD op
+  BIPUSH 6
+  IF_ICMPEQ exec_clr
+
+  // Opcodes shouldnt get here
+  BIPUSH 73
+  OUT
+  BIPUSH 110
+  OUT
+  BIPUSH 99
+  OUT
+  BIPUSH 111
+  OUT
+  BIPUSH 114
+  OUT
+  BIPUSH 114
+  OUT
+  BIPUSH 101
+  OUT
+  BIPUSH 99
+  OUT
+  BIPUSH 116
+  OUT
+  BIPUSH 32
+  OUT
+  BIPUSH 111
+  OUT
+  BIPUSH 112
+  OUT
+  BIPUSH 10
+  OUT
+  ERR
+
+exec_in:
+  ILOAD i_ptr
+  ILOAD i_end
+  IF_ICMPEQ exec_in_eof
+  ILOAD i_ptr
+  ILOAD input
+  IALOAD
+  ISTORE mem_val
+  IINC i_ptr 1
+  GOTO exec_loop
+
+exec_in_eof:
+  BIPUSH 0
+  ISTORE mem_val
+  GOTO exec_loop
+
+exec_out:
+  ILOAD mem_val
+  OUT
+  GOTO exec_loop
+
+exec_jumps:
+  ILOAD op
+  BIPUSH 3
+  IF_ICMPEQ exec_jnz
+
+exec_jz:
+  ILOAD mem_val
+  IFEQ exec_do_jump
+
+exec_dont_jump:
+  IINC pc 1
+  GOTO exec_loop
+
+exec_jnz:
+  ILOAD mem_val
+  IFEQ exec_dont_jump
+
+exec_do_jump:
+  // pc = txt[pc]
+  ILOAD pc
+  ILOAD txt
+  IALOAD
+  ISTORE pc
+  GOTO exec_loop
+
+exec_clr:
+  BIPUSH 0
+  ISTORE mem_val
+  GOTO exec_loop
+
+exec_done:
+  BIPUSH 0
+  IRETURN
+.end-method
+
+.method get_input()
+.var
+  input
+  char
+.end-var
+
+  LDC_W _OBJREF
+  LDC_W INITIAL_CAPACITY
+  INVOKEVIRTUAL list_new
+  ISTORE input
+
+loop:
+  IN
+  ISTORE char
+  ILOAD char
+  IFEQ done
+
+  LDC_W _OBJREF
+  ILOAD input
+  ILOAD char
+  INVOKEVIRTUAL list_append
+  ISTORE input
+  GOTO loop
+
+done:
+  ILOAD input
+  IRETURN
+.end-method
+
+.method list_append(list_ref, value)
+.var
+  list
+  i
+  size
+  capacity
+.end-var
+
+  BIPUSH 0
+  ILOAD list_ref
+  IALOAD
+  DUP
+  ISTORE capacity
+
+  BIPUSH 1
+  ILOAD list_ref
+  IALOAD
+  DUP
+  ISTORE size
+
+  IF_ICMPEQ realloc
+  ILOAD list_ref
+  ISTORE list
+done:
+  // arr[size] = value
+  ILOAD value
+  ILOAD size
+  ILOAD list
+  IASTORE
+
+  // size++
+  IINC size 1
+
+  // arr.size = size
+  ILOAD size
+  BIPUSH 1
+  ILOAD list
+  IASTORE
+
+  ILOAD list
+  IRETURN
+
+realloc:
+  BIPUSH 1
+  ISTORE i
+  ILOAD size
+  DUP
+  IADD
+  NEWARRAY
+  ISTORE list
+
+realloc_loop:
+  // list[i] = list_ref[i];
+  ILOAD i
+  ILOAD list_ref
+  IALOAD
+  ILOAD i
+  ILOAD list
+  IASTORE
+
+  // i++
+  IINC i 1
+
+  // if (i < size) goto realloc_loop
+  ILOAD i
+  ILOAD size
+  ISUB
+  IFLT realloc_loop
+
+realloc_done:
+  // list[LIST_CAPACITY] = cap * 2
+  ILOAD size
+  DUP
+  IADD
+  BIPUSH 0
+  ILOAD list
+  IASTORE
+  GOTO done
+.end-method
+
+.method list_new(capacity)
+.var
+  list
+  capacity_real
+.end-var
+  ILOAD capacity
+  BIPUSH 2
+  IADD
+  ISTORE capacity_real
+  ILOAD capacity_real
+  NEWARRAY
+  ISTORE list
+  ILOAD capacity_real
+  BIPUSH 0
+  ILOAD list
+  IASTORE
+  BIPUSH 2
+  BIPUSH 1
+  ILOAD list
+  IASTORE
+
+  ILOAD list
+  IRETURN
+.end-method
+
+.method list_pop(list_ref)
+.var
+  size
+.end-var
+
+  BIPUSH 1
+  ILOAD list_ref
+  IALOAD
+  ISTORE size
+  IINC size -1
+  ILOAD size
+  IFLT error
+
+  ILOAD size
+  BIPUSH 1
+  ILOAD list_ref
+  IASTORE
+  ILOAD size
+  ILOAD list_ref
+  IALOAD
+  IRETURN
+
+error:
+  BIPUSH 91
+  OUT
+  BIPUSH 33
+  OUT
+  BIPUSH 93
+  OUT
+  BIPUSH 32
+  OUT
+  BIPUSH 66
+  OUT
+  BIPUSH 111
+  OUT
+  BIPUSH 117
+  OUT
+  BIPUSH 110
+  OUT
+  BIPUSH 100
+  OUT
+  BIPUSH 115
+  OUT
+  BIPUSH 32
+  OUT
+  BIPUSH 101
+  OUT
+  BIPUSH 114
+  OUT
+  BIPUSH 114
+  OUT
+  BIPUSH 111
+  OUT
+  BIPUSH 114
+  OUT
+  BIPUSH 10
+  OUT
+  ERR
+.end-method
+

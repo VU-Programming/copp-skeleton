@@ -12,7 +12,7 @@
 #define nprintf(Fmt, ...) fprintf(stderr, "[+] " Fmt "\n", __VA_ARGS__)
 #define eprintf(Fmt, ...) fprintf(stderr, "[!] " Fmt "\n", __VA_ARGS__)
 
-#define BFI_PATH    "files/bonus/bfi.ijvm"
+#define BFI_PATH    "files/bonus/bfi2.ijvm"
 #define HELLO_WORLD "files/bonus/brainfuck/hello_world.bf"
 #define DANKNESS    "files/bonus/brainfuck/dank.bf"
 
