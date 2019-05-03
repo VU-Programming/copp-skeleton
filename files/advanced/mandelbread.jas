@@ -1,0 +1,902 @@
+// |                            _      _ _                        _  |
+// |  _ __ ___   __ _ _ __   __| | ___| | |__  _ __ ___  __ _  __| | |
+// | | '_ ` _ \ / _` | '_ \ / _` |/ _ \ | '_ \| '__/ _ \/ _` |/ _` | |
+// | | | | | | | (_| | | | | (_| |  __/ | |_) | | |  __/ (_| | (_| | |
+// | |_| |_| |_|\__,_|_| |_|\__,_|\___|_|_.__/|_|  \___|\__,_|\__,_| |
+// |                                                                 |
+// | This is mandelbread, the fractal renderer, written in IJVM.     |
+// | Made by Arthur de Fluiter, 2k19                                 |
+// 
+// Requirements:
+//   - Full instruction set implementation
+//     -> (everything except IN, NOP, WIDE or bonusses)
+//   - A relatively fast IJVM (runs for about 2-8 sec on good implementation)
+// 
+//                                                           ;;
+//                                                           ;i1;t1@
+//                                                           ;i1fi;
+//                                                        ;ti1f@@ti;;
+//                                                       ;if@@@@@@@@L
+//                                                      ;;i@@@@@@@@@i;
+//                                             1;;0i;;;iii1tG@@@@@G1ii;i;     ;;
+//                                             ;@G@G@1t@@@@@@@@@@@@@@@G@fi;L1i1i;
+//                                            ;;i@@@@@@@@@@@@@@@@@@@@@@@@@f@@@@11
+//                                           ;C1tL@@@@@@@@@@@@@@@@@@@@@@@@@@@@f;
+//                        ;                ;;f@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@;;
+//                        ;t;;   ;1;;    ;;;1L@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@L@;
+//                        ;1tCf1i1fG1fi;;;;i@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@i
+//                        ;;10@@8@@@@@@G111t@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@11
+//                      ;;f1f@@@@@@@@@@@@Gf8@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@1;
+//                   ;@iii10@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@fi
+//                 ;;i1L@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@f;
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@fi;
+//                 ;;i1L@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@f;
+//                   ;@iii10@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@fi
+//                      ;;f1f@@@@@@@@@@@@Gf8@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@1;
+//                        ;;10@@8@@@@@@G111t@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@11
+//                        ;1tCf1i1fG1fi;;;;i@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@i
+//                        ;t;;   ;1;;    ;;;1L@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@L@;
+//                        ;                ;;f@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@;;
+//                                           ;C1tL@@@@@@@@@@@@@@@@@@@@@@@@@@@@f;
+//                                            ;;i@@@@@@@@@@@@@@@@@@@@@@@@@f@@@@11
+//                                             ;@G@G@1t@@@@@@@@@@@@@@@G@fi;L1i1i;
+//                                             1;;0i;;;iii1tG@@@@@G1ii;i;     ;;
+//                                                      ;;i@@@@@@@@@i;
+//                                                       ;if@@@@@@@@L
+//                                                        ;ti1f@@ti;;
+//                                                           ;i1fi;
+//                                                           ;i1;t1@
+//                                                           ;;
+// 
+
+.constant
+    B00000002       0x00000002
+    B00000008       0x00000008
+    B0000000C       0x0000000c
+    B00000020       0x00000020
+    B00000080       0x00000080
+    B000000C0       0x000000c0
+    B000000F0       0x000000f0
+    B00000100       0x00000100
+    B00000200       0x00000200
+    B00000400       0x00000400
+    B00000800       0x00000800
+    B00000C00       0x00000c00
+    B00001000       0x00001000
+    B00002000       0x00002000
+    B00004000       0x00004000
+    B00008000       0x00008000
+    B0000C000       0x0000c000
+    B0000F000       0x0000f000
+    B0000FF00       0x0000ff00
+    B00010000       0x00010000
+    B00020000       0x00020000
+    B00040000       0x00040000
+    B00080000       0x00080000
+    B000C0000       0x000c0000
+    B00100000       0x00100000
+    B00200000       0x00200000
+    B00400000       0x00400000
+    B00800000       0x00800000
+    B00C00000       0x00c00000
+    B00F00000       0x00f00000
+    B01000000       0x01000000
+    B02000000       0x02000000
+    B04000000       0x04000000
+    B08000000       0x08000000
+    B0C000000       0x0c000000
+    B10000000       0x10000000
+    B20000000       0x20000000
+    B40000000       0x40000000
+    B80000000       0x80000000
+    BC0000000       0xc0000000
+    BF0000000       0xf0000000
+    BFF000000       0xff000000
+    BFFFF0000       0xffff0000
+    BITMASK_INVSIGN 0x7fffffff
+    BITMASK_SIGNBIT 0x80000000
+    INV_FFF         0xfffff000
+    MAX_ITERATIONS  30
+    MULTIPLIER      256
+    MULTIPLIERDIV2  128
+    W_HEIGHT        40
+    W_WIDTH         100
+    X_MAX           128
+    X_MIN           -512
+    Y_MAX           320
+    Y_MIN           -320
+    _OBJREF         0xdeadc001
+.end-constant
+
+.main
+  LDC_W _OBJREF
+  INVOKEVIRTUAL _main
+  IFEQ success
+error:
+  ERR
+success:
+  HALT
+.end-main
+
+.method _main()
+.var
+  x_range
+  y_range
+  x
+  y
+  px
+  py
+.end-var
+
+  BIPUSH 0
+  ISTORE px
+  BIPUSH 0
+  ISTORE py
+
+  LDC_W X_MAX
+  LDC_W X_MIN
+  ISUB
+  ISTORE x_range
+  LDC_W Y_MAX
+  LDC_W Y_MIN
+  ISUB
+  ISTORE y_range
+  GOTO loop_y
+
+loop_y_update:
+  IINC py 1
+  ILOAD py
+  LDC_W W_HEIGHT
+  IF_ICMPEQ loop_y_done
+
+loop_y:
+  // calculate value of y for pixel py
+  LDC_W Y_MIN
+  LDC_W _OBJREF
+  LDC_W _OBJREF
+  ILOAD y_range
+  ILOAD py
+  INVOKEVIRTUAL mul
+  LDC_W W_HEIGHT
+  INVOKEVIRTUAL div
+  IADD
+  ISTORE y
+  GOTO loop_x
+
+loop_x_update:
+  IINC px 1
+  ILOAD px
+  LDC_W W_WIDTH
+  IF_ICMPEQ loop_x_done
+
+loop_x:
+  // x = x_min + x_range * px / width
+  LDC_W X_MIN
+  LDC_W _OBJREF
+  LDC_W _OBJREF
+  ILOAD x_range
+  ILOAD px
+  INVOKEVIRTUAL mul
+  LDC_W W_WIDTH
+  INVOKEVIRTUAL div
+  IADD
+  ISTORE x
+
+  LDC_W _OBJREF
+  ILOAD x
+  ILOAD y
+  INVOKEVIRTUAL mandelbrot_print
+  POP
+  GOTO loop_x_update
+
+loop_x_done:
+  BIPUSH 0
+  ISTORE px
+  BIPUSH 10
+  OUT
+  GOTO loop_y_update
+
+loop_y_done:
+  BIPUSH 0
+  IRETURN
+.end-method
+
+.method div(a, b)
+.var
+  signed
+  res
+  k
+  bshift
+.end-var
+  // store the signed state
+  BIPUSH 0
+  ISTORE signed
+
+  // get absolute of a and b
+ha:
+  ILOAD a
+  IFLT negate_a
+hb:
+  ILOAD b
+  IFLT negate_b
+handled:
+
+  BIPUSH 0
+  ISTORE res
+
+  // edge case if a < b, we're done
+  ILOAD a
+  ILOAD b
+  ISUB
+  IFLT apply_sign
+
+  // edge case if b == 0, we error
+  ILOAD b
+  IFEQ division_by_zero
+
+  BIPUSH 1
+  ISTORE k
+  ILOAD b
+  ISTORE bshift
+
+  // build a stack of kn, kn * b, kn-1, kn-1 * b, ..., k0 (1), k0 * b (b)
+build_stack:
+  ILOAD a
+  ILOAD bshift
+  ISUB
+  IFLT stack_unwind
+
+  // push bshift to stack and bshift += bshift
+  ILOAD bshift
+  DUP
+  DUP
+  IADD
+  ISTORE bshift
+
+  // push k to stack and k += k
+  ILOAD k
+  DUP
+  DUP
+  IADD
+  ISTORE k
+  GOTO build_stack
+
+stack_unwind:
+  ISTORE k // stores k from (k * b) in size
+
+  // a - (k * b)
+  ILOAD a
+  SWAP
+  ISUB
+
+  // duplicate a - (k * b) on stack
+  DUP
+
+  // if (a  - (k * b) < 0) cant_substract
+  IFLT cant_substract
+
+substract:
+  // store a = a - k * b
+  ISTORE a
+
+  // calculate res
+  ILOAD res
+  ILOAD k
+  IADD
+  ISTORE res
+
+  ILOAD k
+  BIPUSH 1
+  IF_ICMPEQ apply_sign
+  GOTO stack_unwind
+
+cant_substract:
+  // pop a - (k * b) from the stack
+  POP
+
+  ILOAD k
+  BIPUSH 1
+  IF_ICMPEQ apply_sign
+  GOTO stack_unwind
+
+apply_sign:
+  ILOAD signed
+  IFEQ ret_res
+  BIPUSH 0
+  ILOAD res
+  ISUB
+  IRETURN
+ret_res:
+  ILOAD res
+  IRETURN
+
+negate_a:
+  BIPUSH 0
+  ILOAD a
+  ISUB
+  ISTORE a
+  IINC signed 1
+  GOTO hb
+negate_b:
+  BIPUSH 0
+  ILOAD b
+  ISUB
+  ISTORE b
+  IINC signed 1
+  GOTO handled
+
+division_by_zero:
+  BIPUSH 100
+  OUT
+  BIPUSH 105
+  OUT
+  BIPUSH 118
+  OUT
+  BIPUSH 32
+  OUT
+  BIPUSH 98
+  OUT
+  BIPUSH 121
+  OUT
+  BIPUSH 32
+  OUT
+  BIPUSH 48
+  OUT
+  BIPUSH 10
+  OUT
+  ERR
+.end-method
+
+.method divby2pow(x, y)
+.var
+  s
+  b
+  r
+  top_bit
+.end-var
+
+  ILOAD x
+  IFLT set_sign
+  BIPUSH 1
+  ISTORE s
+calculation:
+  BIPUSH 1
+  ISTORE b
+  BIPUSH 0
+  ISTORE r
+  LDC_W _OBJREF
+  ILOAD x
+  INVOKEVIRTUAL msb
+  ISTORE top_bit
+
+  GOTO loop_body
+
+loop_update:
+  ILOAD y
+  DUP
+  IADD
+  ISTORE y
+  ILOAD b
+  DUP
+  IADD
+  ISTORE b
+loop_body:
+  ILOAD x
+  ILOAD y
+  IAND
+  IFEQ second_if
+  ILOAD r
+  ILOAD b
+  IOR
+  ISTORE r
+second_if:
+  ILOAD y
+  ILOAD top_bit
+  ISUB
+  IFLT loop_update
+
+handle_sign:
+  ILOAD s
+  IFEQ ret_neg_r
+  ILOAD r
+  IRETURN
+
+ret_neg_r:
+  BIPUSH 0
+  ILOAD r
+  ISUB
+  IRETURN
+
+set_sign:
+  BIPUSH 0
+  ISTORE s
+  BIPUSH 0
+  ILOAD x
+  ISUB
+  ISTORE x
+  GOTO calculation
+.end-method
+
+.method mandelbrot(real0, imag0)
+.var
+  real
+  imag
+  realq
+  imagq
+  n
+.end-var
+
+  BIPUSH 0
+  ISTORE n
+  ILOAD real0
+  ISTORE real
+  ILOAD imag0
+  ISTORE imag
+  GOTO for_loop
+
+for_update:
+  IINC n 1
+  ILOAD n
+  LDC_W MAX_ITERATIONS
+  IF_ICMPEQ for_done
+
+for_loop:
+  LDC_W _OBJREF
+  LDC_W _OBJREF
+  ILOAD real
+  ILOAD real
+  INVOKEVIRTUAL mul
+  LDC_W MULTIPLIER
+  INVOKEVIRTUAL divby2pow
+  ISTORE realq
+  LDC_W _OBJREF
+  LDC_W _OBJREF
+  ILOAD imag
+  ILOAD imag
+  INVOKEVIRTUAL mul
+  LDC_W MULTIPLIER
+  INVOKEVIRTUAL divby2pow
+  ISTORE imagq
+
+  ILOAD realq
+  ILOAD imagq
+  IADD
+  LDC_W INV_FFF
+  IAND
+  IFEQ if_not_part
+  GOTO premature_exit
+
+if_not_part:
+  ILOAD imag0
+  LDC_W _OBJREF
+  LDC_W _OBJREF
+  ILOAD real
+  ILOAD imag
+  INVOKEVIRTUAL mul
+  LDC_W MULTIPLIERDIV2
+  INVOKEVIRTUAL divby2pow
+  IADD
+  ISTORE imag
+
+  ILOAD realq
+  ILOAD imagq
+  ISUB
+  ILOAD real0
+  IADD
+  ISTORE real
+  GOTO for_update
+
+for_done:
+  LDC_W MAX_ITERATIONS
+  IRETURN
+
+premature_exit:
+  ILOAD n
+  IRETURN
+.end-method
+
+.method mandelbrot_print(x, y)
+.var
+  value
+.end-var
+
+  LDC_W _OBJREF
+  ILOAD x
+  ILOAD y
+  INVOKEVIRTUAL mandelbrot
+  ISTORE value
+
+  // Palet " `':tfLCG08@"
+  ILOAD value
+  BIPUSH 8
+  ISUB
+  IFLT print_space
+  ILOAD value
+  BIPUSH 10
+  ISUB
+  IFLT print_backtick
+  ILOAD value
+  BIPUSH 12
+  ISUB
+  IFLT print_quote
+  ILOAD value
+  BIPUSH 14
+  ISUB
+  IFLT print_colon
+  ILOAD value
+  BIPUSH 16
+  ISUB
+  IFLT print_t
+  ILOAD value
+  BIPUSH 18
+  ISUB
+  IFLT print_f
+  ILOAD value
+  BIPUSH 20
+  ISUB
+  IFLT print_L
+  ILOAD value
+  BIPUSH 22
+  ISUB
+  IFLT print_C
+  ILOAD value
+  BIPUSH 24
+  ISUB
+  IFLT print_G
+  ILOAD value
+  BIPUSH 26
+  ISUB
+  IFLT print_0
+  ILOAD value
+  BIPUSH 28
+  ISUB
+  IFLT print_8
+print_at:
+  BIPUSH 64
+  OUT
+  BIPUSH 0
+  IRETURN
+print_space:
+  BIPUSH 32
+  OUT
+  BIPUSH 0
+  IRETURN
+print_backtick:
+  BIPUSH 96
+  OUT
+  BIPUSH 0
+  IRETURN
+print_quote:
+  BIPUSH 39
+  OUT
+  BIPUSH 0
+  IRETURN
+print_colon:
+  BIPUSH 58
+  OUT
+  BIPUSH 0
+  IRETURN
+print_t:
+  BIPUSH 116
+  OUT
+  BIPUSH 0
+  IRETURN
+print_f:
+  BIPUSH 102
+  OUT
+  BIPUSH 0
+  IRETURN
+print_L:
+  BIPUSH 76
+  OUT
+  BIPUSH 0
+  IRETURN
+print_C:
+  BIPUSH 67
+  OUT
+  BIPUSH 0
+  IRETURN
+print_G:
+  BIPUSH 71
+  OUT
+  BIPUSH 0
+  IRETURN
+print_0:
+  BIPUSH 48
+  OUT
+  BIPUSH 0
+  IRETURN
+print_8:
+  BIPUSH 56
+  OUT
+  BIPUSH 0
+  IRETURN
+
+.end-method
+
+.method msb(x)
+lbffffffff: ILOAD x
+  LDC_W BFFFF0000
+  IAND
+  IFEQ lb0000ffff
+lbffff0000: ILOAD x
+  LDC_W BFF000000
+  IAND
+  IFEQ lb00ff0000
+lbff000000: ILOAD x
+  LDC_W BF0000000
+  IAND
+  IFEQ lb0f000000
+lbf0000000: ILOAD x
+  LDC_W BC0000000
+  IAND
+  IFEQ lb30000000
+lbc0000000: ILOAD x
+  LDC_W B80000000
+  IAND
+  IFEQ lb40000000
+lb80000000: LDC_W B80000000
+  IRETURN
+lb40000000: LDC_W B40000000
+  IRETURN
+lb30000000: ILOAD x
+  LDC_W B20000000
+  IAND
+  IFEQ lb10000000
+lb20000000: LDC_W B20000000
+  IRETURN
+lb10000000: LDC_W B10000000
+  IRETURN
+lb0f000000: ILOAD x
+  LDC_W B0C000000
+  IAND
+  IFEQ lb03000000
+lb0c000000: ILOAD x
+  LDC_W B08000000
+  IAND
+  IFEQ lb04000000
+lb08000000: LDC_W B08000000
+  IRETURN
+lb04000000: LDC_W B04000000
+  IRETURN
+lb03000000: ILOAD x
+  LDC_W B02000000
+  IAND
+  IFEQ lb01000000
+lb02000000: LDC_W B02000000
+  IRETURN
+lb01000000: LDC_W B01000000
+  IRETURN
+lb00ff0000: ILOAD x
+  LDC_W B00F00000
+  IAND
+  IFEQ lb000f0000
+lb00f00000: ILOAD x
+  LDC_W B00C00000
+  IAND
+  IFEQ lb00300000
+lb00c00000: ILOAD x
+  LDC_W B00800000
+  IAND
+  IFEQ lb00400000
+lb00800000: LDC_W B00800000
+  IRETURN
+lb00400000: LDC_W B00400000
+  IRETURN
+lb00300000: ILOAD x
+  LDC_W B00200000
+  IAND
+  IFEQ lb00100000
+lb00200000: LDC_W B00200000
+  IRETURN
+lb00100000: LDC_W B00100000
+  IRETURN
+lb000f0000: ILOAD x
+  LDC_W B000C0000
+  IAND
+  IFEQ lb00030000
+lb000c0000: ILOAD x
+  LDC_W B00080000
+  IAND
+  IFEQ lb00040000
+lb00080000: LDC_W B00080000
+  IRETURN
+lb00040000: LDC_W B00040000
+  IRETURN
+lb00030000: ILOAD x
+  LDC_W B00020000
+  IAND
+  IFEQ lb00010000
+lb00020000: LDC_W B00020000
+  IRETURN
+lb00010000: LDC_W B00010000
+  IRETURN
+lb0000ffff: ILOAD x
+  LDC_W B0000FF00
+  IAND
+  IFEQ lb000000ff
+lb0000ff00: ILOAD x
+  LDC_W B0000F000
+  IAND
+  IFEQ lb00000f00
+lb0000f000: ILOAD x
+  LDC_W B0000C000
+  IAND
+  IFEQ lb00003000
+lb0000c000: ILOAD x
+  LDC_W B00008000
+  IAND
+  IFEQ lb00004000
+lb00008000: LDC_W B00008000
+  IRETURN
+lb00004000: LDC_W B00004000
+  IRETURN
+lb00003000: ILOAD x
+  LDC_W B00002000
+  IAND
+  IFEQ lb00001000
+lb00002000: LDC_W B00002000
+  IRETURN
+lb00001000: LDC_W B00001000
+  IRETURN
+lb00000f00: ILOAD x
+  LDC_W B00000C00
+  IAND
+  IFEQ lb00000300
+lb00000c00: ILOAD x
+  LDC_W B00000800
+  IAND
+  IFEQ lb00000400
+lb00000800: LDC_W B00000800
+  IRETURN
+lb00000400: LDC_W B00000400
+  IRETURN
+lb00000300: ILOAD x
+  LDC_W B00000200
+  IAND
+  IFEQ lb00000100
+lb00000200: LDC_W B00000200
+  IRETURN
+lb00000100: LDC_W B00000100
+  IRETURN
+lb000000ff: ILOAD x
+  LDC_W B000000F0
+  IAND
+  IFEQ lb0000000f
+lb000000f0: ILOAD x
+  LDC_W B000000C0
+  IAND
+  IFEQ lb00000030
+lb000000c0: ILOAD x
+  LDC_W B00000080
+  IAND
+  IFEQ lb00000040
+lb00000080: LDC_W B00000080
+  IRETURN
+lb00000040: BIPUSH 64
+  IRETURN
+lb00000030: ILOAD x
+  LDC_W B00000020
+  IAND
+  IFEQ lb00000010
+lb00000020: BIPUSH 32
+  IRETURN
+lb00000010: BIPUSH 16
+  IRETURN
+lb0000000f: ILOAD x
+  LDC_W B0000000C
+  IAND
+  IFEQ lb00000003
+lb0000000c: ILOAD x
+  LDC_W B00000008
+  IAND
+  IFEQ lb00000004
+lb00000008: BIPUSH 8
+  IRETURN
+lb00000004: BIPUSH 4
+  IRETURN
+lb00000003: ILOAD x
+  LDC_W B00000002
+  IAND
+  IFEQ lb00000001
+lb00000002: BIPUSH 2
+  IRETURN
+lb00000001: ILOAD x
+  IFEQ lb00000000
+  BIPUSH 1
+  IRETURN
+lb00000000: BIPUSH 0
+  IRETURN
+.end-method
+
+.method mul(a, b)
+.var
+  signed
+  res
+  pow2
+  sum
+.end-var
+
+  // store the signed state
+  ILOAD a
+  LDC_W BITMASK_SIGNBIT
+  IAND
+  ILOAD b
+  LDC_W BITMASK_SIGNBIT
+  IAND
+  IADD
+  ISTORE signed
+
+  // get absolute of a and b
+hsa: ILOAD a
+  IFLT negate_a
+hsb: ILOAD b
+  IFLT negate_b
+
+for_init:
+  BIPUSH 0
+  ISTORE res   // result
+  BIPUSH 1
+  ISTORE pow2  // 2^n
+  ILOAD b
+  ISTORE sum   // b * 2^n
+
+for_loop:
+  // if (a < (1 << n)) -> done
+  ILOAD a
+  ILOAD pow2
+  ISUB
+  IFLT apply_sign
+
+  // if (a & (1 << n) == 0) continue
+  ILOAD a
+  ILOAD pow2
+  IAND
+  IFEQ for_update
+
+  // res += b * 2^n
+  ILOAD res
+  ILOAD sum
+  IADD
+  ISTORE res
+
+for_update:
+  ILOAD pow2
+  DUP
+  IADD
+  ISTORE pow2
+  ILOAD sum
+  DUP
+  IADD
+  ISTORE sum
+  GOTO for_loop
+
+negate_a:
+  BIPUSH 0
+  ILOAD a
+  ISUB
+  ISTORE a
+  GOTO hsb
+negate_b:
+  BIPUSH 0
+  ILOAD b
+  ISUB
+  ISTORE b
+  GOTO for_init
+
+apply_sign:
+  // res possibly overflowed, apply positive filter
+  ILOAD res
+  LDC_W BITMASK_INVSIGN
+  IAND
+  ILOAD signed
+  IFEQ ret_res
+  BIPUSH 0
+  SWAP
+  ISUB
+  IRETURN
+
+ret_res:
+  IRETURN
+.end-method
+
