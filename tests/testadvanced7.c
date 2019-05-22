@@ -82,7 +82,7 @@ static bool is_fast_enough(void)
 {
     int i;
     clock_t start = clock();
-    for(i = 0;!finished() && i < 200000;i++)
+    for(i = 0; !finished() && i < 200000; i++)
         step();
 
     clock_t end = clock();
