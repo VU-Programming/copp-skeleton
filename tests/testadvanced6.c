@@ -46,10 +46,16 @@ void test_rec_3()
     run_calc_inp("8!?.", "40320\n");
 }
 
+void test_rec_4()
+{
+    run_calc_inp("5!5+?.", "125\n");
+}
+
 int main()
 {
     RUN_TEST(test_rec_1);
     RUN_TEST(test_rec_2);
     RUN_TEST(test_rec_3);
+    RUN_TEST(test_rec_4);
     return END_TEST();
 }
