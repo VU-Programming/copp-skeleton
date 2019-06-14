@@ -284,6 +284,10 @@ void test_advanced_1()
     /* destroy the machine */
     destroy_ijvm();
 
+    /* close temporary files */
+    fclose(input);
+    fclose(output);
+
     /* remove the temporary files */
     remove("tmp_input");
     remove("tmp_output");

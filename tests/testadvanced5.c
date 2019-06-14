@@ -28,7 +28,7 @@ void run_calc_inp(char *input, char *expected)
     assert(strncmp(buf, expected, strlen(expected)) == 0);
 
     destroy_ijvm();
-
+    fclose(out_file);
 }
 
 void test_calc_1()

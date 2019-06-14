@@ -24,7 +24,7 @@ void test_tanenbaum()
     assert(strncmp(buf, "OK", 15) == 0);
 
     destroy_ijvm();
-
+    fclose(output_file);
 }
 
 int main()

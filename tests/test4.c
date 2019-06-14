@@ -103,7 +103,7 @@ void test_iteration_load()
     assert(strncmp(buf, LOADTEST4_OUTPUT, strlen(LOADTEST4_OUTPUT) + 1) == 0);
 
     destroy_ijvm();
-
+    fclose(output_file);
 }
 
 void test_iinc()

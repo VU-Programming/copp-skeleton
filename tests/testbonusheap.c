@@ -37,6 +37,8 @@ void run_bfi(const char *bf_file, const char *expected)
     run();
 
     destroy_ijvm();
+    fclose(input);
+    fclose(output);
 
     /* re-open it for reading, since the ijvm closed it anyway */
     output = fopen("tmp_output", "r");
@@ -59,6 +61,7 @@ void run_bfi(const char *bf_file, const char *expected)
     else
         eprintf("Successfully executed %s", bf_file);
 
+    fclose(output);
     remove("tmp_output");
 }
 

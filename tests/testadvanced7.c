@@ -17,7 +17,7 @@
  *
  *  A further difficulty with this test is the time limit, if you don't know what you
  *  can do to improve performance, be sure to ask your TA or come to the practicals.
- * 
+ *
  *  I'll try to answer any question about the specifics of the algorithms used on the
  *  discussion board if anyone has questions about that.
  *
@@ -68,14 +68,14 @@ const char expected_output[] = \
     "                                                                                                    \n" \
     "                                                                                                    \n";
 
-/* 
+/*
  * Try executing 200000 steps to sample performance.
- * 
+ *
  * Mandelbread has ~47 million steps, reference implementation takes 1.8 seconds
- * on a normal laptop, we test if the program is fast enough to complete this 
+ * on a normal laptop, we test if the program is fast enough to complete this
  * test in reasonable time (< ~2min). To pass this test, your implementation has
  * to be fast enough.
- * 
+ *
  * TL;DR if your implementation is too slow it will fail this test.
  */
 static bool is_fast_enough(void)
@@ -87,9 +87,9 @@ static bool is_fast_enough(void)
 
     clock_t end = clock();
 
-    /* empirically determined, aka I tried some stuff, 
+    /* empirically determined, aka I tried some stuff,
        made sure to take outliers into account */
-    const static double max_allowed = 0.70; 
+    const static double max_allowed = 0.70;
 
     double seconds = ((double) end - start) / CLOCKS_PER_SEC;
     return seconds < max_allowed;
@@ -124,6 +124,7 @@ static void run_mandelbread(void)
     // Compare output
     assert(strncmp(buf, expected_output, sizeof(expected_output) + 1) == 0);
     destroy_ijvm();
+    fclose(out_file);
 }
 
 int main()
