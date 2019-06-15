@@ -3,11 +3,36 @@
 .end-constant
 
 .main
+.var
+    socket
+.end-var
+
+    // bind to port, wait for connection, and store the netref
     LDC_W port
     NETBIND
+    DUP
+    IFEQ bind_fail
+    ISTORE socket
+
+    // read two bytes
+    ILOAD socket
     NETIN
+    ILOAD socket
     NETIN
+
+    // echo the bytes back! (in reverse)
+    ILOAD socket
     NETOUT
+    ILOAD socket
     NETOUT
+
+    // Close connection
+    ILOAD socket
     NETCLOSE
+    HALT
+
+bind_fail:
+    // Gojasm nicety
+    #print "Socket bind error\n"
+    ERR
 .end-main

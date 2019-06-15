@@ -1,15 +1,40 @@
 .constant
-    host 2130706433 // 127.0.0.1 -> 0x7F000001
+    host 0x7F000001 // 127.0.0.1
     port 5555
 .end-constant
 
 .main
-    LDC_W port
+.var
+    conn
+.end-var
+
+    // connect to the server, and store the netref
     LDC_W host
+    LDC_W port
     NETCONNECT
+    DUP
+    IFEQ conn_fail
+    ISTORE conn
+
+    // read two bytes
+    ILOAD conn
     NETIN
+    ILOAD conn
     NETIN
+
+    // echo the bytes back! (in reverse)
+    ILOAD conn
     NETOUT
+    ILOAD conn
     NETOUT
+
+    // Close connection
+    ILOAD conn
     NETCLOSE
+    HALT
+
+conn_fail:
+    // Gojasm nicety
+    #print "Could not connect\n"
+    ERR
 .end-main
