@@ -110,6 +110,8 @@ static void run_mandelbread(void)
         puts("mandelbread (testadvanced7)");
 
         destroy_ijvm();
+        fclose(out_file);
+        free(buf);
         assert(!"benchmark failed");
         return;
     }
@@ -125,6 +127,7 @@ static void run_mandelbread(void)
     assert(strncmp(buf, expected_output, sizeof(expected_output) + 1) == 0);
     destroy_ijvm();
     fclose(out_file);
+    free(buf);
 }
 
 int main()

@@ -7,7 +7,7 @@ void test_goto1()
     int res = init_ijvm("files/task3/GOTO1.ijvm");
     assert(res != -1);
 
-    set_null_output();
+    FILE *o = set_null_output();
 
     step();
     assert(tos() == 0x31);
@@ -17,6 +17,7 @@ void test_goto1()
     assert(tos() == 0x33);
     step();
     destroy_ijvm();
+    fclose(o);
 }
 
 void test_goto2()
@@ -24,7 +25,7 @@ void test_goto2()
     int res = init_ijvm("files/task3/GOTO2.ijvm");
     assert(res != -1);
 
-    set_null_output();
+    FILE *o = set_null_output();
 
     step();
     assert(tos() == 0x31);
@@ -38,13 +39,14 @@ void test_goto2()
     assert(tos() == 0x32);
     step();
     destroy_ijvm();
+    fclose(o);
 }
 
 void test_ifeq1()
 {
     int res = init_ijvm("files/task3/IFEQ1.ijvm");
     assert(res != -1);
-    set_null_output();
+    FILE *o = set_null_output();
 
     int startpc = 0;
 
@@ -85,6 +87,7 @@ void test_ifeq1()
     assert(startpc + 15 == get_program_counter());
 
     destroy_ijvm();
+    fclose(o);
 }
 
 void test_iflt1()
@@ -92,7 +95,7 @@ void test_iflt1()
     int res = init_ijvm("files/task3/IFLT1.ijvm");
     assert(res != -1);
 
-    set_null_output();
+    FILE *o = set_null_output();
 
 
     int oldpc = get_program_counter();
@@ -118,6 +121,7 @@ void test_iflt1()
     steps(1);
     assert(tos() == 0x37);
     destroy_ijvm();
+    fclose(o);
 }
 
 void test_ificmpeq1()
@@ -125,7 +129,7 @@ void test_ificmpeq1()
     int res = init_ijvm("files/task3/IFICMPEQ1.ijvm");
     assert(res != -1);
 
-    set_null_output();
+    FILE *o = set_null_output();
 
     int oldpc = get_program_counter();
 
@@ -157,6 +161,7 @@ void test_ificmpeq1()
     steps(2);
     assert(tos() == 0x13);
     destroy_ijvm();
+    fclose(o);
 }
 
 int main()
