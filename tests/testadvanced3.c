@@ -38,6 +38,7 @@ void test_wide1()
 
     destroy_ijvm();
     fclose(output);
+    remove("tmp_output");
 }
 
 void test_wide2()
@@ -57,6 +58,7 @@ void test_wide2()
 
     destroy_ijvm();
     fclose(output);
+    remove("tmp_output");
 }
 
 int main()
