@@ -10,19 +10,11 @@
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher":"$gcc",
-            "group":{
+            "problemMatcher": "$gcc",
+            "group": {
                 "kind": "build",
                 "isDefault": true
-            },
+            }
         },
         {
             "label": "Build all tests",
@@ -31,19 +23,36 @@
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher":"$gcc",
-            "group":{
+            "problemMatcher": "$gcc",
+            "group": {
                 "kind": "build",
                 "isDefault": false
-            },
+            }
         },
+        {
+            "label": "Run test",
+            "type": "shell",
+            "command": "make ${input:testsID}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "test",
+                "isDefault": true 
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "testsID",
+            "type": "pickString",
+            "description": "Which tests do you want to run?",
+            "options": [
+                "testbasic",
+                "testadvanced",
+                "testall",
+            ]
+        }
     ]
 }
