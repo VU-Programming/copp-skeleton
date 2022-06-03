@@ -101,7 +101,7 @@ void test_frame() {
 
 void test_nested_frame()
 {
-    int res = init_ijvm("files/advanced/test-nestedinvoke-frame.ijvm");
+    int res = init_ijvm("files/test5/test-nestedinvoke-frame.ijvm");
     assert(res != -1);
 
     steps(7);
