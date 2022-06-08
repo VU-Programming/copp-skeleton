@@ -20,9 +20,10 @@ _OBJ = $(patsubst $(SRCDIR)/%,$(ODIR)/%,$(SRCS:.c=.o))
 OBJ = $(filter-out $(ODIR)/main.o,$(_OBJ))
 
 DEPS2 := $(OBJ:.o=.d)
--include $(DEPS2)
 
 all: ijvm
+
+-include $(DEPS2)
 
 $(ODIR)/%.o: $(SRCDIR)/%.c
 	+@[ -d $(ODIR) ] || mkdir -p $(ODIR)
