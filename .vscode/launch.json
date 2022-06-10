@@ -21,7 +21,8 @@
             "program": "${workspaceRoot}/${input:testID}",
             "cwd": "${workspaceFolder}",
             // "stopAtEntry": true,  // uncomment to automatically set breakpoint at start of main.
-            "preLaunchTask": "Build all tests",
+            // "preLaunchTask": "Build all tests",
+            "preLaunchTask": "Build test_${input:testID}",
         }
     ],
     "inputs": [
