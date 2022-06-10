@@ -41,6 +41,174 @@
                 "kind": "test",
                 "isDefault": true 
             }
+        },
+        {
+            "label": "Build test_test1",
+            "type": "shell",
+            "command": "make test1",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_test2",
+            "type": "shell",
+            "command": "make test2",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_test3",
+            "type": "shell",
+            "command": "make test3",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_test4",
+            "type": "shell",
+            "command": "make test4",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testadvanced1",
+            "type": "shell",
+            "command": "make testadvanced1",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testadvanced2",
+            "type": "shell",
+            "command": "make testadvanced2",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testadvanced3",
+            "type": "shell",
+            "command": "make testadvanced3",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testadvanced4",
+            "type": "shell",
+            "command": "make testadvanced4",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testadvanced5",
+            "type": "shell",
+            "command": "make testadvanced5",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testadvanced6",
+            "type": "shell",
+            "command": "make testadvanced6",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testadvanced7",
+            "type": "shell",
+            "command": "make testadvanced7",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testadvancedstack",
+            "type": "shell",
+            "command": "make testadvancedstack",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testbonusheap",
+            "type": "shell",
+            "command": "make testbonusheap",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
+            "label": "Build test_testframe",
+            "type": "shell",
+            "command": "make testframe",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+            }
         }
     ],
     "inputs": [
