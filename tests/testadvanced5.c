@@ -54,7 +54,7 @@ void test_calc_3()
 
 void test_calc_4()
 {
-    run_calc_inp("2 2 2 2 2 2 2 2 2 2 2 2 2 ************ +?.", "8192\n");
+    run_calc_inp("2 2 2 2 2 2 2 2 2 2 2 2 2 2 ************ +?.", "8194\n");
 }
 
 int main()
