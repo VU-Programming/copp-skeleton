@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <ijvm.h>
+#include "ijvm.h"
 #include "testutil.h"
 
 /* uncomment the next line to see all succesful tests */
