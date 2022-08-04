@@ -57,8 +57,14 @@ IJVM_FILES = $(JAS_FILES:.jas=.ijvm)
 ijvm_binaries: tools $(IJVM_FILES)
 
 
+UNAME_S := $(shell uname -s)
+
 dist: clean
+ifeq ($(UNAME_S), Darwin)
+	tar -cvzf dist.tar.gz src/*.c src/*.h include/*.h Makefile README.md
+else
 	tar --ignore-failed-read -cvzf dist.tar.gz src/*.c src/*.h include/*.h Makefile README.md
+endif
 
 test%: $(OBJ) $(TSTDIR)/test%.c
 	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
