@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "ijvm.h"
+#include "../include/ijvm.h"
 #include "testutil.h"
 
 void test_program_1()

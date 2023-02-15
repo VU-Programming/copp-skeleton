@@ -1,0 +1,60 @@
+// Calculates the nth Fibonacci number recursively using tail calls.
+// 
+// The equivalent c code would be:
+// int fib(int n) {
+//    return tailfib(0, 1, n); // tail call
+// }
+//
+// int tailfib(int pprev, int prev, int n) {
+//     if (n == 0) return pprev;
+//     if (n == 1) return prev;
+//     return tailfib(prev, pprev+prev, n-1); // tail call
+// }
+// fib(43) (should be 433494437)
+
+.constant
+    objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+.var
+    answer
+.end-var
+    LDC_W objref
+    BIPUSH 43
+    INVOKEVIRTUAL fib
+    ISTORE answer
+    HALT
+.end-main
+
+.method fib(n)
+    LDC_W objref
+    BIPUSH 0x0
+    BIPUSH 0x1
+    ILOAD n
+    TAILCALL tailfib
+.end-method
+
+.method tailfib(pprev,prev,n)
+    ILOAD n
+    IFEQ ZERO 
+    ILOAD n
+    BIPUSH 0x1
+    IF_ICMPEQ ONE 
+    LDC_W objref
+    ILOAD prev
+    DUP 
+    ILOAD pprev 
+    IADD 
+    ILOAD n
+    BIPUSH 0x1
+    ISUB
+    TAILCALL tailfib
+    ONE:
+        ILOAD prev
+        IRETURN
+    ZERO:
+        ILOAD pprev 
+        IRETURN
+.end-method
+    

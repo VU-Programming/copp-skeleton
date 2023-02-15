@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "ijvm.h"
+#include "../include/ijvm.h"
 #include "testutil.h"
 
 void test_ldcw1()

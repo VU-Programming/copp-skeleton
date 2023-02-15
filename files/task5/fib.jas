@@ -1,0 +1,54 @@
+// Recursively, inefficiently calculates the nth Fibonacci number.
+// 
+// The equivalent c code would be:
+// int fib(int n) {
+//     if (n == 0) return 0;
+//     if (n < 0) return 0;
+//   if (n == 1) return 1;
+//  return fib(n-2) + fib(n-1);
+// }
+// fib(21) (should be 10946)
+
+.constant
+    objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+    .end-constant
+    
+    .main
+    .var
+    answer
+    .end-var
+        LDC_W objref
+        BIPUSH 21
+        INVOKEVIRTUAL fib
+        ISTORE answer
+        HALT
+    .end-main
+    
+    .method fib(var)
+        ILOAD var
+        IFEQ ZERO 
+        ILOAD var
+        IFLT ZERO 
+        ILOAD var
+        BIPUSH 0x1
+        IF_ICMPEQ ONE 
+        LDC_W objref
+        ILOAD var
+        BIPUSH 0x2
+        ISUB 
+        INVOKEVIRTUAL fib
+        LDC_W objref
+        ILOAD var
+        BIPUSH 0x1
+        ISUB 
+        INVOKEVIRTUAL fib
+        IADD
+        IRETURN
+        ONE:
+            BIPUSH 0x1
+            IRETURN
+        ZERO:
+            BIPUSH 0x0
+            IRETURN
+    .end-method
+    
