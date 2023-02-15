@@ -1,7 +1,7 @@
 .constant
 	barbara 65537
 	grace 5
-	shafi -2,147,483,648
+	shafi -2147483648
 	margaret -65536
 	radia 2
 	ada 2147483647

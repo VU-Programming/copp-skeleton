@@ -4,6 +4,15 @@
 FILE* in;  // use getc(in) to get a character from in
 FILE* out; // use for example fprintf(out, "Test %d %d", 3 2 ) to print to out
 
+void set_input(FILE *fp)
+{
+  in = fp;
+}
+
+void set_output(FILE *fp)
+{
+  out = fp;
+}
 
 int init_ijvm(char *binary_path)
 {
@@ -18,15 +27,6 @@ void destroy_ijvm(void)
     //TODO: implement me
 }
 
-void set_input(FILE *fp)
-{
-  in = fp;
-}
-
-void set_output(FILE *fp)
-{
-  out = fp;
-}
 
 byte_t *get_text(void)
 {
