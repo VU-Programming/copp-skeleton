@@ -47,7 +47,7 @@ void test_get_stack_contents()
 
     step();
     steps(2*100);
-    int size = stack_size();
+    int size = get_stack_size();
     assert(size >= 100);
     word_t *stack = get_stack();
     int markers = 0;
@@ -67,7 +67,7 @@ void test_method_stack()
     assert(res != -1);
 
     steps(8);
-    int size1 = stack_size();
+    int size1 = get_stack_size();
     word_t *stack1 = get_stack();
     int markers1 = 0;
     for (int i = 0; i < size1; i++) {
@@ -78,7 +78,7 @@ void test_method_stack()
 
     step();
     steps(2 * 5000);
-    int size2 = stack_size();
+    int size2 = get_stack_size();
     word_t *stack2 = get_stack();
     int markers2 = 0;
     for (int i = 0; i < size2; i++) {

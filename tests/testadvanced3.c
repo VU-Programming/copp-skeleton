@@ -38,6 +38,7 @@ void test_wide1()
 
     destroy_ijvm();
     fclose(output);
+    remove("tmp_output");
 }
 
 void test_wide2()
@@ -57,11 +58,33 @@ void test_wide2()
 
     destroy_ijvm();
     fclose(output);
+    remove("tmp_output");
+}
+
+void test_wide3()
+{
+    int res = init_ijvm("files/advanced/test-wide3.ijvm");
+    assert(res != -1);
+    FILE *output = ignore_stdout();
+
+    steps(6);
+    assert(get_local_variable(1) == 0x1);
+    steps(2);
+    assert(get_local_variable(32768) == 0x2);
+    steps(3);
+    assert(tos() == 0x5);
+    step();
+    assert(tos() == 0xa);
+
+    destroy_ijvm();
+    fclose(output);
+    remove("tmp_output");
 }
 
 int main()
 {
     RUN_TEST(test_wide1);
     RUN_TEST(test_wide2);
+    RUN_TEST(test_wide3);
     return END_TEST();
 }

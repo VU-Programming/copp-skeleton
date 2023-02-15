@@ -1,3 +1,6 @@
+# IJVM emulator assignment skeleton (Vrije Universiteit Amsterdam)
+See http://vu-programming.gitlab.io/pad/website/ for the course content and more info.
+
 # Compiling
 Requires make and GCC or Clang
 
@@ -42,11 +45,10 @@ setup steps, you can access the Linux command line by executing `bash` from
 the Windows command line. You can access your files in the Windows file system
 through mount points (e.g. `cd /mnt/c/Users/<username>/Desktop`).
 
-Both glibc, gcc, and make are included in the package `build-essential`. To 
-install this package, execute the following commands:
+Both glibc, gcc, and make are included in the package `build-essential`. It is also advised to install GDB which is used to debug C and C++ programs.  To install these packages, execute the following commands:
 
-* `sudo apt-get update`
-* `sudo apt-get install build-essential`
+* `sudo apt update`
+* `sudo apt install build-essential gdb`
 
 Now you can compile the project by navigating to this directory and executing
 the `make` command.

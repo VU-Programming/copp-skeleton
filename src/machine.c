@@ -1,29 +1,53 @@
 #include <ijvm.h>
 
-int init_ijvm(char *binary_file)
+byte_t *get_text(void)
 {
-  // Implement loading of binary here
-  return -1;
+    return NULL;
 }
 
-void destroy_ijvm()
+int get_text_size(void)
 {
-  // Reset IJVM state
+    return -1;
 }
 
-void run()
+int get_program_counter(void)
 {
-  // Step while you can
+    return -1;
+}
+
+bool step(void)
+{
+    return true;
+}
+
+void run(void)
+{
+
+}
+
+byte_t get_instruction(void)
+{
+    return 0;
 }
 
 void set_input(FILE *fp)
 {
-  // TODO: implement me
+
 }
 
 void set_output(FILE *fp)
 {
-  // TODO: implement me
+
+}
+
+int init_ijvm(char *binary_path)
+{
+    return -1;
+}
+
+void destroy_ijvm(void)
+{
+
 }
 
 byte_t *get_text()

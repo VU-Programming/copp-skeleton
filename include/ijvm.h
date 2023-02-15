@@ -1,5 +1,6 @@
 #ifndef IJVM_H
 #define IJVM_H
+
 #include <stdio.h>  /* contains type FILE * */
 #include <stdint.h>  /* contains exact integer types int32_t, uint8_t */
 #include <stdbool.h> /* contains the boolean */
@@ -56,7 +57,7 @@ word_t *get_stack(void);
 /**
  * Returns the size of the stack of the current frame.
  **/
-int stack_size(void);
+int get_stack_size(void);
 
 
 /**
@@ -68,7 +69,7 @@ byte_t *get_text(void);
 /**
  * Returns the size of the currently loaded program text.
  **/
-int text_size(void);
+int get_text_size(void);
 
 
 /**
@@ -110,6 +111,7 @@ bool step(void);
  */
 bool finished(void);
 
+
 /**
  * Run the vm with the current state until the machine halts.
  **/
@@ -125,15 +127,15 @@ byte_t get_instruction(void);
 
 
 /**
- * Sets the output of the IJVM instance to the provided file
+ * Sets the input of the IJVM instance to the provided file.
  **/
-void set_output(FILE *f);
+void set_input(FILE *fp);
 
 
 /**
- * Sets the input of the IJVM instance to the provided file.
+ * Sets the output of the IJVM instance to the provided file
  **/
-void set_input(FILE *f);
+void set_output(FILE *fp);
 
 
 /**
