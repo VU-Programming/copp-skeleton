@@ -132,6 +132,16 @@ void test_nested_frame()
 }
 
 
+void test_recursion(){
+    int res = init_ijvm("files/task5/recursive_sum.ijvm");
+    assert(res != -1);
+    while(get_instruction()!=OP_IAND){
+        step();
+    }
+    assert(tos() == 5050);
+    destroy_ijvm();
+}
+
 void test_fib()
 {
     int res = init_ijvm("files/task5/fib.ijvm");
@@ -152,5 +162,6 @@ int main()
     RUN_TEST(test_frame);
     RUN_TEST(test_nested_frame);
     RUN_TEST(test_fib);
+    RUN_TEST(test_recursion);
     return END_TEST();
 }

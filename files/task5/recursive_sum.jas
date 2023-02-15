@@ -1,0 +1,38 @@
+// 
+// equivalent to:
+// int sumem(int n) {
+//     if (n == 0) return 0;
+//     return n + times2(n-1);
+// }
+// sumem(100)
+.constant
+    objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+    COUNT 100
+    .end-constant
+    
+.main
+
+    LDC_W objref
+    LDC_W COUNT
+    INVOKEVIRTUAL sumem
+    DUP 
+    IAND 
+    HALT
+.end-main
+    
+.method sumem(var)
+    ILOAD var
+    IFEQ ZERO
+    ILOAD var
+    LDC_W objref
+    ILOAD var
+    BIPUSH 0x1
+    ISUB
+    INVOKEVIRTUAL sumem
+    IADD
+    IRETURN
+    ZERO:
+        BIPUSH 0x0
+        IRETURN
+.end-method
+    

@@ -1,0 +1,39 @@
+// needs a growing stack, first builds 131072, 131071, ... 0  on the stack,
+// then breaks down the stack by adding all these together
+
+.constant
+    COUNT 131072
+.end-constant
+.main
+    .var
+    my_var
+    .end-var
+    LDC_W COUNT
+    ISTORE my_var
+    BIPUSH 0x0
+L1: ILOAD my_var
+    DUP
+    BIPUSH 0x1
+    ISUB
+    DUP
+    ISTORE my_var
+    IFEQ L2
+    GOTO L1
+L2: LDC_W COUNT
+    ISTORE my_var
+L3: IADD 
+    ILOAD my_var
+    BIPUSH 0x1
+    ISUB
+    DUP
+    ISTORE my_var
+    IFEQ L4
+    GOTO L3
+L4: DUP 
+    IAND 
+    OUT 
+    HALT 
+.end-main
+
+
+

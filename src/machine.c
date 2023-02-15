@@ -53,6 +53,24 @@ int get_program_counter(void)
     return -1;
 }
 
+word_t tos(void)
+{
+  // TODO: implement me
+  return -1;
+}
+
+bool finished(void)
+{
+  // TODO: implement me
+  return false;
+}
+
+word_t get_local_variable(int i)
+{
+  // TODO: implement me
+  return 0;
+}
+
 bool step(void)
 {
     //TODO: implement me
@@ -67,38 +85,8 @@ void run(void)
   }
 }
 
+
 byte_t get_instruction(void)
 {
     return get_text()[get_program_counter()];
-}
-
-
-word_t tos(void)
-{
-  return get_stack()[stack_size()-1];
-}
-
-word_t *get_stack(void)
-{
-  // TODO: implement me
-  return NULL;
-}
-
-
-int stack_size(void)
-{
-  // TODO: implement me
-  return 0;
-}
-
-bool finished(void)
-{
-  // TODO: implement me
-  return false;
-}
-
-word_t get_local_variable(int i)
-{
-  // TODO: implement me
-  return 0;
 }
