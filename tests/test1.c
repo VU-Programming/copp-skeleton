@@ -6,7 +6,7 @@ void test_program_1()
 {
     int res = init_ijvm("files/task1/program1.ijvm");
     assert(res != -1);
-    assert(text_size() == 7);
+    assert(get_text_size() == 7);
     byte_t *ip = get_text();
 
     // Instructions in binary
@@ -21,7 +21,7 @@ void test_program_2()
 {
     int res = init_ijvm("files/task1/program2.ijvm");
     assert(res != -1);
-    assert(text_size() == 16);
+    assert(get_text_size() == 16);
     byte_t *ip = get_text();
 
     // Instructions in binary
