@@ -37,21 +37,38 @@ void test_program_2()
     destroy_ijvm();
 }
 
-void test_program_counter()
+void test_constants_1()
+{
+    int res = init_ijvm("files/task1/program2.ijvm");
+    assert(res != -1);
+
+    assert(get_constant(0) == 3);
+    assert(get_constant(1) == 2);
+    assert(get_constant(2) == 1);
+    destroy_ijvm();
+}
+
+void test_constants_2()
 {
     int res = init_ijvm("files/task1/program1.ijvm");
     assert(res != -1);
 
-    // PC should be initialized to 0
-    assert(get_program_counter() == 0);
+    assert(get_constant(0) == 65537);
+    assert(get_constant(1) == 5);
+    assert(get_constant(2) == -2147483648);
+    assert(get_constant(3) == -65536);
+    assert(get_constant(4) == 2);
+    assert(get_constant(5) == 2147483647);
+
     destroy_ijvm();
 }
 
 
 int main()
 {
-    RUN_TEST(test_program_counter);
     RUN_TEST(test_program_1);
     RUN_TEST(test_program_2);
+    RUN_TEST(test_constants_1);
+    RUN_TEST(test_constants_2);
     return END_TEST();
 }

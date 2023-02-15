@@ -1,7 +1,7 @@
 .constant
-	piet 1
+	piet 3
 	koos 2
-	jan 3
+	jan 1
 .end-constant
 
 .main

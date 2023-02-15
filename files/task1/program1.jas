@@ -1,4 +1,10 @@
 .constant
+	barbara 65537
+	grace 5
+	shafi -2,147,483,648
+	margaret -65536
+	radia 2
+	ada 2147483647
 .end-constant
 
 .main
