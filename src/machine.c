@@ -1,5 +1,6 @@
 #include <ijvm.h>
 
+// ijvm.h for descriptions of these functions
 
 FILE* in;  // use getc(in) to get a character from in
 FILE* out; // use for example fprintf(out, "Test %d %d", 3 2 ) to print to out
@@ -14,6 +15,7 @@ void set_output(FILE *fp)
   out = fp;
 }
 
+
 int init_ijvm(char *binary_path)
 {
     in = stdin;
@@ -26,7 +28,6 @@ void destroy_ijvm(void)
 {
     //TODO: implement me
 }
-
 
 byte_t *get_text(void)
 {
@@ -60,21 +61,21 @@ bool step(void)
 
 void run(void)
 {
-  //TODO: implement me
+  while(!finished())
+  {
+    step();
+  }
 }
 
 byte_t get_instruction(void)
 {
-    //TODO: implement me
-    return 0;
+    return get_text()[get_program_counter()];
 }
-
 
 
 word_t tos(void)
 {
-  // TODO: implement me
-  return 0;
+  return get_stack()[stack_size()-1];
 }
 
 word_t *get_stack(void)
@@ -82,6 +83,7 @@ word_t *get_stack(void)
   // TODO: implement me
   return NULL;
 }
+
 
 int stack_size(void)
 {

@@ -35,95 +35,10 @@ typedef int32_t word_t; /* the basic unit of the ijvm will be an int32 */
 #define OP_SWAP           ((byte_t) 0x5F)
 #define OP_WIDE           ((byte_t) 0xC4)
 
+
 /**
  * DO NOT MODIFY THIS FILE.
  **/
-
-/**
- * This function should return the word at the top of the stack of the current
- * frame, interpreted as a signed integer.
- **/
-word_t tos(void);
-
-
-/**
- * Returns the stack of the current frame as an array of integers,
- * with entry[0] being the very bottom of the stack and
- * entry[stack_size() - 1] being the top.
- **/
-word_t *get_stack(void);
-
-
-/**
- * Returns the size of the stack of the current frame.
- **/
-int get_stack_size(void);
-
-
-/**
- * Returns the currently loaded program text as a byte array.
- **/
-byte_t *get_text(void);
-
-
-/**
- * Returns the size of the currently loaded program text.
- **/
-int get_text_size(void);
-
-
-/**
- * Returns the value of the program counter (as an offset from the first instruction).
- **/
-int get_program_counter(void);
-
-
-/**
- * @param i, index of variable to obtain.
- * @return Returns the i:th local variable of the current frame.
- **/
-word_t get_local_variable(int i);
-
-
-/**
- * @param i, index of the constant to obtain
- * @return The constant at location i in the constant pool.
- **/
-word_t get_constant(int i);
-
-
-/**
- * Step (perform) one instruction and return.
- * In the case of WIDE, perform the whole WIDE_ISTORE or WIDE_ILOAD.
- * Returns true if an instruction was executed. Returns false if machine has
- * halted or encountered an error.
- **/
-bool step(void);
-
-
-/**
- * Check whether the machine has any more instructions to execute.
- *
- * A machine will stop running after:
- * - reaching the end of the text section
- * - encountering either the HALT/ERR instructions
- * - encountering an invalid instruction
- */
-bool finished(void);
-
-
-/**
- * Run the vm with the current state until the machine halts.
- **/
-void run(void);
-
-
-/**
- * @return The value of the current instruction represented as a byte_t.
- *
- * This should NOT increase the program counter.
- **/
-byte_t get_instruction(void);
 
 
 /**
@@ -153,5 +68,106 @@ int init_ijvm(char *binary_path);
  * and allow for a new call to init_ijvm().
  */
 void destroy_ijvm(void);
+
+/**
+ * Returns the currently loaded program text as a byte array.
+ **/
+byte_t *get_text(void);
+
+
+/**
+ * Returns the size of the currently loaded program text.
+ **/
+int get_text_size(void);
+
+/**
+ * @param i, index of the constant to obtain
+ * @return The constant at location i in the constant pool.
+ **/
+word_t get_constant(int i);
+
+
+/**
+ * Returns the value of the program counter (as an offset from the first instruction).
+ **/
+int get_program_counter(void);
+
+/**
+ * This function should return the word at the top of the stack of the current
+ * frame, interpreted as a signed integer.
+ **/
+word_t tos(void);
+
+
+/**
+ * Returns the stack of the current frame as an array of integers,
+ * with entry[0] being the very bottom of the stack and
+ * entry[stack_size() - 1] being the top.
+ **/
+word_t *get_stack(void);
+
+
+/**
+ * Returns the number of elements on the stack.
+ * Note that this is not the capacity of the stack, which is the amount
+ * of memory (currently) allocated for the stack.
+ * 
+ * 
+ **/
+int get_stack_size(void);
+
+
+/**
+ * Step (perform) one instruction and return.
+ * In the case of WIDE, perform the whole WIDE_ISTORE or WIDE_ILOAD.
+ * Returns true if an instruction was executed. Returns false if machine has
+ * halted or encountered an error.
+ **/
+bool step(void);
+
+
+/**
+ * Check whether the machine has any more instructions to execute.
+ *
+ * A machine will stop running after:
+ * - reaching the end of the text section
+ * - encountering either the HALT/ERR instructions
+ * - encountering an invalid instruction
+ */
+bool finished(void);
+
+
+/**
+ * Run the vm with the current state until the machine halts.
+ **/
+void run(void);
+
+/**
+ * @param i, index of variable to obtain.
+ * @return Returns the i:th local variable of the current frame.
+ **/
+word_t get_local_variable(int i);
+
+
+
+
+
+
+
+
+
+
+/**
+ * @return The value of the current instruction represented as a byte_t.
+ *
+ * This should NOT increase the program counter.
+ **/
+byte_t get_instruction(void);
+
+
+
+
+
+
 
 #endif
