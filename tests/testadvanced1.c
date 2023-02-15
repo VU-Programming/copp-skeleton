@@ -3,8 +3,6 @@
 #include "testutil.h"
 
 /*
- * You seriously do not wanna know how much effort it cost to
- * compile all of these tests.
  *
  * This test comes with files/task5/all_regular.ijvm, we recommend
  * reading it thorougly as it probably gives a very good insight into
@@ -41,11 +39,8 @@ _assert_equal(int line, const char *a_expr, word_t a, const char *b_expr, word_t
 #define assert_equal(a, b) _assert_equal(__LINE__, stringify(a), a, stringify(b), b)
 
 /* Deal with windows annoyances */
-#ifdef _WIN32
-#define TEST_FILE_PATH "files\\task5\\all_regular.ijvm"
-#else
-#define TEST_FILE_PATH "files/task5/all_regular.ijvm"
-#endif
+
+#define TEST_FILE_PATH "files/advanced/all_regular.ijvm"
 
 /*
  * Actual test function, this is the only stuff you'll need to read
