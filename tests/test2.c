@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "../include/ijvm.h"
 #include "testutil.h"
 
@@ -128,6 +129,34 @@ void test_simple_stack_operations()
     destroy_ijvm();
 }
 
+void test_in_out()
+{
+    int res = init_ijvm("files/task2/TestInOut.ijvm");
+    assert(res != -1);
+
+    FILE * input, * output;
+    input  = fopen("tmp_input", "w+");
+    output = fopen("tmp_output", "rw+");
+    fprintf(input, "%s", "ABCDE");
+    rewind(input);
+
+    set_input(input);
+    set_output(output);
+
+    run();
+
+    char buf[128] = {0};
+    rewind(output);
+    fread(buf, 1, 5, output);
+    buf[5] = 0;
+    // in case something goes wrong,
+    // you can print the 5 bytes of output with this
+    // printf(stderr,"Output inout test: %s\n", buf)
+    assert(strncmp(buf, "EDCBA", 5) == 0);
+    destroy_ijvm();
+}
+
+
 int main()
 {
     RUN_TEST(test_simple_bipush);
@@ -140,5 +169,6 @@ int main()
     RUN_TEST(test_simple_ior);
     RUN_TEST(test_swap);
     RUN_TEST(test_simple_stack_operations);
+    RUN_TEST(test_in_out);
     return END_TEST();
 }

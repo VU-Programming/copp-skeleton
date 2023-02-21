@@ -1,0 +1,13 @@
+.main
+    IN
+    IN
+    IN
+    IN
+    IN 
+    OUT
+    OUT
+    OUT
+    OUT
+    OUT
+    HALT
+.end-main
