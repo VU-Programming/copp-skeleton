@@ -136,7 +136,7 @@ void test_in_out()
 
     FILE * input, * output;
     input  = fopen("tmp_input", "w+");
-    output = fopen("tmp_output", "rw+");
+    output = fopen("tmp_output", "w+");
     fprintf(input, "%s", "ABCDE");
     rewind(input);
 
