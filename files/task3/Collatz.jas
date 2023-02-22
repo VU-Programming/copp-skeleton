@@ -1,6 +1,6 @@
 .constant
 .end-constant
-// computes the length of the Collatz sequence for 327 (= 143)
+// computes the length of the Collatz sequence for 9 (= 19)
 // see (https://en.wikipedia.org/wiki/Collatz_conjecture)
 // As we have no local variables, we keep counters on the stack and swap them
 // to the top as needed.
@@ -8,7 +8,7 @@
 //
 // equivalent to:
 //
-// int n = 327;
+// int n = 9;
 // int c = 0;
 // while (n != 1) {
 //  c = c + 1;
@@ -25,14 +25,7 @@
 
 .main
 BIPUSH 0x00 // counter, c 
-// PUT 327 on stack with using just bytes (max positive value is 127)
-BIPUSH 100 
-BIPUSH 100
-BIPUSH 100
-BIPUSH 27
-IADD
-IADD 
-IADD      /// c, n
+BIPUSH 9  /// c, n
 LOOP: // c, n 
     // check if == 1
         DUP         // c, n, n

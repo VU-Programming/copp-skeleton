@@ -170,7 +170,7 @@ void test_collatz(){
     while(get_instruction()!=OP_IOR){
         step();
     }
-    assert(tos() == 127);
+    assert(tos() == 19);
     destroy_ijvm();
 }
 
@@ -181,5 +181,6 @@ int main()
     RUN_TEST(test_ifeq1);
     RUN_TEST(test_iflt1);
     RUN_TEST(test_ificmpeq1);
+    RUN_TEST(test_collatz);
     return END_TEST();
 }
