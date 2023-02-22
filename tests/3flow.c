@@ -164,6 +164,16 @@ void test_ificmpeq1()
     fclose(o);
 }
 
+void test_collatz(){
+    int res = init_ijvm("files/task3/Collatz.ijvm");
+    assert(res != -1);
+    while(get_instruction()!=OP_IOR){
+        step();
+    }
+    assert(tos() == 127);
+    destroy_ijvm();
+}
+
 int main()
 {
     RUN_TEST(test_goto1);
