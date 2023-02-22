@@ -4,7 +4,7 @@
 
 /*
  *
- * This test comes with files/task5/all_regular.ijvm, we recommend
+ * This test comes with files/advanced/all_regular.ijvm, we recommend
  * reading it thorougly as it probably gives a very good insight into
  * what's wrong.
  *
