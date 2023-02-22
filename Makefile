@@ -66,7 +66,7 @@ else
 	tar --ignore-failed-read -cvzf dist.tar.gz src/*.c src/*.h include/*.h Makefile README.md
 endif
 
-test%: $(OBJ) $(TSTDIR)/test%.c
+test%: $(OBJ) $(TSTDIR)/%.c
 	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
 
 run_test%: test%
