@@ -3,7 +3,8 @@
 
 // ijvm.h for descriptions of these functions
 
-FILE* in;  // use getc(in) to get a character from in
+FILE* in;  // use fgetc(in) to get a character from in. 
+           //This will return EOF if no char is available.
 FILE* out; // use for example fprintf(out, "%c", value); to print value to out
 
 void set_input(FILE *fp)
