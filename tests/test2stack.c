@@ -9,7 +9,7 @@ void test_simple_bipush()
     assert(res != -1);
 
     step();
-    assert(tos() == 42); // TOS is 42
+    assert(tos() == 42); 
     destroy_ijvm();
 }
 
@@ -19,7 +19,7 @@ void test_signed_bipush()
     assert(res != -1);
 
     step();
-    assert(tos() == -42); // TOS is -42
+    assert(tos() == -42); 
     destroy_ijvm();
 }
 
@@ -31,7 +31,20 @@ void test_simple_iadd()
     step();
     step();
     step();
-    assert(tos() == 60); // TOS is 60
+    assert(tos() == 60); 
+}
+
+void test_dup()
+{
+    int res = init_ijvm("files/task2/TestDup.ijvm");
+    assert(res != -1);
+
+    step();
+    step();
+    step();
+    step();
+    step();
+    assert(tos() == 60); 
     destroy_ijvm();
 }
 
@@ -43,9 +56,10 @@ void test_signed_iadd()
     step();
     step();
     step();
-    assert(tos() == -60); // TOS is 60
+    assert(tos() == -60); 
     destroy_ijvm();
 }
+
 
 void test_simple_isub()
 {
@@ -55,7 +69,7 @@ void test_simple_isub()
     step();
     step();
     step();
-    assert(tos() == -10); // TOS is -10
+    assert(tos() == -10);
     destroy_ijvm();
 }
 
@@ -67,7 +81,7 @@ void test_signed_isub()
     step();
     step();
     step();
-    assert(tos() == 10); // TOS is 10
+    assert(tos() == 10); 
     destroy_ijvm();
 }
 
@@ -81,7 +95,7 @@ void test_simple_iand()
     step();
     step();
     step();
-    assert(tos() == 1); // TOS is 1
+    assert(tos() == 1); 
     destroy_ijvm();
 }
 
@@ -95,7 +109,7 @@ void test_simple_ior()
     step();
     step();
     step();
-    assert(tos() == 127); // TOS is 127
+    assert(tos() == 127); 
     destroy_ijvm();
 }
 
@@ -162,6 +176,7 @@ int main()
     RUN_TEST(test_simple_bipush);
     RUN_TEST(test_signed_bipush);
     RUN_TEST(test_simple_iadd);
+    RUN_TEST(test_dup);
     RUN_TEST(test_signed_iadd);
     RUN_TEST(test_simple_isub);
     RUN_TEST(test_signed_isub);

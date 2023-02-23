@@ -1,0 +1,9 @@
+.main
+    BIPUSH 20
+    DUP
+    DUP 
+    IADD
+    IADD 
+    OUT
+    HALT
+.end-main

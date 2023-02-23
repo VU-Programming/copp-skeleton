@@ -1,9 +1,10 @@
 #include <ijvm.h>
+#include<stdio.h> # for getc, printf 
 
 // ijvm.h for descriptions of these functions
 
 FILE* in;  // use getc(in) to get a character from in
-FILE* out; // use for example fprintf(out, "Test %d %d", 3 2 ) to print to out
+FILE* out; // use for example fprintf(out, "%c", value); to print value to out
 
 void set_input(FILE *fp)
 {
@@ -55,6 +56,7 @@ int get_program_counter(void)
 
 word_t tos(void)
 {
+  // this operation should NOT pop (remove top element from stack)
   // TODO: implement me
   return -1;
 }
