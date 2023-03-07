@@ -3,12 +3,16 @@
 #include "../include/ijvm.h"
 #include "testutil.h"
 
+
+
 void test_simple_bipush()
 {
     int res = init_ijvm("files/task2/TestBipush1.ijvm");
     assert(res != -1);
 
+    assert(get_program_counter() == 0);
     step();
+    assert(get_program_counter() == 2);
     assert(tos() == 42); 
     destroy_ijvm();
 }
@@ -18,7 +22,9 @@ void test_signed_bipush()
     int res = init_ijvm("files/task2/TestBipush2.ijvm");
     assert(res != -1);
 
+    assert(get_program_counter() == 0);
     step();
+    assert(get_program_counter() == 2);
     assert(tos() == -42); 
     destroy_ijvm();
 }
@@ -28,9 +34,13 @@ void test_simple_iadd()
     int res = init_ijvm("files/task2/TestIadd1.ijvm");
     assert(res != -1);
 
+    assert(get_program_counter() == 0);
     step();
+    assert(get_program_counter() == 2);
     step();
+    assert(get_program_counter() == 4);
     step();
+    assert(get_program_counter() == 5);
     assert(tos() == 60); 
 }
 
@@ -39,11 +49,17 @@ void test_dup()
     int res = init_ijvm("files/task2/TestDup.ijvm");
     assert(res != -1);
 
+    assert(get_program_counter() == 0);
     step();
+    assert(get_program_counter() == 2);
     step();
+    assert(get_program_counter() == 3);
     step();
+    assert(get_program_counter() == 4);
     step();
+    assert(get_program_counter() == 5);
     step();
+    assert(get_program_counter() == 6);
     assert(tos() == 60); 
     destroy_ijvm();
 }
@@ -53,9 +69,13 @@ void test_signed_iadd()
     int res = init_ijvm("files/task2/TestIadd2.ijvm");
     assert(res != -1);
 
+    assert(get_program_counter() == 0);
     step();
+    assert(get_program_counter() == 2);
     step();
+    assert(get_program_counter() == 4);
     step();
+    assert(get_program_counter() == 5);
     assert(tos() == -60); 
     destroy_ijvm();
 }
@@ -66,9 +86,13 @@ void test_simple_isub()
     int res = init_ijvm("files/task2/TestIsub1.ijvm");
     assert(res != -1);
 
+    assert(get_program_counter() == 0);
     step();
+    assert(get_program_counter() == 2);
     step();
+    assert(get_program_counter() == 4);
     step();
+    assert(get_program_counter() == 5);
     assert(tos() == -10);
     destroy_ijvm();
 }
@@ -78,9 +102,13 @@ void test_signed_isub()
     int res = init_ijvm("files/task2/TestIsub2.ijvm");
     assert(res != -1);
 
+    assert(get_program_counter() == 0);
     step();
+    assert(get_program_counter() == 2);
     step();
+    assert(get_program_counter() == 4);
     step();
+    assert(get_program_counter() == 5);
     assert(tos() == 10); 
     destroy_ijvm();
 }
@@ -90,11 +118,17 @@ void test_simple_iand()
     int res = init_ijvm("files/task2/TestIAND1.ijvm");
     assert(res != -1);
 
+    assert(get_program_counter() == 0);
     step();
+    assert(get_program_counter() == 2);
     step();
+    assert(get_program_counter() == 4);
     step();
+    assert(get_program_counter() == 6);
     step();
+    assert(get_program_counter() == 7);
     step();
+    assert(get_program_counter() == 8);
     assert(tos() == 1); 
     destroy_ijvm();
 }
