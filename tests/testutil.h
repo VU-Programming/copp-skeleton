@@ -49,10 +49,10 @@ static int __print_test_result(char *test_name) {
   int total = __passed_test_counter + __failed_test_counter;
   char *msg = "[FAIL]";
   if (total == __passed_test_counter) {
-    msg = "[OK]";
+    msg = "[Ok]";
   }
   fprintf(stderr, "========================================\n");
-  fprintf(stderr, "## %s PASSED %d/%d TESTS in %s##\n", msg, __passed_test_counter, total, test_name);
+  fprintf(stderr, "## %s passed %d/%d tests in %s##\n", msg, __passed_test_counter, total, test_name);
 
   return total == __passed_test_counter ? 0 : 1;
 }
