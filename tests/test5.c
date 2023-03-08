@@ -217,6 +217,7 @@ void test_fib()
 
 int main()
 {
+    fprintf(stderr, "RUN test5: methods ...........\n");
     RUN_TEST(test_invokenoargs);
     RUN_TEST(test_invoke1);
     RUN_TEST(test_ireturn1);

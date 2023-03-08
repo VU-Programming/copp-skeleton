@@ -3,6 +3,8 @@
 #include "../include/ijvm.h"
 #include "testutil.h"
 
+/* testadvanced5: calc_facorial */
+
 void run_calc_inp(char *input, char *expected)
 {
     int res = init_ijvm("files/advanced/SimpleCalc.ijvm");
@@ -54,6 +56,7 @@ void test_rec_4()
 
 int main()
 {
+    fprintf(stderr, "RUN testadvanced5: calc_facorial ...\n");
     RUN_TEST(test_rec_1);
     RUN_TEST(test_rec_2);
     RUN_TEST(test_rec_3);

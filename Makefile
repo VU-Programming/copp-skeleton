@@ -66,31 +66,6 @@ else
 	tar --ignore-failed-read -cvzf dist.tar.gz src/*.c src/*.h include/*.h Makefile README.md
 endif
 
-tst1: test1binary
-tst2: test2stack
-tst3: test3flow
-tst4: test4lvars
-tst5: test5method
-tstadv1: testadvanced1wide 
-tstadv2: testadvanced2all_instr
-tstadv3: testadvanced3tanenbaum
-tstadv4: testadvanced4calculator
-tstadv5: testadvanced5calc_fac 
-tstadv6: testadvanced6mandelbrot
-tstadv7: testadvanced7tallstack
-run_tst1: run_test1binary
-run_tst2: run_test2stack
-run_tst3: run_test3flow
-run_tst4: run_test4lvars
-run_tst5: run_test5method
-run_tstadv1: run_testadvanced1wide
-run_tstadv2: run_testadvanced2all_instr
-run_tstadv3: run_testadvanced3tanenbaum
-run_tstadv4: run_testadvanced4calculator
-run_tstadv5: run_testadvanced5calc_fac
-run_tstadv6: run_testadvanced6mandelbrot
-run_tstadv7: run_testadvanced7tallstack
-
 
 test%: $(OBJ) $(TSTDIR)/test%.c
 	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
@@ -99,10 +74,12 @@ run_test%: test%
 	./$<
 
 
-testbasic: run_tst1 run_tst2 run_tst3 run_tst4 run_tst5
-testadvanced: run_tstadv1 run_tstadv2 run_tstadv3 run_tstadv4 run_tstadv5 run_tstadv6 run_tstadv7
+
+testbasic: run_test1 run_test2 run_test3 run_test4 run_test5
+testadvanced: run_testadvanced1 run_testadvanced2 run_testadvanced3 run_testadvanced4 run_testadvanced5 run_testadvanced6  run_testadvanced7
 testall: testbasic testadvanced
-build_tests: tst1 tst2 tst3 tst4 tst5 tstadv1 tstadv2 tstadv3 tstadv4 tstadv5 tstadv6 tstadv7
+build_tests: test1 test2 test3 test4 test5 testadvanced1 testadvanced2 testadvanced3 testadvanced4 testadvanced5 testadvanced6 testadvanced7
+
 
 # Uses LLVM sanitizers
 testasan: CC=clang

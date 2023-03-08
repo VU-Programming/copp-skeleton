@@ -4,7 +4,8 @@
 #include "../include/ijvm.h"
 #include "testutil.h"
 
-/*
+/* testadvanced6: mandelbrot 
+ *
  *  Hey there, everyone reading this test.
  *
  *  There's quite a lot going on in this test, since mandelbrot's are kind of difficult
@@ -132,6 +133,7 @@ static void run_mandelbread(void)
 
 int main()
 {
+    fprintf(stderr, "RUN testadvanced6: mandelbrot ...\n");
     RUN_TEST(run_mandelbread);
     return END_TEST();
 }

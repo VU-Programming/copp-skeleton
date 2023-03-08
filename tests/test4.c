@@ -134,6 +134,7 @@ void test_iinc()
 
 int main()
 {
+    fprintf(stderr, "RUN test4: vars ..............\n");
     RUN_TEST(test_ldcw1);
     RUN_TEST(test_simple_load);
     RUN_TEST(test_complex_load);

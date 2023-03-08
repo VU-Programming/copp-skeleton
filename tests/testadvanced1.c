@@ -4,7 +4,7 @@
 #include "testutil.h"
 
 /*****************************************************************************
- * Notes about wide:
+ * testadvanced1: wide 
  *****************************************************************************
  * WIDE modifies ILOAD, ISTORE, IINC making the local variables short rather
  * than byte arguments.
@@ -83,6 +83,7 @@ void test_wide3()
 
 int main()
 {
+    fprintf(stderr, "RUN testadvanced1: WIDE ......\n");
     RUN_TEST(test_wide1);
     RUN_TEST(test_wide2);
     RUN_TEST(test_wide3);

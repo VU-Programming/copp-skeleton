@@ -66,6 +66,7 @@ void test_constants_2()
 
 int main()
 {
+    fprintf(stderr, "RUN test1: binaries ..........\n");
     RUN_TEST(test_program_1);
     RUN_TEST(test_program_2);
     RUN_TEST(test_constants_1);
