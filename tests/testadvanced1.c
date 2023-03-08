@@ -83,7 +83,7 @@ void test_wide3()
 
 int main()
 {
-    fprintf(stderr, "RUN testadvanced1: WIDE ......\n");
+    fprintf(stderr, "*** testadvanced1: WIDE ......\n");
     RUN_TEST(test_wide1);
     RUN_TEST(test_wide2);
     RUN_TEST(test_wide3);

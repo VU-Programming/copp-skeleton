@@ -291,7 +291,7 @@ void test_advanced_1()
 
 int main()
 {
-  fprintf(stderr, "RUN testadvanced2: all instuctions ...\n");
+  fprintf(stderr, "*** testadvanced2: ALL INSTRUCTIONS ...\n");
   RUN_TEST(test_advanced_1);
   return END_TEST();
 }

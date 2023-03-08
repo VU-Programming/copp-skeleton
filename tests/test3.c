@@ -176,8 +176,7 @@ void test_collatz(){
 
 int main()
 {
-    fprintf(stderr, "RUN test2: stack .............\n");
-    fprintf(stderr, "RUN test3: flow ..............\n");
+    fprintf(stderr, "RUN test3: FLOW ..............\n");
     RUN_TEST(test_goto1);
     RUN_TEST(test_goto2);
     RUN_TEST(test_ifeq1);

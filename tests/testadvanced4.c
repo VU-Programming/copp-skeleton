@@ -61,7 +61,7 @@ void test_calc_4()
 
 int main()
 {
-    fprintf(stderr, "RUN testadvanced4: calculator ...\n");
+    fprintf(stderr, "*** testadvanced4: CALCULATOR ...\n");
     RUN_TEST(test_calc_1);
     RUN_TEST(test_calc_2);
     RUN_TEST(test_calc_3);

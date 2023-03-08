@@ -56,7 +56,7 @@ void test_rec_4()
 
 int main()
 {
-    fprintf(stderr, "RUN testadvanced5: calc_facorial ...\n");
+    fprintf(stderr, "*** testadvanced5: CALC_FACTORIAL ...\n");
     RUN_TEST(test_rec_1);
     RUN_TEST(test_rec_2);
     RUN_TEST(test_rec_3);

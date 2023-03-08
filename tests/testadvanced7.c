@@ -31,7 +31,7 @@ void test_deep_recursion() {
 
 int main()
 {
-    fprintf(stderr, "RUN testadvanced7: tall stack ...\n");
+    fprintf(stderr, "*** testadvanced7: TALL_STACK ...\n");
     RUN_TEST(test_tallstack);
     RUN_TEST(test_deep_recursion);
     return END_TEST();

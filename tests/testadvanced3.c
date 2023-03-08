@@ -30,7 +30,7 @@ void test_tanenbaum()
 
 int main()
 {
-    fprintf(stderr, "RUN testadvanced3: Tanenbaum ...\n");
+    fprintf(stderr, "*** testadvanced3: TANENBAUM ...\n");
     RUN_TEST(test_tanenbaum);
     return END_TEST();
 }

@@ -232,7 +232,7 @@ void test_in_out()
 
 int main()
 {
-    fprintf(stderr, "RUN test2: stack .............\n");
+    fprintf(stderr, "*** test2: STACK .............\n");
     RUN_TEST(test_simple_bipush);
     RUN_TEST(test_signed_bipush);
     RUN_TEST(test_simple_iadd);

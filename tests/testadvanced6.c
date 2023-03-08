@@ -133,7 +133,7 @@ static void run_mandelbread(void)
 
 int main()
 {
-    fprintf(stderr, "RUN testadvanced6: mandelbrot ...\n");
+    fprintf(stderr, "*** testadvanced6: MANDELBROT ...\n");
     RUN_TEST(run_mandelbread);
     return END_TEST();
 }
