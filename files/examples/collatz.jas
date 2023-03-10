@@ -69,6 +69,6 @@ DIVDONE:           // c , d ,n
 DONE: POP // c 
       BIPUSH 97
       IADD
-      OUT // prints the 19th (length of collatz sequence) letter
+      OUT // prints 't' the letter with index (length of collatz sequence)
       HALT 
 .end-main
