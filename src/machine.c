@@ -1,5 +1,5 @@
 #include <ijvm.h>
-#include<stdio.h> # for getc, printf 
+#include <stdio.h> // for getc, printf 
 
 #define DEBUG_LEVEL 1
 /* Adjust the above value to 0 to 5 to control debug prints.

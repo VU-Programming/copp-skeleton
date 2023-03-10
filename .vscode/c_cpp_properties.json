@@ -7,10 +7,10 @@
                 "${workspaceFolder}/include"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc",
+            "compilerPath": "/usr/bin/clang",
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",
-            "intelliSenseMode": "linux-gcc-x64",
+            "intelliSenseMode": "clang-x64",
             "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],

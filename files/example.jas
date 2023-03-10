@@ -1,0 +1,20 @@
+.constant
+  a -1
+  b 2
+  c 3
+.end-constant
+.main
+  BIPUSH 112
+  DUP
+  BIPUSH -1
+  IADD
+  DUP
+  DUP
+  BIPUSH 1
+  ISUB
+  OUT
+  OUT
+  OUT
+  OUT
+  HALT
+.end-main
