@@ -1,6 +1,6 @@
 .constant
 .end-constant
-// computes the length of the Collatz sequence for 9 (= 19)
+// computes the length of the Collatz sequence for 3 (= 7)
 // see (https://en.wikipedia.org/wiki/Collatz_conjecture)
 // As we have no local variables, we keep counters on the stack and swap them
 // to the top as needed.
@@ -25,7 +25,7 @@
 
 .main
 BIPUSH 0x00 // counter, c 
-BIPUSH 9  /// c, n
+BIPUSH 3  /// c, n
 LOOP: // c, n 
     // check if == 1
         DUP         // c, n, n
@@ -69,6 +69,6 @@ DIVDONE:           // c , d ,n
 DONE: POP // c 
       BIPUSH 97
       IADD
-      OUT // prints 't' the letter with index (length of collatz sequence)
+      OUT // prints 't' the letter with index 19 (length of collatz sequence)
       HALT 
 .end-main

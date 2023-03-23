@@ -4,7 +4,7 @@ IDIR=include
 CC = clang
 USERFLAGS+=
 override CFLAGS+=-I$(IDIR) -g -Wall -Wpedantic $(USERFLAGS) -std=c11 -Wformat-extra-args
-PEDANTIC_CFLAGS=-std=c11 -Werror -Wpedantic -Wall -Wextra -Wformat=2 -O -Wuninitialized -Winit-self -Wswitch-enum -Wshadow -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls -Wnested-externs -Wno-long-long
+PEDANTIC_CFLAGS=-std=c11 -Werror -Wpedantic -Wall -Wextra -Wformat=2 -O -Wuninitialized -Winit-self -Wswitch-enum -Wshadow -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls -Wnested-externs -Wno-long-long  -Wglobal-constructors -Wshorten-64-to-32
 GOJASM ?= tools/gojasm
 
 ODIR=obj

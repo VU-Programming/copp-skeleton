@@ -20,7 +20,7 @@ void test_ldcw1()
 
 void test_simple_load()
 {
-    int res = init_ijvm("files/task4/LoadTest3.ijvm");
+    int res = init_ijvm("files/task4/LoadTest2.ijvm");
     assert(res != -1);
 
     step();
@@ -53,7 +53,7 @@ void test_simple_load()
 
 void test_complex_load()
 {
-    int res = init_ijvm("files/task4/LoadTest2.ijvm");
+    int res = init_ijvm("files/task4/LoadTest3.ijvm");
     assert(res != -1);
 
     step();
@@ -131,6 +131,26 @@ void test_iinc()
     destroy_ijvm();
 }
 
+void test_wide()
+{
+    int res = init_ijvm("files/task4/WIDETest.ijvm");
+    assert(res != -1);
+
+    steps(4);
+    assert(get_local_variable(0) == 2);
+    assert(get_local_variable(1) == 3);
+
+    step();
+    assert(get_local_variable(0) == 5);
+    step();
+    assert(get_local_variable(0) == 0);
+    steps(2);
+    assert(tos() == 4);
+    step();
+    assert(tos() == 5);
+    destroy_ijvm();
+}
+
 
 int main()
 {
@@ -140,5 +160,6 @@ int main()
     RUN_TEST(test_complex_load);
     RUN_TEST(test_iteration_load);
     RUN_TEST(test_iinc);
+    RUN_TEST(test_wide);
     return END_TEST();
 }
