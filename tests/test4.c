@@ -137,17 +137,17 @@ void test_wide()
     assert(res != -1);
 
     steps(4);
-    assert(get_local_variable(0) == 2);
-    assert(get_local_variable(1) == 3);
+    assert(get_local_variable(0) == 3);
+    assert(get_local_variable(1) == 2);
 
     step();
-    assert(get_local_variable(0) == 5);
+    assert(get_local_variable(0) == 6);
     step();
-    assert(get_local_variable(0) == 0);
+    assert(get_local_variable(1) == -1);
     steps(2);
-    assert(tos() == 4);
+    assert(tos() == 3);
     step();
-    assert(tos() == 5);
+    assert(tos() == 6);
     destroy_ijvm();
 }
 
