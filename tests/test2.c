@@ -224,7 +224,7 @@ void test_in_out()
     buf[5] = 0;
     // in case something goes wrong,
     // you can print the 5 bytes of output with this
-    // printf(stderr,"Output inout test: %s\n", buf)
+    // fprintf(stderr,"Output inout test: %s\n", buf)
     assert(strncmp(buf, "EDCBA", 5) == 0);
     destroy_ijvm();
 }
