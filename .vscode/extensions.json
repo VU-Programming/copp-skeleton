@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "ms-vscode.cpptools",
-        "augustocdias.tasks-shell-input"
+        "augustocdias.tasks-shell-input",
+        "battleisover.ijvm-language-support"
     ]
 }
