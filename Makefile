@@ -94,18 +94,18 @@ pedantic: clean ijvm
 
 
 testleaks: build_tests
-	valgrind --leak-check=full ./test1binary
-	valgrind --leak-check=full ./test2stack
-	valgrind --leak-check=full ./test3flow 
-	valgrind --leak-check=full ./test4lvars
-	valgrind --leak-check=full ./test5method
-	valgrind --leak-check=full ./testadvanced1wide
-	valgrind --leak-check=full ./testadvanced2all_instr
-	valgrind --leak-check=full ./testadvanced3tanenbaum
-	valgrind --leak-check=full ./testadvanced4calculator
-	valgrind --leak-check=full ./testadvanced5calc_fac
-	valgrind --leak-check=full ./testadvanced6mandelbrot
-	valgrind --leak-check=full ./testadvanced7tallstack
+	valgrind --leak-check=full ./test1
+	valgrind --leak-check=full ./test2
+	valgrind --leak-check=full ./test3
+	valgrind --leak-check=full ./test4
+	valgrind --leak-check=full ./test5
+	valgrind --leak-check=full ./testadvanced1
+	valgrind --leak-check=full ./testadvanced2
+	valgrind --leak-check=full ./testadvanced3
+	valgrind --leak-check=full ./testadvanced4
+	valgrind --leak-check=full ./testadvanced5
+	valgrind --leak-check=full ./testadvanced6
+	valgrind --leak-check=full ./testadvanced7
 
 coverage: CFLAGS+=-fprofile-instr-generate -fcoverage-mapping
 coverage: CC=clang
