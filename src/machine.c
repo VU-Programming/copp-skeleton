@@ -20,6 +20,7 @@ the granularity with a single variable.
 Example: d2printf("Current program text %02x %02x\n", text[pc] , text[pc+1]);
 */
 
+
 // see ijvm.h for descriptions of the below functions
 
 FILE *in;   // use fgetc(in) to get a character from in.
@@ -40,6 +41,7 @@ int init_ijvm(char *binary_path)
 {
   in = stdin;
   out = stdout;
+  swap_uint32(3);
   // TODO: implement me
   return -1;
 }
@@ -55,7 +57,7 @@ byte_t *get_text(void)
   return NULL;
 }
 
-int get_text_size(void) 
+unsigned int get_text_size(void) 
 {
   // TODO: implement me
   return -1;
@@ -67,7 +69,7 @@ word_t get_constant(int i)
   return 0;
 }
 
-int get_program_counter(void) 
+unsigned int get_program_counter(void) 
 {
   // TODO: implement me
   return -1;

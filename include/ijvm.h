@@ -19,7 +19,7 @@ typedef int32_t word_t; /* the basic unit of the ijvm will be an int32 */
 #define OP_IAND           ((byte_t) 0x7E)
 #define OP_IFEQ           ((byte_t) 0x99)
 #define OP_IFLT           ((byte_t) 0x9B)
-#define OP_ICMPEQ         ((byte_t) 0x9F)
+#define OP_IF_ICMPEQ      ((byte_t) 0x9F)
 #define OP_IINC           ((byte_t) 0x84)
 #define OP_ILOAD          ((byte_t) 0x15)
 #define OP_IN             ((byte_t) 0xFC)
@@ -52,6 +52,8 @@ typedef int32_t word_t; /* the basic unit of the ijvm will be an int32 */
 /**
  * DO NOT MODIFY THIS FILE.
  **/
+
+
 
 
 /**
@@ -91,7 +93,7 @@ byte_t *get_text(void);
 /**
  * Returns the size of the currently loaded program text.
  **/
-int get_text_size(void);
+unsigned int get_text_size(void);
 
 /**
  * @param i, index of the constant to obtain
@@ -103,7 +105,7 @@ word_t get_constant(int i);
 /**
  * Returns the value of the program counter (as an offset from the first instruction).
  **/
-int get_program_counter(void);
+unsigned int get_program_counter(void);
 
 /**
  * This function should return the word at the top of the stack of the current
