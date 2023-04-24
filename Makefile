@@ -59,12 +59,9 @@ ijvm_binaries: tools $(IJVM_FILES)
 
 UNAME_S := $(shell uname -s)
 
-dist: clean
-ifeq ($(UNAME_S), Darwin)
-	tar -cvzf dist.tar.gz src/*.c src/*.h include/*.h bonus.txt
-else
-	tar --ignore-failed-read -cvzf dist.tar.gz src/*.c src/*.h include/*.h bonus.txt
-endif
+zip: 
+	zip dist.zip bonus.txt `find src include -iname "*.c" -o -iname "*.h"`
+
 
 
 test%: $(OBJ) $(TSTDIR)/test%.c
