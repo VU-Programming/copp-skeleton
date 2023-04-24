@@ -19,6 +19,7 @@ the granularity with a single variable.
 
 Example: d2printf("Current program text %02x %02x\n", text[pc] , text[pc+1]);
 */
+#include "util.h"
 
 
 // see ijvm.h for descriptions of the below functions
@@ -41,7 +42,6 @@ int init_ijvm(char *binary_path)
 {
   in = stdin;
   out = stdout;
-  swap_uint32(3);
   // TODO: implement me
   return -1;
 }

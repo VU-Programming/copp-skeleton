@@ -61,9 +61,9 @@ UNAME_S := $(shell uname -s)
 
 dist: clean
 ifeq ($(UNAME_S), Darwin)
-	tar -cvzf dist.tar.gz src/*.c src/*.h include/*.h Makefile README.md
+	tar -cvzf dist.tar.gz src/*.c src/*.h include/*.h bonus.txt
 else
-	tar --ignore-failed-read -cvzf dist.tar.gz src/*.c src/*.h include/*.h Makefile README.md
+	tar --ignore-failed-read -cvzf dist.tar.gz src/*.c src/*.h include/*.h bonus.txt
 endif
 
 
