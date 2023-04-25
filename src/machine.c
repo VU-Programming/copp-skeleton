@@ -1,4 +1,5 @@
 #include <stdio.h>  // for getc, printf
+#include <stdlib.h> // malloc, free
 #include "ijvm.h"
 
 #define DEBUG_LEVEL 1
