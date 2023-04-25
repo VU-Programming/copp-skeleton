@@ -139,7 +139,7 @@ void test_advanced_1()
     step();
     assert_equal(tos(), 0x41);
 
-    assert_equal(OP_ICMPEQ, get_instruction());
+    assert_equal(OP_IF_ICMPEQ, get_instruction());
     step();
 
     assert_equal(OP_BIPUSH, get_instruction());
