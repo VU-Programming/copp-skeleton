@@ -14,7 +14,6 @@ void test_tallstack() {
     while(get_instruction()!=OP_IAND){
         step();
     }
-        fprintf(stderr,"SUM %d %d\n", tos(), SUM);
     assert(tos() == SUM)
 
     destroy_ijvm();
@@ -26,7 +25,6 @@ void test_deep_recursion() {
     while(get_instruction()!=OP_IAND){
         step();
     }
-            fprintf(stderr,"SUM %d\n", tos());
     assert(tos() == SUM);
 
     destroy_ijvm();
