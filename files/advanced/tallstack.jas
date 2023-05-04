@@ -2,7 +2,7 @@
 // then breaks down the stack by adding all these together
 
 .constant
-    COUNT 131072
+    COUNT 65534
 .end-constant
 .main
     .var

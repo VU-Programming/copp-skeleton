@@ -4,10 +4,10 @@
 //     if (n == 0) return 0;
 //     return n + times2(n-1);
 // }
-// sumem(131072)
+// sumem(65534)
 .constant
     objref  0xCAFE  // may be any value.  Needed by invokevirtual.
-    COUNT 131072
+    COUNT 65534
     .end-constant
     
 .main

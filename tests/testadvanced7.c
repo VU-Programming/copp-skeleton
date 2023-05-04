@@ -2,9 +2,9 @@
 #include <string.h>
 #include "../include/ijvm.h"
 #include "testutil.h"
-#define VAL 131072
-// sum of 1 to val
-#define SUM  (VAL * (VAL + 1) / 2) 
+#define VAL 65534
+// sum of 1 to val, can be computed by (VAL * (VAL + 1) / 2) (but this overflows 32 bit)
+#define SUM  2147385345 
 
 /* testadvanced7: tallstack */
 
@@ -14,6 +14,7 @@ void test_tallstack() {
     while(get_instruction()!=OP_IAND){
         step();
     }
+        fprintf(stderr,"SUM %d %d\n", tos(), SUM);
     assert(tos() == SUM)
 
     destroy_ijvm();
@@ -25,7 +26,9 @@ void test_deep_recursion() {
     while(get_instruction()!=OP_IAND){
         step();
     }
+            fprintf(stderr,"SUM %d\n", tos());
     assert(tos() == SUM);
+
     destroy_ijvm();
 }
 
