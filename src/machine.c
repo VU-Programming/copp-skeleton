@@ -61,7 +61,7 @@ byte_t *get_text(void)
 unsigned int get_text_size(void) 
 {
   // TODO: implement me
-  return -1;
+  return 0;
 }
 
 word_t get_constant(int i) 
@@ -73,7 +73,7 @@ word_t get_constant(int i)
 unsigned int get_program_counter(void) 
 {
   // TODO: implement me
-  return -1;
+  return 0;
 }
 
 word_t tos(void) 

@@ -42,6 +42,7 @@ void test_simple_iadd()
     step();
     assert(get_program_counter() == 5);
     assert(tos() == 60); 
+    destroy_ijvm();
 }
 
 void test_dup()
