@@ -60,7 +60,7 @@ ijvm_binaries: tools $(IJVM_FILES)
 UNAME_S := $(shell uname -s)
 
 zip: 
-	zip dist.zip bonus.txt `find src include -iname "*.c" -o -iname "*.h"`
+	zip dist.zip bonus.md `find src include -iname "*.c" -o -iname "*.h"`
 
 
 
