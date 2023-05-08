@@ -1,4 +1,4 @@
-.PHONY: clean testall run_test% dist tools
+.PHONY: clean testall run_test% zip tools
 
 IDIR=include
 CC = clang
@@ -40,7 +40,7 @@ clean:
 	-rm -f $(ODIR)/*.d
 	-rm -f ijvm
 	-rm -f test1 test2 test3 test4 test5 testadvanced* testbonusheap
-	-rm -f dist.tar.gz
+	-rm -f dist.zip
 	-rm -rf profdata/
 	-rm -rf obj/ *.dSYM
 
