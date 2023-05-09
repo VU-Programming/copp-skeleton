@@ -21,7 +21,7 @@ static FILE *ignore_stdout(void)
     return output;
 }
 
-void test_wide1()
+void test_wide1(void)
 {
     int res = init_ijvm("files/advanced/test-wide1.ijvm");
     assert(res != -1);
@@ -41,7 +41,7 @@ void test_wide1()
     remove("tmp_output");
 }
 
-void test_wide2()
+void test_wide2(void)
 {
     int res = init_ijvm("files/advanced/test-wide2.ijvm");
     assert(res != -1);
@@ -61,7 +61,7 @@ void test_wide2()
     remove("tmp_output");
 }
 
-void test_wide3()
+void test_wide3(void)
 {
     int res = init_ijvm("files/advanced/test-wide3.ijvm");
     assert(res != -1);
@@ -81,7 +81,7 @@ void test_wide3()
     remove("tmp_output");
 }
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** testadvanced1: WIDE ......\n");
     RUN_TEST(test_wide1);

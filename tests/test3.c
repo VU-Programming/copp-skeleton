@@ -2,7 +2,7 @@
 #include "../include/ijvm.h"
 #include "testutil.h"
 
-void test_goto1()
+void test_goto1(void)
 {
     int res = init_ijvm("files/task3/GOTO1.ijvm");
     assert(res != -1);
@@ -20,7 +20,7 @@ void test_goto1()
     fclose(o);
 }
 
-void test_goto2()
+void test_goto2(void)
 {
     int res = init_ijvm("files/task3/GOTO2.ijvm");
     assert(res != -1);
@@ -42,7 +42,7 @@ void test_goto2()
     fclose(o);
 }
 
-void test_ifeq1()
+void test_ifeq1(void)
 {
     int res = init_ijvm("files/task3/IFEQ1.ijvm");
     assert(res != -1);
@@ -90,7 +90,7 @@ void test_ifeq1()
     fclose(o);
 }
 
-void test_iflt1()
+void test_iflt1(void)
 {
     int res = init_ijvm("files/task3/IFLT1.ijvm");
     assert(res != -1);
@@ -124,7 +124,7 @@ void test_iflt1()
     fclose(o);
 }
 
-void test_ificmpeq1()
+void test_ificmpeq1(void)
 {
     int res = init_ijvm("files/task3/IFICMPEQ1.ijvm");
     assert(res != -1);
@@ -164,7 +164,8 @@ void test_ificmpeq1()
     fclose(o);
 }
 
-void test_collatz(){
+void test_collatz(void)
+{
     int res = init_ijvm("files/task3/Collatz.ijvm");
     assert(res != -1);
     while(get_instruction()!=OP_IOR){
@@ -174,7 +175,7 @@ void test_collatz(){
     destroy_ijvm();
 }
 
-int main()
+int main(void)
 {
     fprintf(stderr, "RUN test3: FLOW ..............\n");
     RUN_TEST(test_goto1);

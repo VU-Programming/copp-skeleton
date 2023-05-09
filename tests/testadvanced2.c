@@ -45,7 +45,7 @@ _assert_equal(int line, const char *a_expr, word_t a, const char *b_expr, word_t
 /*
  * Actual test function, this is the only stuff you'll need to read
  */
-void test_advanced_1()
+void test_advanced_1(void)
 {
     FILE *input, *output;
 
@@ -289,7 +289,7 @@ void test_advanced_1()
 
 }
 
-int main()
+int main(void)
 {
   fprintf(stderr, "*** testadvanced2: ALL INSTRUCTIONS ...\n");
   RUN_TEST(test_advanced_1);

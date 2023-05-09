@@ -63,7 +63,7 @@ void steps(int n)
         step();
 }
 
-FILE *set_null_output()
+FILE *set_null_output(void)
 {
     FILE *fh = fopen("/dev/null", "w");
     set_output(fh);
