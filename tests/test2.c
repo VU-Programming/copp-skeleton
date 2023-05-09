@@ -207,6 +207,8 @@ void test_in_out()
 {
     int res = init_ijvm("files/task2/TestInOut.ijvm");
     assert(res != -1);
+    
+    assert(!finished()); // did you reset ?
 
     FILE * input, * output;
     input  = fopen("tmp_input", "w+");
