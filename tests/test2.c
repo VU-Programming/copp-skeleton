@@ -5,7 +5,7 @@
 
 
 
-void test_simple_bipush()
+void test_simple_bipush(void)
 {
     int res = init_ijvm("files/task2/TestBipush1.ijvm");
     assert(res != -1);
@@ -17,7 +17,7 @@ void test_simple_bipush()
     destroy_ijvm();
 }
 
-void test_signed_bipush()
+void test_signed_bipush(void)
 {
     int res = init_ijvm("files/task2/TestBipush2.ijvm");
     assert(res != -1);
@@ -29,7 +29,7 @@ void test_signed_bipush()
     destroy_ijvm();
 }
 
-void test_simple_iadd()
+void test_simple_iadd(void)
 {
     int res = init_ijvm("files/task2/TestIadd1.ijvm");
     assert(res != -1);
@@ -45,7 +45,7 @@ void test_simple_iadd()
     destroy_ijvm();
 }
 
-void test_dup()
+void test_dup(void)
 {
     int res = init_ijvm("files/task2/TestDup.ijvm");
     assert(res != -1);
@@ -65,7 +65,7 @@ void test_dup()
     destroy_ijvm();
 }
 
-void test_signed_iadd()
+void test_signed_iadd(void)
 {
     int res = init_ijvm("files/task2/TestIadd2.ijvm");
     assert(res != -1);
@@ -82,7 +82,7 @@ void test_signed_iadd()
 }
 
 
-void test_simple_isub()
+void test_simple_isub(void)
 {
     int res = init_ijvm("files/task2/TestIsub1.ijvm");
     assert(res != -1);
@@ -98,7 +98,7 @@ void test_simple_isub()
     destroy_ijvm();
 }
 
-void test_signed_isub()
+void test_signed_isub(void)
 {
     int res = init_ijvm("files/task2/TestIsub2.ijvm");
     assert(res != -1);
@@ -114,7 +114,7 @@ void test_signed_isub()
     destroy_ijvm();
 }
 
-void test_simple_iand()
+void test_simple_iand(void)
 {
     int res = init_ijvm("files/task2/TestIAND1.ijvm");
     assert(res != -1);
@@ -134,7 +134,7 @@ void test_simple_iand()
     destroy_ijvm();
 }
 
-void test_simple_ior()
+void test_simple_ior(void)
 {
     int res = init_ijvm("files/task2/TestIOR1.ijvm");
     assert(res != -1);
@@ -148,7 +148,7 @@ void test_simple_ior()
     destroy_ijvm();
 }
 
-void test_swap()
+void test_swap(void)
 {
     int res = init_ijvm("files/task2/TestSwap1.ijvm");
     assert(res != -1);
@@ -164,7 +164,7 @@ void test_swap()
     destroy_ijvm();
 }
 
-void test_nop()
+void test_nop(void)
 {
     int res = init_ijvm("files/task2/TestNop.ijvm");
     assert(res != -1);
@@ -179,7 +179,7 @@ void test_nop()
     destroy_ijvm();
 }
 
-void test_simple_stack_operations()
+void test_simple_stack_operations(void)
 {
     int res = init_ijvm("files/task2/TestPop1.ijvm");
     assert(res != -1);
@@ -194,7 +194,7 @@ void test_simple_stack_operations()
 }
 
 
-void test_halt()
+void test_halt(void)
 {
     int res = init_ijvm("files/task2/TestPop1.ijvm");
     assert(res != -1);
@@ -203,7 +203,7 @@ void test_halt()
     destroy_ijvm();
 }
 
-void test_in_out()
+void test_in_out(void)
 {
     int res = init_ijvm("files/task2/TestInOut.ijvm");
     assert(res != -1);
@@ -229,11 +229,14 @@ void test_in_out()
     // you can print the 5 bytes of output with this
     // fprintf(stderr,"Output inout test: %s\n", buf)
     assert(strncmp(buf, "EDCBA", 5) == 0);
+    fclose(input);
+    fclose(output);
+    remove("tmp_input");
+    remove("tmp_output");
     destroy_ijvm();
 }
 
-
-int main()
+int main(void)
 {
     fprintf(stderr, "*** test2: STACK .............\n");
     RUN_TEST(test_simple_bipush);

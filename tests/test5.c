@@ -3,7 +3,7 @@
 #include "../include/ijvm.h"
 #include "testutil.h"
 
-void test_invokenoargs()
+void test_invokenoargs(void)
 {
     int res = init_ijvm("files/task5/TestInvokeNoArgs.ijvm");
     assert(res != -1);
@@ -18,7 +18,7 @@ void test_invokenoargs()
     destroy_ijvm();
 }
 
-void test_invoke1()
+void test_invoke1(void)
 {
     int res = init_ijvm("files/task5/test-invokevirtual1.ijvm");
     assert(res != -1);
@@ -34,7 +34,7 @@ void test_invoke1()
     destroy_ijvm();
 }
 
-void test_ireturn1()
+void test_ireturn1(void)
 {
     int res = init_ijvm("files/task5/test-invokevirtual1.ijvm");
     assert(res != -1);
@@ -64,7 +64,8 @@ void test_invoke2()
 
     destroy_ijvm();
 }
-void test_ireturn2()
+
+void test_ireturn2(void)
 {
     int res = init_ijvm("files/task5/test-invokevirtual2.ijvm");
     assert(res != -1);
@@ -77,7 +78,8 @@ void test_ireturn2()
     destroy_ijvm();
 }
 
-void test_frame() {
+void test_frame(void) 
+{
     int res = init_ijvm("files/task5/testinvoke-frame.ijvm");
     assert(res != -1);
 
@@ -100,7 +102,7 @@ void test_frame() {
 }
 
 
-void test_nested_invoke_simple()
+void test_nested_invoke_simple(void)
 {
     int res = init_ijvm("files/task5/test-nestedinvoke-simple.ijvm");
     assert(res != -1);
@@ -127,9 +129,8 @@ void test_nested_invoke_simple()
 }
 
 
-void test_nested_invoke()
+void test_nested_invoke(void)
 {
-
     int res = init_ijvm("files/task5/test-nestedinvoke.ijvm");
     assert(res != -1);
 
@@ -162,7 +163,7 @@ void test_nested_invoke()
 
 
 
-void test_nested_frame()
+void test_nested_frame(void)
 {
     int res = init_ijvm("files/task5/test-nestedinvoke-frame.ijvm");
     assert(res != -1);
@@ -195,7 +196,8 @@ void test_nested_frame()
 }
 
 
-void test_recursion(){
+void test_recursion(void)
+{
     int res = init_ijvm("files/task5/recursive_sum.ijvm");
     assert(res != -1);
     while(get_instruction()!=OP_IAND){
@@ -205,7 +207,7 @@ void test_recursion(){
     destroy_ijvm();
 }
 
-void test_fib()
+void test_fib(void)
 {
     int res = init_ijvm("files/task5/fib.ijvm");
     assert(res != -1);
@@ -215,7 +217,7 @@ void test_fib()
 }
 
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** test5: METHODS ...........\n");
     RUN_TEST(test_invokenoargs);

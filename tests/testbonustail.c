@@ -3,7 +3,7 @@
 #include "../include/ijvm.h"
 #include "testutil.h"
 
-void test_tailfib()
+void test_tailfib(void)
 {
     int res = init_ijvm("files/bonus/tailfib.ijvm");
     assert(res != -1);
@@ -12,9 +12,7 @@ void test_tailfib()
     destroy_ijvm();
 }
 
-
-
-int main()
+int main(void)
 {
     RUN_TEST(test_tailfib);
     return END_TEST();

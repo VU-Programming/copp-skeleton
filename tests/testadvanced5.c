@@ -34,27 +34,27 @@ void run_calc_inp(char *input, char *expected)
     fclose(out_file);
 }
 
-void test_rec_1()
+void test_rec_1(void)
 {
     run_calc_inp("2!?.", "2\n");
 }
 
-void test_rec_2()
+void test_rec_2(void)
 {
     run_calc_inp("7!?.", "5040\n");
 }
 
-void test_rec_3()
+void test_rec_3(void)
 {
     run_calc_inp("8!?.", "40320\n");
 }
 
-void test_rec_4()
+void test_rec_4(void)
 {
     run_calc_inp("5!5+?.", "125\n");
 }
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** testadvanced5: CALC_FACTORIAL ...\n");
     RUN_TEST(test_rec_1);

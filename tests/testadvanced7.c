@@ -8,7 +8,8 @@
 
 /* testadvanced7: tallstack */
 
-void test_tallstack() {
+void test_tallstack(void) 
+{
     int res = init_ijvm("files/advanced/tallstack.ijvm");
     assert(res != -1);
     while(get_instruction()!=OP_IAND){
@@ -19,7 +20,8 @@ void test_tallstack() {
     destroy_ijvm();
 }
 
-void test_deep_recursion() {
+void test_deep_recursion(void) 
+{
     int res = init_ijvm("files/advanced/deep_recursion.ijvm");
     assert(res != -1);
     while(get_instruction()!=OP_IAND){
@@ -30,7 +32,7 @@ void test_deep_recursion() {
     destroy_ijvm();
 }
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** testadvanced7: TALL_STACK ...\n");
     RUN_TEST(test_tallstack);

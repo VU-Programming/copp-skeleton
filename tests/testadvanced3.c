@@ -5,7 +5,7 @@
 
 /* testadvanced3: tanenbaum */
 
-void test_tanenbaum()
+void test_tanenbaum(void)
 {
     FILE *output_file;
     char buf[128] = {0};
@@ -28,7 +28,7 @@ void test_tanenbaum()
     fclose(output_file);
 }
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** testadvanced3: TANENBAUM ...\n");
     RUN_TEST(test_tanenbaum);

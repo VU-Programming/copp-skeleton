@@ -131,7 +131,7 @@ static void run_mandelbread(void)
     free(buf);
 }
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** testadvanced6: MANDELBROT ...\n");
     RUN_TEST(run_mandelbread);

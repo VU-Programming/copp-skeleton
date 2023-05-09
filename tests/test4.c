@@ -3,7 +3,7 @@
 #include "../include/ijvm.h"
 #include "testutil.h"
 
-void test_ldcw1()
+void test_ldcw1(void)
 {
     int res = init_ijvm("files/task4/LoadTest1.ijvm");
     assert(res != -1);
@@ -18,7 +18,7 @@ void test_ldcw1()
     destroy_ijvm();
 }
 
-void test_simple_load()
+void test_simple_load(void)
 {
     int res = init_ijvm("files/task4/LoadTest2.ijvm");
     assert(res != -1);
@@ -51,7 +51,7 @@ void test_simple_load()
     destroy_ijvm();
 }
 
-void test_complex_load()
+void test_complex_load(void)
 {
     int res = init_ijvm("files/task4/LoadTest3.ijvm");
     assert(res != -1);
@@ -85,7 +85,7 @@ void test_complex_load()
 }
 
 #define LOADTEST4_OUTPUT "kjihgfedcbaabcd"
-void test_iteration_load()
+void test_iteration_load(void)
 {
     FILE *output_file;
     char buf[128] = {0};
@@ -106,7 +106,7 @@ void test_iteration_load()
     fclose(output_file);
 }
 
-void test_iinc()
+void test_iinc(void)
 {
     int res = init_ijvm("files/task4/IINCTest.ijvm");
     assert(res != -1);
@@ -131,7 +131,7 @@ void test_iinc()
     destroy_ijvm();
 }
 
-void test_wide()
+void test_wide(void)
 {
     int res = init_ijvm("files/task4/WIDETest.ijvm");
     assert(res != -1);
@@ -152,7 +152,7 @@ void test_wide()
 }
 
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** test4: VARS ..............\n");
     RUN_TEST(test_ldcw1);

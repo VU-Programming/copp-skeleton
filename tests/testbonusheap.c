@@ -65,12 +65,12 @@ void run_bfi(const char *bf_file, const char *expected)
     remove("tmp_output");
 }
 
-void test_bfi_1()
+void test_bfi_1(void)
 {
     run_bfi(HELLO_WORLD, "Hello World!\n");
 }
 
-void test_bfi_2()
+void test_bfi_2(void)
 {
     run_bfi(DANKNESS, "MoarTests");
 }

@@ -34,7 +34,7 @@ void run_calc_inp(char *input, char *expected)
     fclose(out_file);
 }
 
-void test_calc_1()
+void test_calc_1(void)
 {
     run_calc_inp("0 0 + ? .", "0\n");
     run_calc_inp("0 9 + ? .", "9\n");
@@ -42,24 +42,24 @@ void test_calc_1()
     run_calc_inp("9 9 - ? .", "0\n");
 }
 
-void test_calc_2()
+void test_calc_2(void)
 {
     run_calc_inp("    5 4 -?.", "1\n");
     run_calc_inp("  8  8 8  - + ?.", "8\n");
 }
 
-void test_calc_3()
+void test_calc_3(void)
 {
     run_calc_inp("1 1 + 1 1 + 1 1 + 1 1 + 1 1 + +-++?.", "2\n");
     run_calc_inp("9 8 -9 7-9 6-9 5-9 4-9 3-9 2-9 1-9 0- -+-+-+-+?.", "1\n");
 }
 
-void test_calc_4()
+void test_calc_4(void)
 {
     run_calc_inp("2 2 2 2 2 2 2 2 2 2 2 2 2 2 ************ +?.", "8194\n");
 }
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** testadvanced4: CALCULATOR ...\n");
     RUN_TEST(test_calc_1);

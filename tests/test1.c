@@ -2,7 +2,7 @@
 #include "../include/ijvm.h"
 #include "testutil.h"
 
-void test_program_1()
+void test_program_1(void)
 {
     int res = init_ijvm("files/task1/program1.ijvm");
     assert(res != -1);
@@ -17,7 +17,7 @@ void test_program_1()
     destroy_ijvm();
 }
 
-void test_program_2()
+void test_program_2(void)
 {
     int res = init_ijvm("files/task1/program2.ijvm");
     assert(res != -1);
@@ -37,7 +37,7 @@ void test_program_2()
     destroy_ijvm();
 }
 
-void test_constants_1()
+void test_constants_1(void)
 {
     int res = init_ijvm("files/task1/program2.ijvm");
     assert(res != -1);
@@ -48,7 +48,7 @@ void test_constants_1()
     destroy_ijvm();
 }
 
-void test_constants_2()
+void test_constants_2(void)
 {
     int res = init_ijvm("files/task1/program1.ijvm");
     assert(res != -1);
@@ -64,7 +64,7 @@ void test_constants_2()
 }
 
 
-int main()
+int main(void)
 {
     fprintf(stderr, "*** test1: BINARIES ..........\n");
     RUN_TEST(test_program_1);
