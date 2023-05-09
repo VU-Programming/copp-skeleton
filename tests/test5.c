@@ -47,7 +47,7 @@ void test_ireturn1(void)
     destroy_ijvm();
 }
 
-void test_invoke2()
+void test_invoke2(void)
 {
     int res = init_ijvm("files/task5/test-invokevirtual2.ijvm");
     assert(res != -1);
