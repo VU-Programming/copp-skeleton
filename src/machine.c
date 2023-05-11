@@ -95,10 +95,10 @@ word_t get_local_variable(int i)
   return 0;
 }
 
-bool step(void) 
+void step(void) 
 {
   // TODO: implement me
-  return true;
+
 }
 
 void run(void) 

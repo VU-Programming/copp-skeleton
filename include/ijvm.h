@@ -119,7 +119,7 @@ word_t tos(void);
  * Returns true if an instruction was executed. Returns false if machine has
  * halted or encountered an error.
  **/
-bool step(void);
+void step(void);
 
 
 /**
