@@ -20,8 +20,8 @@ SRCDIR=src
 TSTDIR=tests
 
 LIBS=-lm
-DEBUGGER_LIBS=`cat debugger_libs`
-GUI_LIBS=`cat gui_libs`
+DEBUGGER_LIBS=`cat debugger_libs.txt`
+GUI_LIBS=`cat gui_libs.txt`
 
 DEPS = $(wildcard $(IDIR)/*.h)
 SRCS = $(wildcard $(SRCDIR)/*.c)
