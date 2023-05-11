@@ -1,3 +1,10 @@
+# Do not modify this file, as it is overwritten by the default file in the
+# code grade testing environment
+
+# If you need to include extra libraries for your gui or debugger,
+# please provide list the extra compiler arguments (i.e. "lgtk-4") in
+# debugger_libs or gui_libs.
+
 .PHONY: clean testall run_test% zip tools
 
 IDIR=include
@@ -13,11 +20,13 @@ SRCDIR=src
 TSTDIR=tests
 
 LIBS=-lm
+DEBUGGER_LIBS=`cat debugger_libs`
+GUI_LIBS=`cat gui_libs`
 
 DEPS = $(wildcard $(IDIR)/*.h)
 SRCS = $(wildcard $(SRCDIR)/*.c)
 _OBJ = $(patsubst $(SRCDIR)/%,$(ODIR)/%,$(SRCS:.c=.o))
-OBJ = $(filter-out $(ODIR)/main.o,$(_OBJ))
+OBJ = $(filter-out $(ODIR)/main.o $(ODIR)/debugger.o $(ODIR)/gui.o,$(_OBJ))
 
 DEPS2 := $(OBJ:.o=.d)
 
@@ -29,16 +38,22 @@ $(ODIR)/%.o: $(SRCDIR)/%.c
 	+@[ -d $(ODIR) ] || mkdir -p $(ODIR)
 	$(CC) -MMD $(CFLAGS) -c -o $@ $<
 
-
 ijvm: $(OBJ) $(ODIR)/main.o
 	echo $(SRCS)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
+debugger: $(OBJ) $(ODIR)/debugger.o
+	echo $(SRCS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) $(DEBUGGER_LIBS)
+
+gui: $(OBJ) $(ODIR)/gui.o
+	echo $(SRCS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) $(GUI_LIBS)
 
 clean:
 	-rm -f $(ODIR)/*.o *~ core.* $(INCDIR)/*~
 	-rm -f $(ODIR)/*.d
-	-rm -f ijvm
+	-rm -f ijvm gui debugger
 	-rm -f test1 test2 test3 test4 test5 testadvanced* testbonusheap
 	-rm -f dist.zip
 	-rm -rf profdata/
