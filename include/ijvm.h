@@ -115,9 +115,9 @@ word_t tos(void);
 
 /**
  * Step (perform) one instruction and return.
- * In the case of WIDE, perform the whole WIDE_ISTORE or WIDE_ILOAD.
- * Returns true if an instruction was executed. Returns false if machine has
- * halted or encountered an error.
+ * In the case of WIDE, perform the whole WIDE_ISTORE, WIDE_ILOAD or WIDE IINC.
+ * If machine has halted or encountered an error, finished() should report
+ * false afterward. 
  **/
 void step(void);
 
