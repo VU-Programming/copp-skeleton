@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "ijvm.h"
-
+#include "util.h"
 void print_help() 
 { 
   printf("Usage: ./ijvm binary \n"); 

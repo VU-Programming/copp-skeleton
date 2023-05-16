@@ -1,26 +1,7 @@
 #include <stdio.h>  // for getc, printf
 #include <stdlib.h> // malloc, free
 #include "ijvm.h"
-
-#define DEBUG_LEVEL 1
-/* Adjust the above value to 0 to 5 to control debug prints.
-
-The file util.h defines several macros for debug prints,
-namely dprintf, d2printf, d3printf, d4printf and d5printf.
-
-Which debug prints give outputs and which do not depends on the debug level.
-If the debug level is 0, no debug prints will be printed. If the debug level
-is n, all prints with a debug level less than or equal to n will be printed.
-
-Debug prints which are disabled are not compiled into the program, so they
-do not affect performance.
-
-This gives you a method to log all kinds of things for debugging, and control
-the granularity with a single variable.
-
-Example: d2printf("Current program text %02x %02x\n", text[pc] , text[pc+1]);
-*/
-#include "util.h"
+#include "util.h" // read this file for debug prints, endianness helper functions
 
 
 // see ijvm.h for descriptions of the below functions
