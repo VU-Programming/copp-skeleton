@@ -32,6 +32,8 @@ DEPS2 := $(OBJ:.o=.d)
 
 all: ijvm
 
+$(OBJ) $(ODIR)/main.o $(ODIR)/debugger.o $(ODIR)/gui.o: $(DEPS)
+
 -include $(DEPS2)
 
 $(ODIR)/%.o: $(SRCDIR)/%.c
@@ -49,6 +51,8 @@ debugger: $(OBJ) $(ODIR)/debugger.o
 gui: $(OBJ) $(ODIR)/gui.o
 	echo $(SRCS)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) $(GUI_LIBS)
+
+
 
 clean:
 	-rm -f $(ODIR)/*.o *~ core.* $(INCDIR)/*~

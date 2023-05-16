@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "ijvm.h"
-
+#include "util.h"
 void print_help() 
 { 
   printf("Usage: ./ijvm binary \n"); 
@@ -8,6 +8,7 @@ void print_help()
 
 int main(int argc, char **argv) 
 {
+  d5printf("HELLO!");
   if (argc < 2) 
   {
     print_help();
