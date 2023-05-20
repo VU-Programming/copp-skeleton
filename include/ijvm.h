@@ -151,4 +151,7 @@ word_t get_local_variable(int i);
  **/
 byte_t get_instruction(void);
 
+// Get the full size of the stack (aka how much is allocated) TAILCALL Specific
+// int get_allocated_stack_size(void);
+
 #endif
