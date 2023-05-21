@@ -1,0 +1,36 @@
+.constant
+
+.end-constant
+
+.main
+.var
+    array1
+    array2    
+.end-var
+    BIPUSH 0x20     // stack [32]
+    NEWARRAY        // stack [ref1]
+    GC              // stack [ref1]
+    ISTORE array1   // stack []
+    GC              // stack []
+    BIPUSH 0x40     // stack [64]
+    NEWARRAY        // stack [ref2]
+    ISTORE array2   // stack []
+    GC              // stack []
+    ILOAD array1    // stack [ref1]
+    BIPUSH 1        // stack [ref1, 1]
+    ILOAD array2    // stack [ref1, 1, ref2]
+    IASTORE         // stack []                 // storing ref1 in array 2
+    GC              // stack []
+    ILOAD array2    // stack [ref2]
+    BIPUSH 1        // stack [ref2, 1]
+    ILOAD array1    // stack [ref2, 1, ref1]
+    IASTORE         // stack []                 // storing ref2 in array 1
+    GC              // stack []
+    BIPUSH 1        // stack [1]
+    ISTORE array1   // stack []                 // replacing ref1 with other value
+    GC              // stack []
+    BIPUSH 1        // stack [1]
+    ISTORE array2   // stack []                 // replacing ref2 with other value
+    GC              // stack []
+    HALT
+.end-main

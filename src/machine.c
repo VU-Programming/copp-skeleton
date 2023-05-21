@@ -100,3 +100,11 @@ byte_t get_instruction(void)
 //   // TODO: implement me
 //   return 0;
 // }
+
+
+// Checks if reference is a freed heap
+// bool is_heap_freed(word_t reference) 
+// {
+//   // TODO: implement me
+//   return 0;
+// }

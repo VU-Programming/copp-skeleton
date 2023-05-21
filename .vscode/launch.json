@@ -35,6 +35,7 @@
                 "test2",
                 "test3",
                 "test4",
+                "test5",
                 "testadvanced1",  
                 "testadvanced2",  
                 "testadvanced3", 
@@ -43,7 +44,9 @@
                 "testadvanced6",  
                 "testadvanced7",  
                 "testadvancedstack",  
-                "testbonusheap",  
+                "testbonusheap",
+                "testbonustail",
+                "testbonusgarbage",  
                 "testframe",  
             ]
         },

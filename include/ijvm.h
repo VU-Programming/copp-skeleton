@@ -154,4 +154,8 @@ byte_t get_instruction(void);
 // Get the full size of the stack (aka how much is allocated) TAILCALL Specific
 // int get_allocated_stack_size(void);
 
+
+// Checks if reference is a freed heap
+// bool is_heap_freed(word_t reference);
+
 #endif

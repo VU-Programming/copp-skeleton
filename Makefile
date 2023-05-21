@@ -58,7 +58,7 @@ clean:
 	-rm -f $(ODIR)/*.o *~ core.* $(INCDIR)/*~
 	-rm -f $(ODIR)/*.d
 	-rm -f ijvm gui debugger
-	-rm -f test1 test2 test3 test4 test5 testadvanced* testbonusheap testbonustail
+	-rm -f test1 test2 test3 test4 test5 testadvanced* testbonusheap testbonustail testbonusgarbage
 	-rm -f dist.zip
 	-rm -rf profdata/
 	-rm -rf obj/ *.dSYM

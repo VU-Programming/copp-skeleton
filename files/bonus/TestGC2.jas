@@ -1,0 +1,53 @@
+.constant
+    objref 0xDEAD
+.end-constant
+
+.main
+.var
+    array1    
+.end-var    
+    BIPUSH 0x20             // stack [32]
+    NEWARRAY                // stack [ref1]
+    GC                      // stack [ref1]
+    ISTORE array1           // stack []
+    GC                      // stack []
+    BIPUSH 0x12             // stack [18]
+    BIPUSH 1                // stack [18, 1]
+    ILOAD array1            // stack [18, 1, ref1]
+    IASTORE                 // stack []
+    GC                      // stack []
+    BIPUSH 1                // stack [1]
+    ILOAD array1            // stack [1, ref1]
+    IALOAD                  // stack [18]
+    OUT                     // stack []
+    LDC_W objref            // stack [obref]
+    BIPUSH 0x40             // stack [obref, 64]
+    INVOKEVIRTUAL tester    // stack [34]
+    GC                      // stack [34]
+    OUT                     // stack []
+    BIPUSH 0                // stack [0]
+    ISTORE array1           // stack []
+    GC                      // stack []
+    HALT
+.end-main
+
+.
+.method tester(size)
+.var
+    array2    
+.end-var
+    ILOAD size              // stack [64]
+    NEWARRAY                // stack [ref2]
+    ISTORE array2           // stack []
+    GC                      // stack []
+    BIPUSH 0x22             // stack [34]
+    BIPUSH 4                // stack [34, 4]
+    ILOAD array2            // stack [34, 4, ref2]
+    IASTORE                 // stack []
+    GC                      // stack []
+    BIPUSH 4                // stack [4]
+    ILOAD array2            // stack [ref2]
+    IALOAD                  // stack [34]
+    GC
+    IRETURN
+.end-method
