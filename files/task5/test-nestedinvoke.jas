@@ -10,6 +10,7 @@ b  15
     LDC_W a 
     INVOKEVIRTUAL magic
     NOP
+    HALT
 .end-main
 
 .method addone(var)

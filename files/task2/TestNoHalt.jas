@@ -5,5 +5,9 @@
     NOP
     IADD
     NOP 
-    HALT
+    NOP
+    NOP
+    DUP 
+    IADD
+    NOP
 .end-main

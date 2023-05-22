@@ -9,6 +9,7 @@
     BIPUSH 0x3
     INVOKEVIRTUAL test
     OUT
+    HALT
 .end-main
 
 .method test()

@@ -203,6 +203,15 @@ void test_halt(void)
     destroy_ijvm();
 }
 
+void test_no_halt(void)
+{
+    int res = init_ijvm("files/task2/TestNoHalt.ijvm");
+    assert(res != -1);
+    run();
+    assert(finished());
+    destroy_ijvm();
+}
+
 void test_in_out(void)
 {
     int res = init_ijvm("files/task2/TestInOut.ijvm");
@@ -252,6 +261,7 @@ int main(void)
     RUN_TEST(test_nop);
     RUN_TEST(test_simple_stack_operations);
     RUN_TEST(test_halt);
+    RUN_TEST(test_no_halt);
     RUN_TEST(test_in_out);
     return END_TEST();
 }

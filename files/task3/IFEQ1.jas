@@ -24,4 +24,5 @@ L3:
     OUT
     OUT
     OUT
+    HALT
 .end-main

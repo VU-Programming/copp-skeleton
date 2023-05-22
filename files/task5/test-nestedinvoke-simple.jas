@@ -5,6 +5,7 @@ objref  0xCAFE  // may be any value.  Needed by invokevirtual.
 .main
     LDC_W objref
     INVOKEVIRTUAL magic
+    HALT
 .end-main
 
 .method addone()
