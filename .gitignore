@@ -5,3 +5,4 @@
 !makefile
 obj
 tools
+*.dSYM/
