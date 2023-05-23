@@ -6,3 +6,6 @@
 obj
 tools
 *.dSYM/
+.DS_Store
+Computer Programming Project.xcodeproj/xcuserdata/
+Computer Programming Project.xcodeproj/project.xcworkspace/xcuserdata/
