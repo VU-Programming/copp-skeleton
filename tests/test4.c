@@ -151,6 +151,25 @@ void test_wide(void)
     destroy_ijvm();
 }
 
+void test_wide_alternate(void)
+{
+    int res = init_ijvm("files/task4/WIDEAlternateTest.ijvm");
+    assert(res != -1);
+
+    steps(4);
+    assert(get_local_variable(0) == 3);
+    assert(get_local_variable(1) == 2);
+
+    step();
+    assert(get_local_variable(0) == 6);
+    step();
+    assert(get_local_variable(1) == -1);
+    steps(2);
+    assert(tos() == 3);
+    step();
+    assert(tos() == 6);
+    destroy_ijvm();
+}
 
 int main(void)
 {
@@ -161,5 +180,6 @@ int main(void)
     RUN_TEST(test_iteration_load);
     RUN_TEST(test_iinc);
     RUN_TEST(test_wide);
+    RUN_TEST(test_wide_alternate);
     return END_TEST();
 }

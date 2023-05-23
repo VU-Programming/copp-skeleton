@@ -1,0 +1,23 @@
+.main
+
+    .var
+    hi
+    there
+    .end-var
+    L1:
+        BIPUSH 2
+        BIPUSH 3
+        WIDE
+        ISTORE hi 
+        ISTORE there
+        WIDE 
+        IINC hi 3 
+        IINC there -3
+        WIDE 
+        IINC there 4 
+        ILOAD there
+        WIDE 
+        ILOAD hi
+        HALT
+    .end-main
+    
