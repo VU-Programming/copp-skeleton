@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5367ACDB2A1CCCC500F95B46"
-               BuildableName = "Test Advanced 1"
-               BlueprintName = "Test Advanced 1"
+               BlueprintIdentifier = "5367ACE92A1CCCDC00F95B46"
+               BuildableName = "Test Advanced 2"
+               BlueprintName = "Test Advanced 2"
                ReferencedContainer = "container:Computer Programming Project.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5367ACDB2A1CCCC500F95B46"
-            BuildableName = "Test Advanced 1"
-            BlueprintName = "Test Advanced 1"
+            BlueprintIdentifier = "5367ACE92A1CCCDC00F95B46"
+            BuildableName = "Test Advanced 2"
+            BlueprintName = "Test Advanced 2"
             ReferencedContainer = "container:Computer Programming Project.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,9 +62,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5367ACDB2A1CCCC500F95B46"
-            BuildableName = "Test Advanced 1"
-            BlueprintName = "Test Advanced 1"
+            BlueprintIdentifier = "5367ACE92A1CCCDC00F95B46"
+            BuildableName = "Test Advanced 2"
+            BlueprintName = "Test Advanced 2"
             ReferencedContainer = "container:Computer Programming Project.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
