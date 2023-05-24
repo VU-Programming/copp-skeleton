@@ -397,7 +397,6 @@
 				5367AC732A1CC9B100F95B46 /* src */,
 				5367AC7C2A1CCB3F00F95B46 /* tests */,
 				5367AC6A2A1CC83300F95B46 /* files */,
-				5367AC912A1CCBE100F95B46 /* Test1 */,
 				5367AC5D2A1CC7BB00F95B46 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -463,13 +462,6 @@
 				5367AC892A1CCB3F00F95B46 /* testutil.h */,
 			);
 			path = tests;
-			sourceTree = "<group>";
-		};
-		5367AC912A1CCBE100F95B46 /* Test1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Test1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
