@@ -13,9 +13,9 @@ uint32_t swap_uint16(uint16_t num)
 }
 
 uint32_t read_uint32_t(uint8_t* buf) {
-  return (buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3];
+  return ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
 }
 
 uint16_t read_uint16_t(uint8_t* buf) {
-  return (buf[0] << 8) | buf[1];
+  return ((uint32_t)buf[0] << 8) | (uint32_t)buf[1];
 }
