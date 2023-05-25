@@ -95,16 +95,18 @@ byte_t get_instruction(void)
   return get_text()[get_program_counter()]; 
 }
 
-// int get_allocated_stack_size(void) 
-// {
-//   // TODO: implement me
-//   return 0;
-// }
+// Below: methods needed by bonus assignments, see ijvm.h
+
+//int get_call_stack_size(void) 
+//{
+   // TODO: implement me
+//   return sp;
+//}
 
 
 // Checks if reference is a freed heap
-// bool is_heap_freed(word_t reference) 
-// {
-//   // TODO: implement me
-//   return 0;
-// }
+//bool is_heap_freed(word_t reference) 
+//{
+   // TODO: implement me
+// return 0;
+//}

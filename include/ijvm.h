@@ -153,11 +153,21 @@ byte_t get_instruction(void);
 
 // Below: methods needed for bonus assignments
 
-// Tailcall assignment: 
-// Get the full size of the stack (aka how much is allocated) TAILCALL Specific
-// int get_allocated_stack_size(void);
+
+// Below: methods needed for bonus assignments
+
+// Only needed for Tailcall assignment: 
+//
+// Get some measure indicative of the (call)stack size
+// If you have a single continous stack this can be
+// the number of elements on the stack
+// Or it can be for example be the number of frames on the stack
+// We use this only to test stack depth when using tailcall is less
+// then when using regular calls. 
+// int get_call_stack_size(void);
 
 
+// Only needed for garbage collection assignment
 // Checks if reference is a freed heap
 // bool is_heap_freed(word_t reference);
 

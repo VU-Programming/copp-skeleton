@@ -20,10 +20,13 @@ void testTC(void) {
 
     output_file = tmpfile();
     set_output(output_file);
-
+    // run until returning from innermost call
+    steps(129998);
+    assert(tos() == 50005000);
+    int stack1 = get_call_stack_size();
     run();
     assert(tos() == 50005000);
-    int stack1 = get_allocated_stack_size();
+
 
     destroy_ijvm();
     fclose(output_file);
@@ -34,9 +37,13 @@ void testTC(void) {
     output_file = tmpfile();
     set_output(output_file);
 
+   // run until returning from innermost call
+    steps(129998);
+    assert(tos() == 50005000);
+    int stack2 = get_call_stack_size();
     run();
     assert(tos() == 50005000);
-    int stack2 = get_allocated_stack_size();
+
 
     destroy_ijvm();
     fclose(output_file);
