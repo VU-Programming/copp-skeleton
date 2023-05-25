@@ -151,6 +151,9 @@ word_t get_local_variable(int i);
  **/
 byte_t get_instruction(void);
 
+// Below: methods needed for bonus assignments
+
+// Tailcall assignment: 
 // Get the full size of the stack (aka how much is allocated) TAILCALL Specific
 // int get_allocated_stack_size(void);
 
