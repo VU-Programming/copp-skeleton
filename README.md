@@ -53,6 +53,15 @@ Both glibc, gcc, and make are included in the package `build-essential`. It is a
 Now you can compile the project by navigating to this directory and executing
 the `make` command.
 
+# macOS
+To develop on macOS, we prepared a guide on how to install and use Xcode to work on the project.
+You can find this guide on the reference site for the Computer Programming Project. 
+
 # Tools
 You can install the goJASM assembler by executing `make tools`. This will
 download a goJASM executable in the tools directory.
+
+
+
+
+

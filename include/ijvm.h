@@ -96,7 +96,7 @@ byte_t *get_text(void);
 unsigned int get_text_size(void);
 
 /**
- * @param i, index of the constant to obtain
+ * @param i index of the constant to obtain
  * @return The constant at location i in the constant pool.
  **/
 word_t get_constant(int i);
@@ -139,7 +139,7 @@ bool finished(void);
 void run(void);
 
 /**
- * @param i, index of variable to obtain.
+ * @param i index of variable to obtain.
  * @return Returns the i:th local variable of the current frame.
  **/
 word_t get_local_variable(int i);
