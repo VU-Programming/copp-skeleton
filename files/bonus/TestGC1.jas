@@ -1,0 +1,24 @@
+.constant
+
+.end-constant
+
+.main
+.var
+    array1    
+.end-var
+    BIPUSH 0x20     // stack [32]
+    NEWARRAY        // stack [ref1]
+    GC              // stack [ref1]
+    ISTORE array1   // stack []
+    GC              // stack []
+    BIPUSH 0x12     // stack [18]
+    BIPUSH 1        // stack [18, 1]
+    ILOAD array1    // stack [18, 1, ref1]
+    IASTORE         // stack []
+    GC              // stack []
+    BIPUSH 1        // stack [1]
+    ILOAD array1    // stack [1, ref1]
+    IALOAD          // stack [18]
+    OUT             // stack []
+    HALT
+.end-main

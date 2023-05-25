@@ -1,0 +1,55 @@
+// int add_all(int n, int a) {
+// 	  if (n == 1) {
+//    return a+1;
+// }
+// return add_all(n-1, a+n);
+// }
+// 
+// add_all(30, 0);
+
+.constant
+    objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+    one     1
+    number  10000
+.end-constant
+
+.main
+    LDC_W objref                // stack [objref]
+    LDC_W number                // stack [objref, n]
+    BIPUSH 0                    // stack [objref, n, 1]
+    INVOKEVIRTUAL add_all       // stack [answer]
+    DUP                         // stack [answer, answer]
+    OUT                         // stack [answer]
+    HALT
+
+.end-main
+
+.method add_all(n, a)
+.var 
+    helper
+.end-var
+
+    ILOAD n                     // stack [n]
+    BIPUSH 1                    // stack [n, 1]
+    ISUB                        // stack [n-1]
+    IFEQ done1                  // stack []
+    GOTO done2
+
+done1:
+    ILOAD a                     // stack [a]
+    BIPUSH 1                    // stack [a, 1]
+    IADD                        // stack [a+1]
+    IRETURN     
+    
+done2:
+    LDC_W objref                // stack [objref]
+    ILOAD n                     // stack [objref, n]
+    BIPUSH 1                    // stack [objref, n, 1]
+    ISUB                        // stack [objref, n-1]
+    ILOAD a                     // stack [objref, n-1, a]
+    ILOAD n                     // stack [objref, n-1, a, n]
+    IADD                        // stack [objref, n-1, a+n]
+    INVOKEVIRTUAL add_all    
+    IRETURN
+
+.end-method

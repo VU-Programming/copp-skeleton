@@ -1,1 +1,1 @@
-Please describe any bonusses you implemented (this file is included in your submission)
+Please describe any bonuses you implemented (this file is included in your submission)
