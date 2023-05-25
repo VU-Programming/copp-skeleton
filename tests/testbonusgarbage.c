@@ -69,12 +69,12 @@ void testGC2(void) {
     steps(3);
     assert(tos() == 34);
     step();
-    assert(!is_heap_freed(ref1) == false);
-    assert(!is_heap_freed(ref2) == false);
+    assert(!is_heap_freed(ref1);
+    assert(!is_heap_freed(ref2));
     step();
     assert(tos() == 34);
     step();
-    assert(!is_heap_freed(ref1) == false);
+    assert(!is_heap_freed(ref1));
     assert(is_heap_freed(ref2));
     steps(4);
     assert(is_heap_freed(ref1));

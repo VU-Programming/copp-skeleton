@@ -168,7 +168,7 @@ byte_t get_instruction(void);
 
 
 // Only needed for garbage collection assignment
-// Checks if reference is a freed heap
+// Checks if reference is a freed heap cell
 // bool is_heap_freed(word_t reference);
 
 #endif
