@@ -153,9 +153,6 @@ byte_t get_instruction(void);
 
 // Below: methods needed for bonus assignments
 
-
-// Below: methods needed for bonus assignments
-
 // Only needed for Tailcall assignment: 
 //
 // Get some measure indicative of the (call)stack size
