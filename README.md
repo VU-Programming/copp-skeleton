@@ -1,5 +1,5 @@
 # IJVM emulator assignment skeleton (Vrije Universiteit Amsterdam)
-See http://vu-programming.gitlab.io/pad/website/ for the course content and more info.
+See https://vu-oofp.gitlab.io/website/ for the course content and more info.
 
 # Compiling
 Requires make and GCC or Clang

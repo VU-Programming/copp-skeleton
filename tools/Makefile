@@ -1,4 +1,4 @@
-GOJASM_BASE_URL=https://vu-programming.gitlab.io/pad/website/files/gojasm
+GOJASM_BASE_URL=https://vu-oofp.gitlab.io/website/files/gojasm
 PLATFORM=$(shell uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(shell uname -m)
 ifeq ($(ARCH), x86_64)
