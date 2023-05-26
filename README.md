@@ -1,10 +1,10 @@
-# IJVM emulator assignment skeleton (Vrije Universiteit Amsterdam)
-See https://vu-oofp.gitlab.io/website/ for the course content and more info.
-
 # Github
 
-Do now post solution of this assignment online! This is considered plagiarism
+*Do now post solution of this assignment online!* This is considered plagiarism
 by the exam board. If you fork this repository, make it private!!
+
+# IJVM emulator assignment skeleton (Vrije Universiteit Amsterdam)
+See https://vu-oofp.gitlab.io/website/ for the course content and more info.
 
 # Compiling
 Requires make and Clang
