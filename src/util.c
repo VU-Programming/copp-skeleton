@@ -17,5 +17,5 @@ uint32_t read_uint32_t(uint8_t* buf) {
 }
 
 uint16_t read_uint16_t(uint8_t* buf) {
-  return ((uint32_t)buf[0] << 8) | (uint32_t)buf[1];
+  return (uint16_t)(((uint32_t)buf[0] << 8) | (uint32_t)buf[1]);
 }
