@@ -52,7 +52,7 @@ gui: $(OBJ) $(ODIR)/gui.o
 	echo $(SRCS)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) $(GUI_LIBS)
 
-# computes grade of basic and advanced tests, requires python 3
+# computes grade of basic and advanced tests, requires python
 grade: 
 	python tools/grade.py
 	
