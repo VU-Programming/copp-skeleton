@@ -14,10 +14,12 @@ ADVANCED_POINTS = 0.5
 
 def run_test(test_name):
     try:
-        command = f"make run_{test_name}"
+        command = "make run_" + test_name
         print(command)
-        st = subprocess.run(command,shell=True)
-        return st.returncode == 0
+        if int(subprocess.check_output(command, shell=True)) == 0:
+            return True
+        else:
+            return False
     except:
         return False
 
@@ -38,18 +40,17 @@ if __name__ == "__main__":
     basic_passed = run_tests(basic_tests)
     advanced_passed = run_tests(advanced_tests)
 
-    print(f"You are passing {basic_passed}/{len(basic_tests)} basic tests and {advanced_passed}/{len(advanced_tests)} advanced tests")
+    print("You are passing {}/{}) basic tests and {}/{}) advanced tests".format(basic_passed, len(basic_tests), advanced_passed, len(advanced_tests)))
 
-    print(f"Your (tentative) grade is a {calc_grade(basic_passed, advanced_passed)}")
+    print("Your (tentative) grade is a {}".format(calc_grade(basic_passed, advanced_passed)))
 
     if basic_passed < BASIC_NEEDED:
-        print(f"You must still complete {BASIC_NEEDED - basic_passed} basic tests in order to pass")
+        print("You must still complete {} basic tests in order to pass".format(BASIC_NEEDED - basic_passed))
     
     if advanced_passed < ADVANCED_NEEDED:
-        print(f"You must still complete {ADVANCED_NEEDED - advanced_passed} advanced tests in order to pass")
+        print("You must still complete {} advanced tests in order to pass".format(ADVANCED_NEEDED - advanced_passed))
 
-    if  advanced_passed >= ADVANCED_NEEDED and \
-        basic_passed >= BASIC_NEEDED:
+    if  advanced_passed >= ADVANCED_NEEDED and basic_passed >= BASIC_NEEDED:
         print("You are currently passing all required tests and eligible to do the bonus assignments")
         print("NOTE: Bonus assignments are graded separately")
         print("NOTE: 0.5 point style points not considered in this script")
