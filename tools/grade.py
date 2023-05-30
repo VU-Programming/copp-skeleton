@@ -52,4 +52,4 @@ if __name__ == "__main__":
         basic_passed >= BASIC_NEEDED:
         print("You are currently passing all required tests and eligible to do the bonus assignments")
         print("NOTE: Bonus assignments are graded separately")
-        print("NOTE: 0.5 points can still be awarded through the oral exam by way of style points")
+        print("NOTE: 0.5 point style points not considered in this script")
