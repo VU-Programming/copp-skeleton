@@ -104,7 +104,8 @@ byte_t get_instruction(void)
 //}
 
 
-// Checks if reference is a freed heap
+// Checks if reference is a freed heap array. Note that this assumes that 
+// 
 //bool is_heap_freed(word_t reference) 
 //{
    // TODO: implement me

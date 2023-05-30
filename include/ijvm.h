@@ -166,6 +166,10 @@ byte_t get_instruction(void);
 
 // Only needed for garbage collection assignment
 // Checks if reference is a freed heap cell
+// If a heap cell is garbage, then after a garbage collection run
+// this method must return true on a reference to that cell
+//  *until* the next NEWARRAY instruction (which may reuse the reference)
+//
 // bool is_heap_freed(word_t reference);
 
 #endif
