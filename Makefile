@@ -53,7 +53,7 @@ gui: $(OBJ) $(ODIR)/gui.o
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) $(GUI_LIBS)
 
 grade: 
-	python tools/grade.py
+	python3 tools/grade.py
 	
 
 clean:

@@ -14,11 +14,13 @@ ADVANCED_POINTS = 0.5
 
 def run_test(test_name):
     try:
-        res = subprocess.check_output(f"2>&1 USERFLAGS=-DABORT_ON_ERR=0 make run_{test_name}", shell=True).decode("utf-8")
+        command = f"make run_{test_name}"
+        print(command)
+        st = subprocess.run(command,shell=True)
+        return st.returncode == 0
     except:
         return False
 
-    return "[Ok]" in res
 
 def run_tests(tests):
     passed=0
