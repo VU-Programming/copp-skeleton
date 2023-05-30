@@ -52,7 +52,9 @@ gui: $(OBJ) $(ODIR)/gui.o
 	echo $(SRCS)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) $(GUI_LIBS)
 
-
+grade: 
+	python tools/grade.py
+	
 
 clean:
 	-rm -f $(ODIR)/*.o *~ core.* $(INCDIR)/*~
