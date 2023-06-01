@@ -148,6 +148,22 @@ void test_simple_ior(void)
     destroy_ijvm();
 }
 
+
+void test_simple_stack_operations(void)
+{
+    int res = init_ijvm("files/task2/TestPop1.ijvm");
+    assert(res != -1);
+
+    steps(3);
+    assert(tos() == 10);
+    steps(3);
+    assert(tos() == 50);
+    step();
+    assert(tos() == 10);
+    destroy_ijvm();
+}
+
+
 void test_swap(void)
 {
     int res = init_ijvm("files/task2/TestSwap1.ijvm");
@@ -176,20 +192,6 @@ void test_nop(void)
     step();
     step();
     assert(tos() == 30); 
-    destroy_ijvm();
-}
-
-void test_simple_stack_operations(void)
-{
-    int res = init_ijvm("files/task2/TestPop1.ijvm");
-    assert(res != -1);
-
-    steps(3);
-    assert(tos() == 10);
-    steps(3);
-    assert(tos() == 50);
-    step();
-    assert(tos() == 10);
     destroy_ijvm();
 }
 
@@ -257,9 +259,9 @@ int main(void)
     RUN_TEST(test_signed_isub);
     RUN_TEST(test_simple_iand);
     RUN_TEST(test_simple_ior);
+    RUN_TEST(test_simple_stack_operations);
     RUN_TEST(test_swap);
     RUN_TEST(test_nop);
-    RUN_TEST(test_simple_stack_operations);
     RUN_TEST(test_halt);
     RUN_TEST(test_no_halt);
     RUN_TEST(test_in_out);
