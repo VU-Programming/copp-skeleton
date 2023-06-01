@@ -1,6 +1,6 @@
 # Github
 
-*Do now post solution of this assignment online!* This is considered plagiarism
+*Do not post solution of this assignment online!* This is considered plagiarism
 by the exam board (this holds for all courses at the VU unless specified otherwise). If you fork this repository, make it private!!
 
 # IJVM emulator assignment skeleton (Vrije Universiteit Amsterdam)
