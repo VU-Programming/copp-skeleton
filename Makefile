@@ -115,7 +115,7 @@ pedantic: CFLAGS+=$(PEDANTIC_CFLAGS)
 pedantic: clean ijvm
 
 
-testleaks: build_tests
+testleaks: clean build_tests
 	valgrind --leak-check=full ./test1
 	valgrind --leak-check=full ./test2
 	valgrind --leak-check=full ./test3
