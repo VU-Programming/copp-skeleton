@@ -26,7 +26,7 @@
     GC                      // stack [34]
     OUT                     // stack []
 
-    BIPUSH 0x80             // stack [128]
+    BIPUSH 0x70             // stack [112]
     NEWARRAY                // stack [ref3]
     DUP                     // stack [ref3, ref3]
     BIPUSH 0x32             // stack [ref3, ref3, 50]
