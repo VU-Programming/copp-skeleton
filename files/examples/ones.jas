@@ -1,0 +1,15 @@
+.main
+    // prints '1' 10 times
+ L1:
+    BIPUSH 0xA // stack: [10]
+ L2:
+    BIPUSH 0x1 // stack: [i,1]
+    ISUB       // stack: [i-1]
+    DUP        // stack: [i-1,i-1]
+    IFEQ END   // stack: [i-1], Jump to end if zero
+    BIPUSH 0x31 // stack: [i-1,0x31]
+    OUT         // prints '1' (ascii: 0x31)
+    GOTO L2     // // Repeat loop
+ END:
+    HALT
+ .end-main
