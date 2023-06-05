@@ -8,7 +8,7 @@ void print_help(void)
 
 int main(int argc, char **argv) 
 {
-  d5printf("HELLO!");
+
   if (argc < 2) 
   {
     print_help();
