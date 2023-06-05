@@ -9,6 +9,8 @@ void test_program_1(void)
     assert(get_text_size() == 7);
     byte_t *ip = get_text();
 
+    // If it fails here you haven't implemented get_text()
+    assert(ip != NULL);
     // Instructions in binary
     assert(ip[0] == 0x10); // BIPUSH
     assert(ip[2] == 0x10); // BIPUSH
