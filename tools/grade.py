@@ -16,7 +16,7 @@ def run_test(test_name):
     try:
         command = "make run_" + test_name
         print(command)
-        return int(subprocess.check_output(command, shell=True)) == 0
+        return int(subprocess.call(command, shell=True)) == 0
     except:
         return False
 

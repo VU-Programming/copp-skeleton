@@ -27,8 +27,8 @@ Example: d2printf("Current program text %02x %02x\n", text[pc] , text[pc+1]);
 // endianness helper functions 
 uint32_t swap_uint32(uint32_t num);
 uint32_t swap_uint16(uint16_t num);
-uint32_t read_uint32_t(uint8_t* buf) ;
-uint16_t read_uint16_t(uint8_t* buf) ;
+uint32_t read_uint32(uint8_t* buf) ;
+uint16_t read_uint16(uint8_t* buf) ;
 
 #if DEBUG_LEVEL >= 1 
 #define dprintf(...) \
@@ -46,7 +46,7 @@ uint16_t read_uint16_t(uint8_t* buf) ;
 
 #if DEBUG_LEVEL >= 3 
 #define d3printf(...) \
-    fprintf(stderr,   _VA_ARGS__)
+    fprintf(stderr,   __VA_ARGS__)
 #else
 #define d3printf(...)
 #endif
