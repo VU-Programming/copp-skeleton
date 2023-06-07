@@ -55,7 +55,7 @@ gui: $(OBJ) $(ODIR)/gui.o
 
 # computes grade of basic and advanced tests, requires python
 grade: 
-	python tools/grade.py
+	python3 tools/grade.py
 	
 
 clean:
