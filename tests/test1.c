@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "../include/ijvm.h"
 #include "testutil.h"
 
@@ -65,6 +66,22 @@ void test_constants_2(void)
     destroy_ijvm();
 }
 
+// this test checks that init_ijvm does not return 0 when the magicnum is incorrect
+void test_magicnum(void)
+{
+    srand(time(NULL));
+    byte_t x = rand() % 255;
+    FILE *fp = fopen("files/task1/badfile.ijvm", "wb");
+    int random_num = 5 + rand() % 15;
+    for (int i = 0; i < random_num; i++)
+    {
+        fputc(x, fp);
+        do x = rand() % 255; while (x == 0xEA);
+    }
+    fclose(fp);
+    int res = init_ijvm("files/badfile.ijvm");
+    assert(res != 0);
+}
 
 int main(void)
 {
@@ -73,5 +90,6 @@ int main(void)
     RUN_TEST(test_program_2);
     RUN_TEST(test_constants_1);
     RUN_TEST(test_constants_2);
+    RUN_TEST(test_magicnum);
     return END_TEST();
 }
