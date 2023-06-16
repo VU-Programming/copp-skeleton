@@ -79,7 +79,7 @@ void test_magicnum(void)
         do x = rand() % 255; while (x == 0xEA);
     }
     fclose(fp);
-    int res = init_ijvm("files/badfile.ijvm");
+    int res = init_ijvm("files/task1/badfile.ijvm");
     assert(res != 0);
 }
 
