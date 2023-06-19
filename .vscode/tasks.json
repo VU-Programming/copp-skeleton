@@ -168,7 +168,7 @@
         {
             "label": "Build test_testbonustail",
             "type": "shell",
-            "command": "make test_testbonustail",
+            "command": "make testbonustail",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
