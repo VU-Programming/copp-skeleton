@@ -1,0 +1,9 @@
+.constant
+    large -2000000000
+.end-constant
+
+.main
+    LDC_W large
+    LDC_W large
+    IADD
+.end-main

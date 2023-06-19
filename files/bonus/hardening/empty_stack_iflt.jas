@@ -1,0 +1,5 @@
+.main
+	IFLT L1
+L1:
+	BIPUSH 0x1
+.end-main

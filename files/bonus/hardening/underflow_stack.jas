@@ -1,0 +1,6 @@
+.main
+	BIPUSH 0x1
+	POP
+	POP
+	BIPUSH 0x1
+.end-main

@@ -1,0 +1,7 @@
+.main
+    .var
+    a
+    .endvar
+	ISTORE a
+	BIPUSH 0x1
+.end-main
