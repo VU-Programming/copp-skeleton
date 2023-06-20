@@ -1,0 +1,23 @@
+.main
+
+    .var
+    cat
+    dog
+    .end-var
+    L1:
+        BIPUSH 196
+        DUP
+        BIPUSH 196
+        ISTORE cat
+        WIDE
+        ISTORE dog
+        BIPUSH 196
+        IINC cat 3
+        WIDE
+        IINC dog -222
+        BIPUSH 196
+        ILOAD dog
+        WIDE
+        ILOAD cat
+        HALT
+    .end-main

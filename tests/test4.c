@@ -171,6 +171,30 @@ void test_wide_alternate(void)
     destroy_ijvm();
 }
 
+void test_wide_check(void)
+{
+    int res = init_ijvm("files/task4/WIDECheckTest.ijvm");
+    assert(res != -1);
+    steps(3);
+    assert(tos() == -60);
+    step();
+    assert(get_local_variable(0) == -60);
+    step();
+    assert(get_local_variable(1) == -60);
+    steps(2);
+    assert(get_local_variable(0) == -57);
+    step();
+    assert(get_local_variable(1) == -26);
+    steps(2);
+    assert(tos() == -26);
+    step();
+    assert(tos() == -57);
+    assert(!finished());
+    step();
+    assert(finished());
+    destroy_ijvm();
+}
+
 int main(void)
 {
     fprintf(stderr, "*** test4: VARS ..............\n");
@@ -181,5 +205,6 @@ int main(void)
     RUN_TEST(test_iinc);
     RUN_TEST(test_wide);
     RUN_TEST(test_wide_alternate);
+    RUN_TEST(test_wide_check);
     return END_TEST();
 }
