@@ -1,0 +1,8 @@
+.main
+    INVOKEVIRTUAL test
+    HALT
+.end-main
+
+.method test()
+    IRETURN
+.end-method

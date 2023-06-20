@@ -1,0 +1,10 @@
+.constant
+    large 2000000000
+    large2 -200000000
+.end-constant
+
+.main
+    LDC_W large2
+    LDC_W large
+    ISUB
+.end-main

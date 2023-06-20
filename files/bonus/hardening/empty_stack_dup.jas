@@ -1,0 +1,4 @@
+.main
+	DUP
+	BIPUSH 0x1
+.end-main
