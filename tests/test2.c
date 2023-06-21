@@ -209,7 +209,9 @@ void test_no_halt(void)
 {
     int res = init_ijvm("files/task2/TestNoHalt.ijvm");
     assert(res != -1);
-    run();
+    steps(10);
+    assert(!finished());
+    step();
     assert(finished());
     destroy_ijvm();
 }
