@@ -186,6 +186,17 @@
             "group": {
                 "kind": "build"
             }
+        },
+        {
+            "label": "Build test_testbonusgarbage",
+            "type": "shell",
+            "command": "make testbonusgarbage",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build"
+            }
         }
     ],
     "inputs": [
