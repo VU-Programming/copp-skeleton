@@ -3,6 +3,39 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+/**
+ * DO NOT MODIFY THIS FILE.
+ **/
+
+#define _GNU_SOURCE
+#define __USE_GNU
+#include <dlfcn.h>
+// if you want to make use of exit() in your tests, use orig_exit() instead
+
+void orig_exit(int status) __attribute__((__noreturn__));
+
+void exit(int __status) __THROW __attribute__ ((__noreturn__));
+
+typedef void (*exit_handle)(int);
+
+void orig_exit(int status)
+{
+  static exit_handle _orig_exit;
+  if (!_orig_exit)
+    _orig_exit = (exit_handle)dlsym(RTLD_NEXT, "exit");
+  _orig_exit(status);
+  abort(); // will never be called, used to suppress a compiler warning!
+}
+
+void exit(int status)
+{
+  status--; // to suppress pedantic warnings
+  fprintf(stderr, "ALERT! INVALID USE OF EXIT() DETECTED. "
+                  "You risk a failing grade if you submit "
+                  "with exit() in your code.\n");
+  abort();
+}
+
 // Disable abort on err using -DABORT_ON_ERR=0
 // E.g. USERFLAGS=-DABORT_ON_ERR=0 make test1
 #ifndef ABORT_ON_ERR
