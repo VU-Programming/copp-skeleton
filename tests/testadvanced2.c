@@ -26,7 +26,7 @@ _assert_equal(int line, const char *a_expr, word_t a, const char *b_expr, word_t
     {
         eprintf("line %d: Assert equal failed: %s (%d %#x) != %s (%d %#x)",
             line, a_expr, a, a, b_expr, b, b);
-        exit(1);
+        orig_exit(1);
     }
 #ifdef SHOW_ALL
     else

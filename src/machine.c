@@ -25,6 +25,7 @@ int init_ijvm(char *binary_path)
   in = stdin;
   out = stdout;
   // TODO: implement me
+  (void)binary_path; // used to suppress pedantic warnings
   return -1;
 }
 
@@ -48,6 +49,7 @@ unsigned int get_text_size(void)
 word_t get_constant(int i) 
 {
   // TODO: implement me
+  (void)i; // used to suppress pedantic warnings
   return 0;
 }
 
@@ -73,6 +75,7 @@ bool finished(void)
 word_t get_local_variable(int i) 
 {
   // TODO: implement me
+  (void)i; // used to suppress pedantic warnings
   return 0;
 }
 
