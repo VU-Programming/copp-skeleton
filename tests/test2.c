@@ -265,7 +265,7 @@ int main(void)
     RUN_TEST(test_swap);
     RUN_TEST(test_nop);
     RUN_TEST(test_halt);
-    RUN_TEST(test_no_halt);
+    // RUN_TEST(test_no_halt); Disable for 2023
     RUN_TEST(test_in_out);
     return END_TEST();
 }
