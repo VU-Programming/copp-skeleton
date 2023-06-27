@@ -29,7 +29,6 @@ void orig_exit(int status)
 
 void exit(int status)
 {
-  status--; // to suppress pedantic warnings
   if(status == 0){
     fprintf(stderr, "ALERT! INVALID USE OF EXIT() DETECTED. "
                   "You risk a failing grade if you submit "
