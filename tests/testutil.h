@@ -30,10 +30,15 @@ void orig_exit(int status)
 void exit(int status)
 {
   status--; // to suppress pedantic warnings
-  fprintf(stderr, "ALERT! INVALID USE OF EXIT() DETECTED. "
+  if(status == 0){
+    fprintf(stderr, "ALERT! INVALID USE OF EXIT() DETECTED. "
                   "You risk a failing grade if you submit "
-                  "with exit() in your code.\n");
-  abort();
+                  "with exit(0) in your code.\n");
+    abort();
+  } else {
+    _orig_exit(status);
+  }
+
 }
 
 // Disable abort on err using -DABORT_ON_ERR=0
