@@ -35,7 +35,7 @@ void exit(int status)
                   "with exit(0) in your code.\n");
     abort();
   } else {
-    _orig_exit(status);
+    orig_exit(status);
   }
 
 }
