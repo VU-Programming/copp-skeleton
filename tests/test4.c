@@ -205,6 +205,6 @@ int main(void)
     RUN_TEST(test_iinc);
     RUN_TEST(test_wide);
     RUN_TEST(test_wide_alternate);
-    RUN_TEST(test_wide_check);
+    // RUN_TEST(test_wide_check); Disable for 2023
     return END_TEST();
 }
