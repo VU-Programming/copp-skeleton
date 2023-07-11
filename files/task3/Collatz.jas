@@ -11,36 +11,38 @@
 // int n = 9;
 // int c = 0;
 // while (n != 1) {
-//  c = c + 1;
-//  if (n % 2 == 0) {
-//      int divcounter = 0; // compute n / 2 without division instruction
-//      while (n != 0) {
-//          n = n - 2;  
-//          divcounter= divcounter + 1;
-//      }
-//   else {
-//      n = n + n + n + 1;
-//   }
-//
+//     c = c + 1;
+//     if (n % 2 == 0) {
+//         int divcounter = 0;
+//         while (n != 0) {
+//             n = n - 2;
+//             divcounter = divcounter + 1;
+//         }
+//         n = divcounter;
+//     } else {
+//         n = n + n + n + 1;
+//     }
+// }
 
 .main
 BIPUSH 0x00 // counter, c 
-BIPUSH 9  /// c, n
-LOOP: // c, n 
+BIPUSH 9    // c, n
+LOOP:
+    // c, n 
     // check if == 1
-        DUP         // c, n, n
-        BIPUSH 0x01 // c, n, n, 1
-        IF_ICMPEQ DONE // c, n
+        DUP             // c, n, n
+        BIPUSH 0x01     // c, n, n, 1
+        IF_ICMPEQ DONE  // c, n
     // add 1 to counter
-        SWAP        // n, c
-        BIPUSH 0x01 // n, c, 1
-        IADD        // n, c=c+1
-        SWAP        // c, n
+        SWAP            // n, c
+        BIPUSH 0x01     // n, c, 1
+        IADD            // n, c=c+1
+        SWAP            // c, n
     // check if even or odd         
-        DUP         // c, n, n
-        BIPUSH 0x01 // c, n, n, 1
-        IAND        // c, n, n & 1
-        IFEQ EVEN   // c, n
+        DUP             // c, n, n
+        BIPUSH 0x01     // c, n, n, 1
+        IAND            // c, n, n & 1
+        IFEQ EVEN       // c, n
 ODD:    
     // 3n+1
         DUP 
@@ -50,25 +52,29 @@ ODD:
         BIPUSH 0x01
         IADD 
         GOTO LOOP
-EVEN: // n / 2
-      // No division or shift instruction. Instead count how
-      // of we can subtract subtract 2
-      BIPUSH 1 // divcounter, d . Stack : c,n, d
-DIV2: SWAP         // c, d, n 
-      BIPUSH 0x02  // c, d, n, 2
-      ISUB         // c, d, n=n - 2
-      DUP          // c, d, n, n 
-      IFEQ DIVDONE // c, d, n
-      SWAP         // c, n, d 
-      BIPUSH 0x01  // c, n, d, 1
-      IADD         // c, n, d=d+1
-      GOTO DIV2 
-DIVDONE:           // c , d ,n 
-      POP          // c, d  
-      GOTO LOOP 
-DONE: POP // c 
-      BIPUSH 0XBA 
-      SWAP 
-      IOR // test for value at top of stack here
-      HALT 
+EVEN:
+    // n / 2
+    // No division or shift instruction. Instead count how
+    // of we can subtract subtract 2
+        BIPUSH 1        // divcounter, d. Stack: c, n, d
+DIV2:
+        SWAP            // c, d, n 
+        BIPUSH 0x02     // c, d, n, 2
+        ISUB            // c, d, n=n - 2
+        DUP             // c, d, n, n 
+        IFEQ DIVDONE    // c, d, n
+        SWAP            // c, n, d 
+        BIPUSH 0x01     // c, n, d, 1
+        IADD            // c, n, d=d+1
+        GOTO DIV2 
+DIVDONE:
+                        // c, d, n 
+        POP             // c, d  
+        GOTO LOOP 
+DONE:
+        POP             // c 
+        BIPUSH 0XBA 
+        SWAP 
+        IOR // test for value at top of stack here
+        HALT 
 .end-main
