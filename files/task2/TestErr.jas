@@ -1,0 +1,8 @@
+.main
+    BIPUSH 10
+    BIPUSH 20
+    ERR
+    IADD
+    POP
+    HALT
+.end-main

@@ -195,6 +195,26 @@ void test_nop(void)
     destroy_ijvm();
 }
 
+void test_err(void)
+{
+    int res = init_ijvm("files/task2/TestErr.ijvm");
+    assert(res != -1);
+
+    FILE *err = tmpfile();
+    set_output(err);
+
+    steps(3);
+    assert(finished());
+
+    char buf[128] = {0};
+    rewind(err);
+    fread(buf, 1, 32, err);
+    assert(isprint(buf[0]));
+    assert(buf[0] != ' ');
+
+    destroy_ijvm();
+    fclose(err);
+}
 
 void test_halt(void)
 {
@@ -264,8 +284,9 @@ int main(void)
     RUN_TEST(test_simple_stack_operations);
     RUN_TEST(test_swap);
     RUN_TEST(test_nop);
+    RUN_TEST(test_err);
     RUN_TEST(test_halt);
-    // RUN_TEST(test_no_halt); Disable for 2023
+    RUN_TEST(test_no_halt);
     RUN_TEST(test_in_out);
     return END_TEST();
 }
