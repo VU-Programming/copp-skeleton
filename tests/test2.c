@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <unistd.h>
+#include <ctype.h>
 #include <string.h>
 #include "../include/ijvm.h"
 #include "testutil.h"
@@ -269,6 +271,45 @@ void test_in_out(void)
     destroy_ijvm();
 }
 
+void test_stdio(void)
+{
+    int res = init_ijvm("files/task2/TestInOut.ijvm");
+    assert(res != -1);
+    
+    assert(!finished()); // did you reset ?
+    set_output(stdout);
+
+    const int READ_END = 0;
+    const int WRITE_END = 1;
+
+    int input_pipe[2];
+    pipe(input_pipe);
+    dup2(input_pipe[READ_END], STDIN_FILENO);
+    write(input_pipe[WRITE_END], "ABCDE", 5);
+
+    int output_pipe[2];
+    pipe(output_pipe);
+    dup2(output_pipe[WRITE_END], STDOUT_FILENO);
+
+
+    run();
+    fflush(stdout);
+
+    char buf[128] = {0};
+    read(output_pipe[READ_END], buf, 5);
+    buf[5] = 0;
+    // in case something goes wrong,
+    // you can print the 5 bytes of output with this
+    // fprintf(stderr,"Output stdio test: %s\n", buf);
+    assert(strncmp(buf, "EDCBA", 5) == 0);
+
+    close(input_pipe[READ_END]);
+    close(input_pipe[WRITE_END]);
+    close(output_pipe[READ_END]);
+    close(output_pipe[WRITE_END]);
+    destroy_ijvm();
+}
+
 int main(void)
 {
     fprintf(stderr, "*** test2: STACK .............\n");
@@ -288,5 +329,6 @@ int main(void)
     RUN_TEST(test_halt);
     RUN_TEST(test_no_halt);
     RUN_TEST(test_in_out);
+    RUN_TEST(test_stdio);
     return END_TEST();
 }
