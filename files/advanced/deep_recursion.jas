@@ -2,7 +2,7 @@
 // equivalent to:
 // int sumem(int n) {
 //     if (n == 0) return 0;
-//     return n + times2(n-1);
+//     return n + sumem(n-1);
 // }
 // sumem(65534)
 .constant

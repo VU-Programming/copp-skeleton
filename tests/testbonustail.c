@@ -13,7 +13,8 @@ void test_tailfib(void)
 }
 
 
-void testTC(void) {
+void testTC(void)
+{
     FILE* output_file;
     int res = init_ijvm("files/bonus/test_tailcall.ijvm");
     assert(res != -1);
@@ -52,6 +53,21 @@ void testTC(void) {
     printf("Tailcall Stack: %d vs Invokevirtual Stack: %d\n", stack1, stack2);
 }
 
+void test_out_of_memory(void)
+{
+    FILE *output_file;
+    int res = init_ijvm("files/bonus/test_deep_tailcall.ijvm");
+    assert(res != -1);
+
+    output_file = tmpfile();
+    set_output(output_file);
+
+    // if you don't free resources in tailcall, you'll get an OOM kill
+    run();
+
+    destroy_ijvm();
+    fclose(output_file);
+}
 
 int main(void)
 {

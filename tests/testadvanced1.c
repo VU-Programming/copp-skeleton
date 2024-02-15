@@ -81,11 +81,44 @@ void test_wide3(void)
     remove("tmp_output");
 }
 
+void test_wide4(void)
+{
+    int res = init_ijvm("files/advanced/test-wide4.ijvm");
+    assert(res != -1);
+    FILE *output = ignore_stdout();
+
+    word_t foo_const = 0xDEADBEEF;
+    word_t bar_const = 0xABADBABE;
+
+
+    while (OP_IRETURN != get_instruction())
+        step();
+
+    assert(get_local_variable(1 + 0) == bar_const);
+    assert(get_local_variable(1 + 512) == bar_const);
+    assert(get_local_variable(1 + 1000) == bar_const);
+    assert(get_local_variable(1 + 1023) == bar_const);
+
+
+    while (OP_IAND != get_instruction())
+        step();
+
+    assert(get_local_variable(1 + 0) == foo_const);
+    assert(get_local_variable(1 + 512) == foo_const);
+    assert(get_local_variable(1 + 1000) == foo_const);
+    assert(get_local_variable(1 + 1023) == foo_const);
+
+    destroy_ijvm();
+    fclose(output);
+    remove("tmp_output");
+}
+
 int main(void)
 {
     fprintf(stderr, "*** testadvanced1: WIDE ......\n");
     RUN_TEST(test_wide1);
     RUN_TEST(test_wide2);
     RUN_TEST(test_wide3);
+    RUN_TEST(test_wide4);
     return END_TEST();
 }
