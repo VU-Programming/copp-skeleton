@@ -12,7 +12,8 @@
 // int c = 0;
 // while (n != 1) {
 //     c = c + 1;
-//     if (n % 2 == 0) {
+//     if (n & 1 == 0) { // check if even, same result as n % 2 == 0
+//         // compute n = n / 2 without division instruction
 //         int divcounter = 0;
 //         while (n != 0) {
 //             n = n - 2;
@@ -20,7 +21,7 @@
 //         }
 //         n = divcounter;
 //     } else {
-//         n = n + n + n + 1;
+//         n = n + n + n + 1; // n =n * 3 + 1
 //     }
 // }
 
@@ -29,7 +30,7 @@ BIPUSH 0x00 // counter, c
 BIPUSH 3    // c, n
 LOOP:
     // c, n 
-    // check if == 1
+    // check if n == 1
         DUP             // c, n, n
         BIPUSH 0x01     // c, n, n, 1
         IF_ICMPEQ DONE  // c, n
