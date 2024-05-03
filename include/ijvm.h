@@ -55,8 +55,6 @@
 
 
 
-
-
 /**
  * Initializes the IJVM with the binary file found at the provided argument.
  * input gives the file where the ijvm reads from for the IN command
@@ -68,9 +66,6 @@
  *         -1 on failure
  **/
 ijvm* init_ijvm(char *binary_path, FILE* input , FILE* output);
-
-
-
 
 
 /**
