@@ -128,6 +128,35 @@ void test_iinc(void)
     destroy_ijvm(m);
 }
 
+void test_iinc(void)
+{
+    ijvm* m = init_ijvm_std("files/task4/LoadStoreTest.ijvm");
+    assert(m != NULL);
+
+    while(get_instruction(m) != OP_ILOAD){
+        step(m);
+    }
+    step(m);
+    assert(tos(m) == 3);
+    step(m);
+    assert(tos(m) == 2);
+    step(m);
+    assert(tos(m) == 1);
+
+    while(get_instruction(m) != OP_ILOAD){
+        step(m);
+    }
+    step(m);
+    assert(tos(m) == 6);
+    step(m);
+    assert(tos(m) == 5);
+    step(m);
+    assert(tos(m) == 4);
+
+    destroy_ijvm(m);
+}
+
+
 void test_wide(void)
 {
     ijvm* m = init_ijvm_std("files/task4/WIDETest.ijvm");
@@ -201,7 +230,9 @@ int main(void)
     RUN_TEST(test_simple_load);
     RUN_TEST(test_complex_load);
     RUN_TEST(test_iteration_load);
+
     RUN_TEST(test_iinc);
+
     RUN_TEST(test_wide);
     RUN_TEST(test_wide_alternate);
     RUN_TEST(test_wide_check); 
