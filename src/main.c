@@ -14,16 +14,16 @@ int main(int argc, char **argv)
     print_help();
     return 1;
   }
-
-  if (init_ijvm(argv[1]) < 0) 
+  ijvm* m = init_ijvm_std(argv[1]);
+  if (m == NULL) 
   {
     fprintf(stderr, "Couldn't load binary %s\n", argv[1]);
     return 1;
   }
 
-  run();
+  run(m);
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 
   return 0;
 }

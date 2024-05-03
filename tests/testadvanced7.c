@@ -10,26 +10,27 @@
 
 void test_tallstack(void) 
 {
-    int res = init_ijvm("files/advanced/tallstack.ijvm");
-    assert(res != -1);
-    while(get_instruction()!=OP_IAND){
-        step();
+    ijvm *m = init_ijvm_std("files/advanced/tallstack.ijvm");
+    assert(m != NULL);
+    while(get_instruction(m)!=OP_IAND){
+        step(m);
     }
-    assert(tos() == SUM)
+    assert(tos(m) == SUM)
 
-    destroy_ijvm();
+    destroy_ijvm(m);
 }
 
 void test_deep_recursion(void) 
 {
-    int res = init_ijvm("files/advanced/deep_recursion.ijvm");
-    assert(res != -1);
-    while(get_instruction()!=OP_IAND){
-        step();
-    }
-    assert(tos() == SUM);
+    ijvm *m = init_ijvm_std("files/advanced/deep_recursion.ijvm");
+    assert(m != NULL);
 
-    destroy_ijvm();
+    while(get_instruction(m)!=OP_IAND){
+        step(m);
+    }
+    assert(tos(m) == SUM);
+
+    destroy_ijvm(m);
 }
 
 int main(void)

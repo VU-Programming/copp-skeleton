@@ -21,22 +21,20 @@ void run_bfi(const char *bf_file, const char *expected)
     FILE *input, *output;
     char buffer[1024];
     int  bytes_read;
-
-    assert(init_ijvm(BFI_PATH) != -1);
-    nputs("Loaded bfi");
-
-    input  = fopen(bf_file, "r");
+        input  = fopen(bf_file, "r");
     output = fopen("tmp_output", "w+");
     assert(input);
     assert(output);
+    ijvm * m = init_ijvm(BFI_PATH,input,output);
+    assert(m != NULL);
+    nputs("Loaded bfi");
 
-    set_input(input);
-    set_output(output);
-    nprintf("Running brainfuck file %s", bf_file);
 
-    run();
+    nprintf("Running brainf*ck file %s", bf_file);
 
-    destroy_ijvm();
+    run(m);
+
+    destroy_ijvm(m);
     fclose(input);
     fclose(output);
 
@@ -45,7 +43,7 @@ void run_bfi(const char *bf_file, const char *expected)
 
     if ((bytes_read = fread(buffer, 1, 1023, output)) < 0)
     {
-        destroy_ijvm();
+        destroy_ijvm(m);
         eprintf("Couldn't read the output of the ijvm for program %s", bf_file);
         remove("tmp_output");
         orig_exit(1);

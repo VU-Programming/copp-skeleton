@@ -6,30 +6,30 @@
 //!!! Ensure that the variables you set there are overwritten properly.
 
 /**
- * If a file doesn't contain the magic number, the init function should return -1.
+ * If a file doesn't contain the magic number, the init function should return NULL
  */
 void test_no_magic_number()
 {
-  int res = init_ijvm("files/bonus/hardening/no_magic_number.ijvm");
-  assert(res == -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/no_magic_number.ijvm");
+  assert(m == NULL);
 }
 
 /**
- * If the constant pool size is larger than the file itself, the init function should return -1
+ * If the constant pool size is larger than the file itself, the init function should return NULL
  */
 void test_constant_size_overflow()
 {
-  int res = init_ijvm("files/bonus/hardening/constant_size_overflow.ijvm");
-  assert(res == -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/constant_size_overflow.ijvm");
+  assert(m == NULL);
 }
 
 /**
- * If the text pool size is larger than the file itself, the init function should return -1
+ * If the text pool size is larger than the file itself, the init function should return NULL
  */
 void test_text_size_overflow()
 {
-  int res = init_ijvm("files/bonus/hardening/text_size_overflow.ijvm");
-  assert(res == -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/text_size_overflow.ijvm");
+  assert(m == NULL);
 }
 
 /**
@@ -37,13 +37,13 @@ void test_text_size_overflow()
  */
 void test_invalid_instruction()
 {
-  int res = init_ijvm("files/bonus/hardening/invalid_instruction.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/invalid_instruction.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished());
+  step(m);
+  assert(finished(m));
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -51,16 +51,16 @@ void test_invalid_instruction()
  */
 void test_underflow_stack()
 {
-  int res = init_ijvm("files/bonus/hardening/underflow_stack.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/underflow_stack.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(tos() == 0x1);
+  step(m);
+  assert(tos(m) == 0x1);
 
-  steps(2);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 2);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -68,13 +68,13 @@ void test_underflow_stack()
  */
 void test_no_arg_bipush()
 {
-  int res = init_ijvm("files/bonus/hardening/no_arg_bipush.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/no_arg_bipush.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -82,13 +82,13 @@ void test_no_arg_bipush()
  */
 void test_empty_stack_dup()
 {
-  int res = init_ijvm("files/bonus/hardening/empty_stack_dup.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/empty_stack_dup.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -96,16 +96,16 @@ void test_empty_stack_dup()
  */
 void test_single_element_iadd()
 {
-  int res = init_ijvm("files/bonus/hardening/single_element_iadd.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/single_element_iadd.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(tos() == 0x1);
+  step(m);
+  assert(tos(m) == 0x1);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -113,16 +113,16 @@ void test_single_element_iadd()
  */
 void test_single_element_iand()
 {
-  int res = init_ijvm("files/bonus/hardening/single_element_iand.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/single_element_iand.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(tos() == 0x1);
+  step(m);
+  assert(tos(m) == 0x1);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -130,16 +130,16 @@ void test_single_element_iand()
  */
 void test_single_element_ior()
 {
-  int res = init_ijvm("files/bonus/hardening/single_element_ior.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/single_element_ior.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(tos() == 0x1);
+  step(m);
+  assert(tos(m) == 0x1);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -147,16 +147,16 @@ void test_single_element_ior()
  */
 void test_single_element_isub()
 {
-  int res = init_ijvm("files/bonus/hardening/single_element_isub.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/single_element_isub.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(tos() == 0x1);
+  step(m);
+  assert(tos(m) == 0x1);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -164,16 +164,16 @@ void test_single_element_isub()
  */
 void test_single_element_swap()
 {
-  int res = init_ijvm("files/bonus/hardening/single_element_swap.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/single_element_swap.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(tos() == 0x1);
+  step(m);
+  assert(tos(m) == 0x1);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -181,13 +181,13 @@ void test_single_element_swap()
  */
 void test_one_arg_goto()
 {
-  int res = init_ijvm("files/bonus/hardening/one_arg_goto.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/one_arg_goto.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -195,13 +195,13 @@ void test_one_arg_goto()
  */
 void test_goto_after()
 {
-  int res = init_ijvm("files/bonus/hardening/goto_after.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/goto_after.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -209,13 +209,13 @@ void test_goto_after()
  */
 void test_goto_before()
 {
-  int res = init_ijvm("files/bonus/hardening/goto_before.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/goto_before.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -223,13 +223,13 @@ void test_goto_before()
  */
 void test_one_arg_ifeq()
 {
-  int res = init_ijvm("files/bonus/hardening/one_arg_ifeq.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/one_arg_ifeq.ijvm");
+  assert(m != NULL);
 
-  steps(2);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 2);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -237,13 +237,13 @@ void test_one_arg_ifeq()
  */
 void test_ifeq_after()
 {
-  int res = init_ijvm("files/bonus/hardening/ifeq_after.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/ifeq_after.ijvm");
+  assert(m != NULL);
 
-  steps(2);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 2);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -251,13 +251,13 @@ void test_ifeq_after()
  */
 void test_ifeq_before()
 {
-  int res = init_ijvm("files/bonus/hardening/ifeq_before.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/ifeq_before.ijvm");
+  assert(m != NULL);
 
-  steps(2);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 2);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -265,13 +265,13 @@ void test_ifeq_before()
  */
 void test_empty_stack_ifeq()
 {
-  int res = init_ijvm("files/bonus/hardening/empty_stack_ifeq.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/empty_stack_ifeq.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -279,13 +279,13 @@ void test_empty_stack_ifeq()
  */
 void test_one_arg_iflt()
 {
-  int res = init_ijvm("files/bonus/hardening/one_arg_iflt.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/one_arg_iflt.ijvm");
+  assert(m != NULL);
 
-  steps(2);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 2);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -293,13 +293,13 @@ void test_one_arg_iflt()
  */
 void test_iflt_after()
 {
-  int res = init_ijvm("files/bonus/hardening/iflt_after.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/iflt_after.ijvm");
+  assert(m != NULL);
 
-  steps(2);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 2);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -307,13 +307,13 @@ void test_iflt_after()
  */
 void test_iflt_before()
 {
-  int res = init_ijvm("files/bonus/hardening/iflt_before.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/iflt_before.ijvm");
+  assert(m != NULL);
 
-  steps(2);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 2);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -321,13 +321,13 @@ void test_iflt_before()
  */
 void test_empty_stack_iflt()
 {
-  int res = init_ijvm("files/bonus/hardening/empty_stack_iflt.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/empty_stack_iflt.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -335,13 +335,13 @@ void test_empty_stack_iflt()
  */
 void test_one_arg_if_icmpeq()
 {
-  int res = init_ijvm("files/bonus/hardening/one_arg_if_icmpeq.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/one_arg_if_icmpeq.ijvm");
+  assert(m != NULL);
 
-  steps(3);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 3);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -349,13 +349,13 @@ void test_one_arg_if_icmpeq()
  */
 void test_if_icmpeq_after()
 {
-  int res = init_ijvm("files/bonus/hardening/if_icmpeq_after.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/if_icmpeq_after.ijvm");
+  assert(m != NULL);
 
-  steps(3);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 3);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -363,13 +363,13 @@ void test_if_icmpeq_after()
  */
 void test_if_icmpeq_before()
 {
-  int res = init_ijvm("files/bonus/hardening/if_icmpeq_before.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/if_icmpeq_before.ijvm");
+  assert(m != NULL);
 
-  steps(3);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 3);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -377,16 +377,16 @@ void test_if_icmpeq_before()
  */
 void test_single_element_if_icmpeq()
 {
-  int res = init_ijvm("files/bonus/hardening/single_element_if_icmpeq.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/single_element_if_icmpeq.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(tos() == 0x1);
+  step(m);
+  assert(tos(m) == 0x1);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -394,13 +394,13 @@ void test_single_element_if_icmpeq()
  */
 void test_one_arg_ldc_w()
 {
-  int res = init_ijvm("files/bonus/hardening/one_arg_ldc_w.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/one_arg_ldc_w.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -408,13 +408,13 @@ void test_one_arg_ldc_w()
  */
 void test_empty_constants_ldc_w()
 {
-  int res = init_ijvm("files/bonus/hardening/empty_constants_ldc_w.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/empty_constants_ldc_w.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -422,13 +422,13 @@ void test_empty_constants_ldc_w()
  */
 void test_no_arg_iload()
 {
-  int res = init_ijvm("files/bonus/hardening/no_arg_iload.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/no_arg_iload.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -436,13 +436,13 @@ void test_no_arg_iload()
  */
 void test_no_arg_istore()
 {
-  int res = init_ijvm("files/bonus/hardening/no_arg_istore.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/no_arg_istore.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -450,13 +450,13 @@ void test_no_arg_istore()
  */
 void test_empty_stack_istore()
 {
-  int res = init_ijvm("files/bonus/hardening/empty_stack_istore.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/empty_stack_istore.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -464,13 +464,13 @@ void test_empty_stack_istore()
  */
 void test_one_arg_iinc()
 {
-  int res = init_ijvm("files/bonus/hardening/one_arg_iinc.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/one_arg_iinc.ijvm");
+  assert(m != NULL);
 
-  steps(3);
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  steps(m, 3);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -478,13 +478,13 @@ void test_one_arg_iinc()
  */
 void test_no_instruction_wide()
 {
-  int res = init_ijvm("files/bonus/hardening/no_instruction_wide.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/no_instruction_wide.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished());
+  step(m);
+  assert(finished(m));
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -492,13 +492,13 @@ void test_no_instruction_wide()
  */
 void test_invalid_wide_instruction()
 {
-  int res = init_ijvm("files/bonus/hardening/invalid_wide_instruction.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/invalid_wide_instruction.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished());
+  step(m);
+  assert(finished(m));
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -506,13 +506,13 @@ void test_invalid_wide_instruction()
  */
 void test_one_arg_invokevirtual()
 {
-  int res = init_ijvm("files/bonus/hardening/one_arg_invokevirtual.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/one_arg_invokevirtual.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished()); //when an error occurs, the emulator should halt itself
+  step(m);
+  assert(finished(m)); //when an error occurs, the emulator should halt itself
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -520,13 +520,13 @@ void test_one_arg_invokevirtual()
  */
 void test_invokevirtual_missing_constant()
 {
-  int res = init_ijvm("files/bonus/hardening/invokevirtual_missing_constant.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/invokevirtual_missing_constant.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished());
+  step(m);
+  assert(finished(m));
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -534,13 +534,13 @@ void test_invokevirtual_missing_constant()
  */
 void test_invokevirtual_invalid_constant()
 {
-  int res = init_ijvm("files/bonus/hardening/invokevirtual_invalid_constant.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/invokevirtual_invalid_constant.ijvm");
+  assert(m != NULL);
 
-  step();
-  assert(finished());
+  step(m);
+  assert(finished(m));
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -548,13 +548,13 @@ void test_invokevirtual_invalid_constant()
  */
 void test_ireturn_empty_stack()
 {
-  int res = init_ijvm("files/bonus/hardening/ireturn_empty_stack.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/ireturn_empty_stack.ijvm");
+  assert(m != NULL);
 
-  steps(2);
-  assert(finished());
+  steps(m, 2);
+  assert(finished(m));
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -562,13 +562,13 @@ void test_ireturn_empty_stack()
  */
 void test_ireturn_main()
 {
-  int res = init_ijvm("files/bonus/hardening/ireturn_main.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/ireturn_main.ijvm");
+  assert(m != NULL);
 
-  steps(2);
-  assert(finished());
+  steps(m, 2);
+  assert(finished(m));
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -576,13 +576,13 @@ void test_ireturn_main()
  */
 void test_iadd_overflow()
 {
-  int res = init_ijvm("files/bonus/hardening/iadd_overflow.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/iadd_overflow.ijvm");
+  assert(m != NULL);
 
-  steps(3);
-  assert(tos() == -294967296);
+  steps(m, 3);
+  assert(tos(m) == -294967296);
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -590,13 +590,13 @@ void test_iadd_overflow()
  */
 void test_iadd_underflow()
 {
-  int res = init_ijvm("files/bonus/hardening/iadd_underflow.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/iadd_underflow.ijvm");
+  assert(m != NULL);
 
-  steps(3);
-  assert(tos() == 294967296);
+  steps(m, 3);
+  assert(tos(m) == 294967296);
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -604,13 +604,13 @@ void test_iadd_underflow()
  */
 void test_isub_overflow()
 {
-  int res = init_ijvm("files/bonus/hardening/isub_overflow.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/isub_overflow.ijvm");
+  assert(m != NULL);
 
-  steps(3);
-  assert(tos() == -294967296);
+  steps(m, 3);
+  assert(tos(m) == -294967296);
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 /**
@@ -618,13 +618,13 @@ void test_isub_overflow()
  */
 void test_isub_underflow()
 {
-  int res = init_ijvm("files/bonus/hardening/isub_underflow.ijvm");
-  assert(res != -1);
+  ijvm *m = init_ijvm_std("files/bonus/hardening/isub_underflow.ijvm");
+  assert(m != NULL);
 
-  steps(3);
-  assert(tos() == 294967296);
+  steps(m, 3);
+  assert(tos(m) == 294967296);
 
-  destroy_ijvm();
+  destroy_ijvm(m);
 }
 
 int main()

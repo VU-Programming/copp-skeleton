@@ -5,8 +5,8 @@
 #include <stdint.h>  /* contains exact integer types int32_t, uint8_t */
 #include <stdbool.h> /* contains the boolean */
 
-typedef uint8_t byte_t; /* raw memory will be typed as uint8 */
-typedef int32_t word_t; /* the basic unit of the ijvm will be an int32 */
+#include "ijvm_types.h"
+#include "ijvm_struct.h"
 
 #define MAGIC_NUMBER 0x1DEADFAD
 
@@ -56,62 +56,57 @@ typedef int32_t word_t; /* the basic unit of the ijvm will be an int32 */
 
 
 
-/**
- * Sets the input of the IJVM instance to the provided file.
- **/
-void set_input(FILE *fp);
-
 
 /**
- * Sets the output of the IJVM instance to the provided file
- **/
-void set_output(FILE *fp);
+ * Initializes the IJVM with the binary file found at the provided argument.
+ * input gives the file where the ijvm reads from for the IN command
+ * output gives the file where the ijvm writes to for the OUT command
 
-
-/**
- * Initializes the IJVM with the binary file found at the provided argument
  * Note. You need to be able to re-initialize the IJVM after it has been started.
  *
  * Returns  0 on success
  *         -1 on failure
  **/
-int init_ijvm(char *binary_path);
+ijvm* init_ijvm(char *binary_path, FILE* input , FILE* output);
+
+
+
 
 
 /**
  * Destroys a vm, that is to say, free all memory associated with the machine
  * and allow for a new call to init_ijvm().
  */
-void destroy_ijvm(void);
+void destroy_ijvm(ijvm* m);
 
 /**
  * Returns the currently loaded program text as a byte array.
  **/
-byte_t *get_text(void);
+byte_t *get_text(ijvm* m);
 
 
 /**
  * Returns the size of the currently loaded program text.
  **/
-unsigned int get_text_size(void);
+unsigned int get_text_size(ijvm* m);
 
 /**
  * @param i index of the constant to obtain
  * @return The constant at location i in the constant pool.
  **/
-word_t get_constant(int i);
+word_t get_constant(ijvm* m, int i);
 
 
 /**
  * Returns the value of the program counter (as an offset from the first instruction).
  **/
-unsigned int get_program_counter(void);
+unsigned int get_program_counter(ijvm* m);
 
 /**
  * This function should return the word at the top of the stack of the current
  * frame, interpreted as a signed integer.
  **/
-word_t tos(void);
+word_t tos(ijvm* m);
 
 /**
  * Step (perform) one instruction and return.
@@ -119,7 +114,7 @@ word_t tos(void);
  * If machine has halted or encountered an error, finished() should report
  * true afterward. 
  **/
-void step(void);
+void step(ijvm* m);
 
 
 /**
@@ -130,26 +125,37 @@ void step(void);
  * - encountering either the HALT/ERR instructions
  * - encountering an invalid instruction
  */
-bool finished(void);
+bool finished(ijvm* m);
 
 
-/**
- * Run the vm with the current state until the machine halts.
- **/
-void run(void);
 
 /**
  * @param i index of variable to obtain.
  * @return Returns the i:th local variable of the current frame.
  **/
-word_t get_local_variable(int i);
+word_t get_local_variable(ijvm* m, int i);
 
 /**
  * @return The value of the current instruction represented as a byte_t.
  *
  * This should NOT increase the program counter.
  **/
-byte_t get_instruction(void);
+byte_t get_instruction(ijvm* m);
+
+/**
+ * Initializes the IJVM with the binary file found at the provided argument using 
+ * stdin as input and stdout as output 
+
+ * Returns  0 on success
+ *         -1 on failure
+ **/
+ijvm* init_ijvm_std(char *binary_path);
+
+/**
+ * Run the vm with the current state until the machine halts.
+ **/
+void run(ijvm* m);
+
 
 // Below: methods needed for bonus assignments
 
@@ -161,7 +167,7 @@ byte_t get_instruction(void);
 // Or it can be for example be the number of frames on the stack
 // We use this only to test stack depth when using tailcall is less
 // then when using regular calls. 
-// int get_call_stack_size(void);
+// int get_call_stack_size(ijvm* m);
 
 
 // Only needed for garbage collection assignment
@@ -170,6 +176,6 @@ byte_t get_instruction(void);
 // this method must return true on a reference to that cell
 //  *until* the next NEWARRAY instruction (which may reuse the reference)
 //
-// bool is_heap_freed(word_t reference);
+// bool is_heap_freed(ijvm* m,word_t reference);
 
 #endif

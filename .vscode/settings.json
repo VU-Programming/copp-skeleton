@@ -1,3 +1,10 @@
 {
-    "editor.rulers": [80]
+    "editor.rulers": [
+        80
+    ],
+    "files.associations": {
+        "ijvm_struct.h": "c",
+        "memory_resource": "cpp",
+        "testutil.h": "c"
+    }
 }
