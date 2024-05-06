@@ -1,4 +1,4 @@
-#include <stdio.h>test2.c
+#include <stdio.h>
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
