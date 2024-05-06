@@ -301,7 +301,7 @@ void test_stdio(void)
 
     close(input_pipe[READ_END]);
     close(input_pipe[WRITE_END]);
-    close(output_pipe[READ_END]);
+    //close(output_pipe[READ_END]);
     close(output_pipe[WRITE_END]);
     destroy_ijvm(m);
 }
