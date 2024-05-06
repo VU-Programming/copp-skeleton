@@ -22,7 +22,7 @@ void test_goto1(void)
 
 void test_goto2(void)
 {
-    FILE *o = set_null_output();
+    FILE *o = get_null_output();
     ijvm* m = init_ijvm("files/task3/GOTO2.ijvm",stdin,o);
     assert(m != NULL);
     assert(m->out == o);
@@ -44,7 +44,7 @@ void test_goto2(void)
 
 void test_ifeq1(void)
 {
-    FILE *o = set_null_output();
+    FILE *o = get_null_output();
     ijvm* m = init_ijvm("files/task3/IFEQ1.ijvm",stdin,o);
     assert(m != NULL);
     assert(m->out == o);
