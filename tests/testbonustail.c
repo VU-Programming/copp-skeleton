@@ -21,7 +21,7 @@ void testTC(void)
     // run until returning from innermost call
     steps(m, 129998);
     assert(tos(m) == 50005000);
-    int stack1 = get_call_stack_size();
+    int stack1 = get_call_stack_size(m);
     run(m);
     assert(tos(m) == 50005000);
 
@@ -34,12 +34,11 @@ void testTC(void)
     assert(m != NULL);
 
 
-    set_output(output_file);
 
    // run until returning from innermost call
     steps(m, 129998);
     assert(tos(m) == 50005000);
-    int stack2 = get_call_stack_size();
+    int stack2 = get_call_stack_size(m);
     run(m);
     assert(tos(m) == 50005000);
 
