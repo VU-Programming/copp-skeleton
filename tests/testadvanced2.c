@@ -60,8 +60,6 @@ void test_advanced_1(void)
     fputc('A', input);
     rewind(input);
 
-    set_input(input);
-    set_output(output);
 
     assert_equal(OP_BIPUSH, get_instruction(m));
     step(m);

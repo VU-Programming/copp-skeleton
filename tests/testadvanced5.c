@@ -11,11 +11,8 @@ void run_calc_inp(char *input, char *expected)
     FILE *f = tmpfile();
     fprintf(f, "%s", input);
     rewind(f);
-    set_input(f);
 
     FILE *out_file = tmpfile();
-    set_output(out_file);
-
     ijvm* m = init_ijvm("files/advanced/SimpleCalc.ijvm",f, out_file);
     assert(m != NULL);
 
