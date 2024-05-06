@@ -106,4 +106,10 @@ FILE *get_null_output(void)
     return fh;
 }
 
+int *set_null_output(void)
+{
+    FILE *fh = fopen("/dev/null", "w");
+    return (int*) fh;
+}
+
 #endif
