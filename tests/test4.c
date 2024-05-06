@@ -147,11 +147,11 @@ void test_loadstore(void)
         step(m);
     }
     step(m);
-    assert(tos(m) == 6);
+    assert(tos(m) == 4);
     step(m);
     assert(tos(m) == 5);
     step(m);
-    assert(tos(m) == 4);
+    assert(tos(m) == 6);
 
     destroy_ijvm(m);
 }
