@@ -9,12 +9,12 @@ void run_calc_inp(char *input, char *expected)
 {
     
     char buf[128];
-    FILE *input = tmpfile();
-    fprintf(input, "%s", input);
-    rewind(input);
+    FILE *inputf = tmpfile();
+    fprintf(inputf, "%s", input);
+    rewind(inputf);
 
     FILE *out_file = tmpfile();
-    ijvm* m = init_ijvm("files/advanced/SimpleCalc.ijvm",input, out_file);
+    ijvm* m = init_ijvm("files/advanced/SimpleCalc.ijvm",inputf, out_file);
     assert(m != NULL);
 
     // Run program
