@@ -94,18 +94,20 @@ void run(ijvm* m)
 
 
 // Below: methods needed by bonus assignments, see ijvm.h
+// You can leave these unimplemented if you are not doing these bonus 
+// assignments.
 
-//int get_call_stack_size(ijvm* m) 
-//{
-   // TODO: implement me
-//   return sp;
-//}
+int get_call_stack_size(ijvm* m) 
+{
+   // TODO: implement me if doing tail call bonus
+   return 0;
+}
 
 
 // Checks if reference is a freed heap array. Note that this assumes that 
 // 
-//bool is_heap_freed(word_t reference) 
-//{
-   // TODO: implement me
-// return 0;
-//}
+bool is_heap_freed(ijvm* m, word_t reference) 
+{
+   // TODO: implement me if doing garbage collection bonus
+   return 0;
+}

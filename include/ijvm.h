@@ -162,7 +162,7 @@ void run(ijvm* m);
 // Or it can be for example be the number of frames on the stack
 // We use this only to test stack depth when using tailcall is less
 // then when using regular calls. 
-// int get_call_stack_size(ijvm* m);
+int get_call_stack_size(ijvm* m);
 
 
 // Only needed for garbage collection assignment
@@ -171,6 +171,6 @@ void run(ijvm* m);
 // this method must return true on a reference to that cell
 //  *until* the next NEWARRAY instruction (which may reuse the reference)
 //
-// bool is_heap_freed(ijvm* m,word_t reference);
+bool is_heap_freed(ijvm* m,word_t reference);
 
 #endif
