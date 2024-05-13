@@ -20,7 +20,7 @@ LDIR =lib
 SRCDIR=src
 TSTDIR=tests
 
-LIBS=-lm
+LIBS=-lm -ldl
 DEBUGGER_LIBS=`cat debugger_libs.txt`
 GUI_LIBS=`cat gui_libs.txt`
 
