@@ -296,7 +296,7 @@ void test_stdio(void)
     buf[5] = 0;
     // in case something goes wrong,
     // you can print the 5 bytes of output with this
-    // fprintf(stderr,"Output stdio test: %s\n", buf);
+    fprintf(stderr,"Output stdio test: %s\n", buf);
     assert(strncmp(buf, "EDCBA", 5) == 0);
 
     close(input_pipe[READ_END]);
