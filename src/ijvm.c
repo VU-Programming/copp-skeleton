@@ -6,98 +6,96 @@
 
 // see ijvm.h for descriptions of the below functions
 
-FILE *in;   // use fgetc(in) to get a character from in.
-            // This will return EOF if no char is available.
-FILE *out;  // use for example fprintf(out, "%c", value); to print value to out
-
-void set_input(FILE *fp) 
-{ 
-  in = fp; 
-}
-
-void set_output(FILE *fp) 
-{ 
-  out = fp; 
-}
-
-int init_ijvm(char *binary_path) 
+ijvm* init_ijvm(char *binary_path, FILE* input , FILE* output) 
 {
-  in = stdin;
-  out = stdout;
+  // do not change these first three lines
+  ijvm* m = (ijvm *) malloc(sizeof(ijvm));
+  m->in = input;
+  m->out = output;
+
   // TODO: implement me
-  return -1;
+
+  return m;
 }
 
-void destroy_ijvm(void) 
+void destroy_ijvm(ijvm* m) 
 {
   // TODO: implement me
+
+  free(m); // free memory for struct
 }
 
-byte_t *get_text(void) 
+byte_t *get_text(ijvm* m) 
 {
   // TODO: implement me
   return NULL;
 }
 
-unsigned int get_text_size(void) 
+unsigned int get_text_size(ijvm* m) 
 {
   // TODO: implement me
   return 0;
 }
 
-word_t get_constant(int i) 
+word_t get_constant(ijvm* m,int i) 
 {
   // TODO: implement me
   return 0;
 }
 
-unsigned int get_program_counter(void) 
+unsigned int get_program_counter(ijvm* m) 
 {
   // TODO: implement me
   return 0;
 }
 
-word_t tos(void) 
+word_t tos(ijvm* m) 
 {
   // this operation should NOT pop (remove top element from stack)
   // TODO: implement me
   return -1;
 }
 
-bool finished(void) 
+bool finished(ijvm* m) 
 {
   // TODO: implement me
   return false;
 }
 
-word_t get_local_variable(int i) 
+word_t get_local_variable(ijvm* m, int i) 
 {
   // TODO: implement me
   return 0;
 }
 
-void step(void) 
+void step(ijvm* m) 
 {
   // TODO: implement me
 
 }
 
-void run(void) 
+byte_t get_instruction(ijvm* m) 
+{ 
+  return get_text(m)[get_program_counter(m)]; 
+}
+
+ijvm* init_ijvm_std(char *binary_path) 
 {
-  while (!finished()) 
+  return init_ijvm(binary_path, stdin, stdout);
+}
+
+void run(ijvm* m) 
+{
+  while (!finished(m)) 
   {
-    step();
+    step(m);
   }
 }
 
-byte_t get_instruction(void) 
-{ 
-  return get_text()[get_program_counter()]; 
-}
 
 // Below: methods needed by bonus assignments, see ijvm.h
 
-//int get_call_stack_size(void) 
+//int get_call_stack_size(ijvm* m) 
 //{
    // TODO: implement me
 //   return sp;

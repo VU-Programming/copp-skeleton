@@ -5,28 +5,26 @@
 
 /* testing GC doesn't free used space */
 void testGC1(void) {
-    FILE* output_file;
-    int res = init_ijvm("files/bonus/TestGC1.ijvm");
-    assert(res != -1);
+    FILE* output_file =  tmpfile();
 
-    output_file = tmpfile();
-    set_output(output_file);
+    ijvm *m = init_ijvm("files/bonus/TestGC1.ijvm",stdin,output_file);
+    assert(m != NULL);
 
-    step();
-    assert(tos() == 32);
-    step();
-    word_t reference = tos();
-    steps(2);
-    assert(get_local_variable(0) == reference);
-    steps(4);
-    assert(tos() == reference);
-    steps(4);
-    step();
-    assert(tos() == 18);
+    step(m);
+    assert(tos(m) == 32);
+    step(m);
+    word_t reference = tos(m);
+    steps(m, 2);
+    assert(get_local_variable(m, 0) == reference);
+    steps(m, 4);
+    assert(tos(m) == reference);
+    steps(m, 4);
+    step(m);
+    assert(tos(m) == 18);
     assert(!is_heap_freed(reference));
-    steps(2);
+    steps(m, 2);
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(output_file);
 }
 
@@ -36,159 +34,153 @@ void testGC1(void) {
     - after replacing array 1 with something other than ref1, array 1 should be freed
 */
 void testGC2(void) {
-    FILE* output_file;
-    int res = init_ijvm("files/bonus/TestGC2.ijvm");
-    assert(res != -1);
+    FILE* output_file =  tmpfile();
 
-    output_file = tmpfile();
-    set_output(output_file);
+    ijvm *m = init_ijvm("files/bonus/TestGC2.ijvm",stdin,output_file);
+    assert(m != NULL);
 
-    step();
-    assert(tos() == 32);
-    step();
-    word_t ref1 = tos();
-    steps(2);
-    assert(get_local_variable(0) == ref1);
-    steps(4);
-    assert(tos() == ref1);
-    steps(4);
-    step();
-    assert(tos() == 18);
-    steps(5);
-    assert(tos() == 64);
-    step();
-    word_t ref2 = tos();
-    steps(2);
+    step(m);
+    assert(tos(m) == 32);
+    step(m);
+    word_t ref1 = tos(m);
+    steps(m, 2);
+    assert(get_local_variable(m, 0) == ref1);
+    steps(m, 4);
+    assert(tos(m) == ref1);
+    steps(m, 4);
+    step(m);
+    assert(tos(m) == 18);
+    steps(m, 5);
+    assert(tos(m) == 64);
+    step(m);
+    word_t ref2 = tos(m);
+    steps(m, 2);
     assert(!is_heap_freed(ref1));
     assert(!is_heap_freed(ref2));
-    steps(3);
-    assert(tos() == ref2);
-    steps(2);
+    steps(m, 3);
+    assert(tos(m) == ref2);
+    steps(m, 2);
     assert(!is_heap_freed(ref1));
     assert(!is_heap_freed(ref2));
-    steps(3);
-    assert(tos() == 34);
-    step();
+    steps(m, 3);
+    assert(tos(m) == 34);
+    step(m);
     assert(!is_heap_freed(ref1));
     assert(!is_heap_freed(ref2));
-    step();
-    assert(tos() == 34);
-    step();
+    step(m);
+    assert(tos(m) == 34);
+    step(m);
     assert(!is_heap_freed(ref1));
     assert(is_heap_freed(ref2));
-    steps(4);
+    steps(m, 4);
     assert(is_heap_freed(ref1));
     assert(is_heap_freed(ref2));
-    step();
+    step(m);
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(output_file);
 }
 
 /* proves that GC checks non-freed heaps for reference */
 void testGC3(void) {
-    FILE* output_file;
-    int res = init_ijvm("files/bonus/TestGC3.ijvm");
-    assert(res != -1);
+    FILE* output_file =  tmpfile();
 
-    output_file = tmpfile();
-    set_output(output_file);
+    ijvm *m = init_ijvm("files/bonus/TestGC3.ijvm",stdin,output_file);
+    assert(m != NULL);
 
-    step();
-    assert(tos() == 32);
-    step();
-    word_t ref1 = tos();
-    steps(2);
-    assert(get_local_variable(0) == ref1);
-    steps(4);
-    assert(tos() == ref1);
-    steps(4);
-    step();
-    assert(tos() == 18);
-    steps(5);
-    assert(tos() == 64);
-    step();
-    word_t ref2 = tos();
-    steps(2);
+    step(m);
+    assert(tos(m) == 32);
+    step(m);
+    word_t ref1 = tos(m);
+    steps(m, 2);
+    assert(get_local_variable(m, 0) == ref1);
+    steps(m, 4);
+    assert(tos(m) == ref1);
+    steps(m, 4);
+    step(m);
+    assert(tos(m) == 18);
+    steps(m, 5);
+    assert(tos(m) == 64);
+    step(m);
+    word_t ref2 = tos(m);
+    steps(m, 2);
     assert(!is_heap_freed(ref1));
     assert(!is_heap_freed(ref2));
-    steps(3);
-    assert(tos() == ref2);
-    steps(2);
+    steps(m, 3);
+    assert(tos(m) == ref2);
+    steps(m, 2);
     assert(!is_heap_freed(ref1));
     assert(!is_heap_freed(ref2));
-    steps(3);
-    assert(tos() == 34);
-    step();
+    steps(m, 3);
+    assert(tos(m) == 34);
+    step(m);
     assert(!is_heap_freed(ref1));
     assert(!is_heap_freed(ref2));
-    step();
-    assert(tos() == 34);
-    step();
+    step(m);
+    assert(tos(m) == 34);
+    step(m);
     assert(!is_heap_freed(ref1));
     assert(is_heap_freed(ref2));
 
-    steps(3);
-    word_t ref3 = tos();
-    steps(10);
+    steps(m, 3);
+    word_t ref3 = tos(m);
+    steps(m, 10);
     assert(!is_heap_freed(ref3));
-    steps(5);
-    assert(tos() == 50);
-    step();
+    steps(m, 5);
+    assert(tos(m) == 50);
+    step(m);
     assert(!is_heap_freed(ref3));
-    steps(4);
+    steps(m, 4);
     assert(is_heap_freed(ref3));
     assert(!is_heap_freed(ref1));
 
-    steps(3);
+    steps(m, 3);
     assert(is_heap_freed(ref1));
     assert(is_heap_freed(ref2));
     assert(is_heap_freed(ref3));
-    step();
+    step(m);
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(output_file);
 }
 
 /* testing that GC removes heaps with only cyclic references */
 void testGC4(void) {
-    FILE* output_file;
-    int res = init_ijvm("files/bonus/TestGC4.ijvm");
-    assert(res != -1);
+    FILE* output_file =  tmpfile();
 
-    output_file = tmpfile();
-    set_output(output_file);
+    ijvm *m = init_ijvm("files/bonus/TestGC4.ijvm",stdin,output_file);
+    assert(m != NULL);
 
-    step();
-    assert(tos() == 32);
-    step();
-    word_t reference1 = tos();
-    steps(2);
-    assert(get_local_variable(0) == reference1);
+    step(m);
+    assert(tos(m) == 32);
+    step(m);
+    word_t reference1 = tos(m);
+    steps(m, 2);
+    assert(get_local_variable(m, 0) == reference1);
     
-    steps(2);
-    assert(tos() == 64);
-    step();
-    word_t reference2 = tos();
-    steps(2);
-    assert(get_local_variable(1) == reference2);
+    steps(m, 2);
+    assert(tos(m) == 64);
+    step(m);
+    word_t reference2 = tos(m);
+    steps(m, 2);
+    assert(get_local_variable(m, 1) == reference2);
 
-    steps(9);
+    steps(m, 9);
     assert(!is_heap_freed(reference1));
     assert(!is_heap_freed(reference2));
-    steps(2);
-    assert(tos() == 1);
-    steps(2);
+    steps(m, 2);
+    assert(tos(m) == 1);
+    steps(m, 2);
     assert(!is_heap_freed(reference1));
     assert(!is_heap_freed(reference2));
-    step();
-    assert(tos() == 1);
-    steps(2);
+    step(m);
+    assert(tos(m) == 1);
+    steps(m, 2);
     assert(is_heap_freed(reference1));
     assert(is_heap_freed(reference2));
-    step();
+    step(m);
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(output_file);
 }
 

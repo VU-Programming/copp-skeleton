@@ -7,20 +7,18 @@
 
 void run_calc_inp(char *input, char *expected)
 {
-    int res = init_ijvm("files/advanced/SimpleCalc.ijvm");
-    assert(res != -1);
-
     char buf[128];
     FILE *f = tmpfile();
     fprintf(f, "%s", input);
     rewind(f);
-    set_input(f);
 
     FILE *out_file = tmpfile();
-    set_output(out_file);
+    ijvm* m = init_ijvm("files/advanced/SimpleCalc.ijvm",f, out_file);
+    assert(m != NULL);
+
 
     // Run program
-    run();
+    run(m);
 
     rewind(out_file);
     memset(buf, '\0', 128);
@@ -29,7 +27,7 @@ void run_calc_inp(char *input, char *expected)
     // Compare output
     assert(strncmp(buf, expected, strlen(expected)) == 0);
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(f);
     fclose(out_file);
 }

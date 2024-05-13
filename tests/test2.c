@@ -9,252 +9,249 @@
 
 void test_simple_bipush(void)
 {
-    int res = init_ijvm("files/task2/TestBipush1.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestBipush1.ijvm");
+    assert(m != NULL);
 
-    assert(get_program_counter() == 0);
-    step();
-    assert(get_program_counter() == 2);
-    assert(tos() == 42); 
-    destroy_ijvm();
+    assert(get_program_counter(m) == 0);
+    step(m);
+    assert(get_program_counter(m) == 2);
+    assert(tos(m) == 42); 
+    destroy_ijvm(m);
 }
 
 void test_signed_bipush(void)
 {
-    int res = init_ijvm("files/task2/TestBipush2.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestBipush2.ijvm");
+    assert(m != NULL);
 
-    assert(get_program_counter() == 0);
-    step();
-    assert(get_program_counter() == 2);
-    assert(tos() == -42); 
-    destroy_ijvm();
+    assert(get_program_counter(m) == 0);
+    step(m);
+    assert(get_program_counter(m) == 2);
+    assert(tos(m) == -42); 
+    destroy_ijvm(m);
 }
 
 void test_simple_iadd(void)
 {
-    int res = init_ijvm("files/task2/TestIadd1.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestIadd1.ijvm");
+    assert(m != NULL);
 
-    assert(get_program_counter() == 0);
-    step();
-    assert(get_program_counter() == 2);
-    step();
-    assert(get_program_counter() == 4);
-    step();
-    assert(get_program_counter() == 5);
-    assert(tos() == 60); 
-    destroy_ijvm();
+    assert(get_program_counter(m) == 0);
+    step(m);
+    assert(get_program_counter(m) == 2);
+    step(m);
+    assert(get_program_counter(m) == 4);
+    step(m);
+    assert(get_program_counter(m) == 5);
+    assert(tos(m) == 60); 
+    destroy_ijvm(m);
 }
 
 void test_dup(void)
 {
-    int res = init_ijvm("files/task2/TestDup.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestDup.ijvm");
+    assert(m != NULL);
 
-    assert(get_program_counter() == 0);
-    step();
-    assert(get_program_counter() == 2);
-    step();
-    assert(get_program_counter() == 3);
-    step();
-    assert(get_program_counter() == 4);
-    step();
-    assert(get_program_counter() == 5);
-    step();
-    assert(get_program_counter() == 6);
-    assert(tos() == 60); 
-    destroy_ijvm();
+    assert(get_program_counter(m) == 0);
+    step(m);
+    assert(get_program_counter(m) == 2);
+    step(m);
+    assert(get_program_counter(m) == 3);
+    step(m);
+    assert(get_program_counter(m) == 4);
+    step(m);
+    assert(get_program_counter(m) == 5);
+    step(m);
+    assert(get_program_counter(m) == 6);
+    assert(tos(m) == 60); 
+    destroy_ijvm(m);
 }
 
 void test_signed_iadd(void)
 {
-    int res = init_ijvm("files/task2/TestIadd2.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestIadd2.ijvm");
+    assert(m != NULL);
 
-    assert(get_program_counter() == 0);
-    step();
-    assert(get_program_counter() == 2);
-    step();
-    assert(get_program_counter() == 4);
-    step();
-    assert(get_program_counter() == 5);
-    assert(tos() == -60); 
-    destroy_ijvm();
+    assert(get_program_counter(m) == 0);
+    step(m);
+    assert(get_program_counter(m) == 2);
+    step(m);
+    assert(get_program_counter(m) == 4);
+    step(m);
+    assert(get_program_counter(m) == 5);
+    assert(tos(m) == -60); 
+    destroy_ijvm(m);
 }
 
 
 void test_simple_isub(void)
 {
-    int res = init_ijvm("files/task2/TestIsub1.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestIsub1.ijvm");
+    assert(m != NULL);
 
-    assert(get_program_counter() == 0);
-    step();
-    assert(get_program_counter() == 2);
-    step();
-    assert(get_program_counter() == 4);
-    step();
-    assert(get_program_counter() == 5);
-    assert(tos() == -10);
-    destroy_ijvm();
+    assert(get_program_counter(m) == 0);
+    step(m);
+    assert(get_program_counter(m) == 2);
+    step(m);
+    assert(get_program_counter(m) == 4);
+    step(m);
+    assert(get_program_counter(m) == 5);
+    assert(tos(m) == -10);
+    destroy_ijvm(m);
 }
 
 void test_signed_isub(void)
 {
-    int res = init_ijvm("files/task2/TestIsub2.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestIsub2.ijvm");
+    assert(m != NULL);
 
-    assert(get_program_counter() == 0);
-    step();
-    assert(get_program_counter() == 2);
-    step();
-    assert(get_program_counter() == 4);
-    step();
-    assert(get_program_counter() == 5);
-    assert(tos() == 10); 
-    destroy_ijvm();
+    assert(get_program_counter(m) == 0);
+    step(m);
+    assert(get_program_counter(m) == 2);
+    step(m);
+    assert(get_program_counter(m) == 4);
+    step(m);
+    assert(get_program_counter(m) == 5);
+    assert(tos(m) == 10); 
+    destroy_ijvm(m);
 }
 
 void test_simple_iand(void)
 {
-    int res = init_ijvm("files/task2/TestIAND1.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestIAND1.ijvm");
+    assert(m != NULL);
 
-    assert(get_program_counter() == 0);
-    step();
-    assert(get_program_counter() == 2);
-    step();
-    assert(get_program_counter() == 4);
-    step();
-    assert(get_program_counter() == 6);
-    step();
-    assert(get_program_counter() == 7);
-    step();
-    assert(get_program_counter() == 8);
-    assert(tos() == 1); 
-    destroy_ijvm();
+    assert(get_program_counter(m) == 0);
+    step(m);
+    assert(get_program_counter(m) == 2);
+    step(m);
+    assert(get_program_counter(m) == 4);
+    step(m);
+    assert(get_program_counter(m) == 6);
+    step(m);
+    assert(get_program_counter(m) == 7);
+    step(m);
+    assert(get_program_counter(m) == 8);
+    assert(tos(m) == 1); 
+    destroy_ijvm(m);
 }
 
 void test_simple_ior(void)
 {
-    int res = init_ijvm("files/task2/TestIOR1.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestIOR1.ijvm");
+    assert(m != NULL);
 
-    step();
-    step();
-    step();
-    step();
-    step();
-    assert(tos() == 127); 
-    destroy_ijvm();
+    step(m);
+    step(m);
+    step(m);
+    step(m);
+    step(m);
+    assert(tos(m) == 127); 
+    destroy_ijvm(m);
 }
 
 
 void test_simple_stack_operations(void)
 {
-    int res = init_ijvm("files/task2/TestPop1.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestPop1.ijvm");
+    assert(m != NULL);
 
-    steps(3);
-    assert(tos() == 10);
-    steps(3);
-    assert(tos() == 50);
-    step();
-    assert(tos() == 10);
-    destroy_ijvm();
+    steps(m,3);
+    assert(tos(m) == 10);
+    steps(m,3);
+    assert(tos(m) == 50);
+    step(m);
+    assert(tos(m) == 10);
+    destroy_ijvm(m);
 }
 
 
 void test_swap(void)
 {
-    int res = init_ijvm("files/task2/TestSwap1.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestSwap1.ijvm");
+    assert(m != NULL);
 
-    step();
-    assert(tos() == 10);
-    step();
-    assert(tos() == 20);
-    step();
-    assert(tos() == 10);
-    step();
-    assert(tos() == 20);
-    destroy_ijvm();
+    step(m);
+    assert(tos(m) == 10);
+    step(m);
+    assert(tos(m) == 20);
+    step(m);
+    assert(tos(m) == 10);
+    step(m);
+    assert(tos(m) == 20);
+    destroy_ijvm(m);
 }
 
 void test_nop(void)
 {
-    int res = init_ijvm("files/task2/TestNop.ijvm");
-    assert(res != -1);
-
-    step();
-    step();
-    step();
-    step();
-    step();
-    step();
-    assert(tos() == 30); 
-    destroy_ijvm();
+    ijvm* m = init_ijvm_std("files/task2/TestNop.ijvm");
+    assert(m != NULL);
+    step(m);
+    step(m);
+    step(m);
+    step(m);
+    step(m);
+    step(m);
+    assert(tos(m) == 30); 
+    destroy_ijvm(m);
 }
 
 void test_err(void)
 {
-    int res = init_ijvm("files/task2/TestErr.ijvm");
-    assert(res != -1);
-
     FILE *err = tmpfile();
-    set_output(err);
+    ijvm* m = init_ijvm("files/task2/TestErr.ijvm",stdin, err);
+    assert(m != NULL);
 
-    steps(3);
-    assert(finished());
+    steps(m,3);
+    assert(finished(m));
 
     char buf[128] = {0};
     rewind(err);
     fread(buf, 1, 32, err);
-    assert(isprint(buf[0]));
-    assert(buf[0] != ' ');
+    // check for error message 
+    assert(isprint(buf[0])); // check that a printable character was printed
+    assert(buf[0] != ' '); // check that a non space is printed
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(err);
 }
 
 void test_halt(void)
 {
-    int res = init_ijvm("files/task2/TestPop1.ijvm");
-    assert(res != -1);
-    run();
-    assert(finished());
-    destroy_ijvm();
+    ijvm* m = init_ijvm_std("files/task2/TestPop1.ijvm");
+    assert(m != NULL);
+    run(m);
+    assert(finished(m));
+    destroy_ijvm(m);
 }
 
 void test_no_halt(void)
 {
-    int res = init_ijvm("files/task2/TestNoHalt.ijvm");
-    assert(res != -1);
-    steps(10);
-    assert(!finished());
-    step();
-    assert(finished());
-    destroy_ijvm();
+    ijvm* m = init_ijvm_std("files/task2/TestNoHalt.ijvm");
+    assert(m != NULL);
+    steps(m,10);
+    assert(!finished(m));
+    step(m);
+    assert(finished(m));
+    destroy_ijvm(m);
 }
 
 void test_in_out(void)
 {
-    int res = init_ijvm("files/task2/TestInOut.ijvm");
-    assert(res != -1);
-    
-    assert(!finished()); // did you reset ?
-
     FILE * input, * output;
     input  = fopen("tmp_input", "w+");
     output = fopen("tmp_output", "w+");
     fprintf(input, "%s", "ABCDE");
     rewind(input);
 
-    set_input(input);
-    set_output(output);
+    ijvm* m = init_ijvm("files/task2/TestInOut.ijvm", input, output);
+    assert(m != NULL);
+    assert(m->in == input);
+    assert(m->out == output);
+    
+    assert(!finished(m)); // did you reset ?
 
-    run();
+    run(m);
 
     char buf[128] = {0};
     rewind(output);
@@ -268,16 +265,15 @@ void test_in_out(void)
     fclose(output);
     remove("tmp_input");
     remove("tmp_output");
-    destroy_ijvm();
+    destroy_ijvm(m);
 }
 
 void test_stdio(void)
 {
-    int res = init_ijvm("files/task2/TestInOut.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm_std("files/task2/TestInOut.ijvm");
+    assert(m != NULL);
     
-    assert(!finished()); // did you reset ?
-    set_output(stdout);
+    assert(!finished(m)); // did you reset ?
 
     const int READ_END = 0;
     const int WRITE_END = 1;
@@ -292,7 +288,7 @@ void test_stdio(void)
     dup2(output_pipe[WRITE_END], STDOUT_FILENO);
 
 
-    run();
+    run(m);
     fflush(stdout);
 
     char buf[128] = {0};
@@ -305,9 +301,9 @@ void test_stdio(void)
 
     close(input_pipe[READ_END]);
     close(input_pipe[WRITE_END]);
-    close(output_pipe[READ_END]);
+    //close(output_pipe[READ_END]);
     close(output_pipe[WRITE_END]);
-    destroy_ijvm();
+    destroy_ijvm(m);
 }
 
 int main(void)

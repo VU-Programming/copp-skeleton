@@ -58,7 +58,7 @@ void exit(int status)
 
 #define assert(c) __assert(c);
 
-void steps(int n);
+void steps(ijvm* m, int n);
 
 static int __passed_test_counter = 0;
 static int __failed_test_counter = 0;
@@ -94,16 +94,15 @@ static int __print_test_result(char *test_name) {
   return total == __passed_test_counter ? 0 : 1;
 }
 
-void steps(int n)
+void steps(ijvm* m, int n)
 {
     for (int i = 0; i < n; i++)
-        step();
+        step(m);
 }
 
-FILE *set_null_output(void)
+FILE *get_null_output(void)
 {
     FILE *fh = fopen("/dev/null", "w");
-    set_output(fh);
     return fh;
 }
 

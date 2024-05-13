@@ -5,48 +5,45 @@
 
 void test_tailfib(void)
 {
-    int res = init_ijvm("files/bonus/tailfib.ijvm");
-    assert(res != -1);
-    run();
-    assert(get_local_variable(0) == 433494437);
-    destroy_ijvm();
+    ijvm *m = init_ijvm_std("files/bonus/tailfib.ijvm");
+    assert(m != NULL);
+    run(m);
+    assert(get_local_variable(m, 0) == 433494437);
+    destroy_ijvm(m);
 }
 
 
 void testTC(void)
 {
-    FILE* output_file;
-    int res = init_ijvm("files/bonus/test_tailcall.ijvm");
-    assert(res != -1);
-
-    output_file = tmpfile();
-    set_output(output_file);
+    FILE* output_file = tmpfile();
+    ijvm *m = init_ijvm("files/bonus/test_tailcall.ijvm",stdin,output_file);
+    assert(m != NULL);
     // run until returning from innermost call
-    steps(129998);
-    assert(tos() == 50005000);
-    int stack1 = get_call_stack_size();
-    run();
-    assert(tos() == 50005000);
+    steps(m, 129998);
+    assert(tos(m) == 50005000);
+    int stack1 = get_call_stack_size(m);
+    run(m);
+    assert(tos(m) == 50005000);
 
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(output_file);
 
-    res = init_ijvm("files/bonus/test_taillesscall.ijvm");
-    assert(res != -1);
-
     output_file = tmpfile();
-    set_output(output_file);
+    m = init_ijvm("files/bonus/test_taillesscall.ijvm",stdin,output_file);
+    assert(m != NULL);
+
+
 
    // run until returning from innermost call
-    steps(129998);
-    assert(tos() == 50005000);
-    int stack2 = get_call_stack_size();
-    run();
-    assert(tos() == 50005000);
+    steps(m, 129998);
+    assert(tos(m) == 50005000);
+    int stack2 = get_call_stack_size(m);
+    run(m);
+    assert(tos(m) == 50005000);
 
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(output_file);
 
     assert(stack1 < stack2);
@@ -55,17 +52,14 @@ void testTC(void)
 
 void test_out_of_memory(void)
 {
-    FILE *output_file;
-    int res = init_ijvm("files/bonus/test_deep_tailcall.ijvm");
-    assert(res != -1);
-
-    output_file = tmpfile();
-    set_output(output_file);
+    FILE* output_file = tmpfile();
+    ijvm *m = init_ijvm("files/bonus/test_deep_tailcall.ijvm",stdin,output_file);
+    assert(m != NULL);
 
     // if you don't free resources in tailcall, you'll get an OOM kill
-    run();
+    run(m);
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(output_file);
 }
 

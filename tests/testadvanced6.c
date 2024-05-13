@@ -79,12 +79,12 @@ const char expected_output[] = \
  *
  * TL;DR if your implementation is too slow it will fail this test.
  */
-static bool is_fast_enough(void)
+static bool is_fast_enough(ijvm* m)
 {
     int i;
     clock_t start = clock();
-    for(i = 0; !finished() && i < 200000; i++)
-        step();
+    for(i = 0; !finished(m) && i < 200000; i++)
+        step(m);
 
     clock_t end = clock();
 
@@ -98,19 +98,19 @@ static bool is_fast_enough(void)
 
 static void run_mandelbread(void)
 {
-    int res = init_ijvm("files/advanced/mandelbread.ijvm");
-    assert(res != -1);
-
     char *buf = calloc(sizeof(expected_output) + 1, sizeof(char));
     FILE *out_file = tmpfile();
-    set_output(out_file);
+    ijvm *m = init_ijvm("files/advanced/mandelbread.ijvm",stdin, out_file);
+    assert(m != NULL);
 
-    if (!is_fast_enough())
+
+
+    if (!is_fast_enough(m))
     {
         puts("Your IJVM implementation simply isn't fast enough to run");
         puts("mandelbread (testadvanced7)");
 
-        destroy_ijvm();
+        destroy_ijvm(m);
         fclose(out_file);
         free(buf);
         assert(!"benchmark failed");
@@ -118,7 +118,7 @@ static void run_mandelbread(void)
     }
 
     // Run program
-    run();
+    run(m);
 
     rewind(out_file);
     fread(buf, 1, sizeof(expected_output) + 1, out_file);
@@ -126,7 +126,7 @@ static void run_mandelbread(void)
 
     // Compare output
     assert(strncmp(buf, expected_output, sizeof(expected_output) + 1) == 0);
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(out_file);
     free(buf);
 }

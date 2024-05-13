@@ -7,24 +7,22 @@
 
 void test_tanenbaum(void)
 {
-    FILE *output_file;
+    FILE *output_file = tmpfile();
     char buf[128] = {0};
 
     memset(buf, '\0', 128);
 
-    int res = init_ijvm("files/advanced/Tanenbaum.ijvm");
-    assert(res != -1);
+    ijvm* m = init_ijvm("files/advanced/Tanenbaum.ijvm",stdin,output_file);
+    assert(m != NULL);
 
-    output_file = tmpfile();
-    set_output(output_file);
 
-    run();
+    run(m);
 
     rewind(output_file);
     fread(buf, 1, 127, output_file);
     assert(strncmp(buf, "OK", 15) == 0);
 
-    destroy_ijvm();
+    destroy_ijvm(m);
     fclose(output_file);
 }
 
