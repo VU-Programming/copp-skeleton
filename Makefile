@@ -97,9 +97,9 @@ run_test%: test%
 
 
 testbasic: run_test1 run_test2 run_test3 run_test4 run_test5
-testadvanced: run_testadvanced1 run_testadvanced2 run_testadvanced3 run_testadvanced4 run_testadvanced5 run_testadvanced6  run_testadvanced7 run_testadvancedinterleave
+testadvanced: run_testadvanced1 run_testadvanced2 run_testadvanced3 run_testadvanced4 run_testadvanced5 run_testadvanced6  run_testadvanced7 run_testadvanced8
 testall: testbasic testadvanced
-build_tests: test1 test2 test3 test4 test5 testadvanced1 testadvanced2 testadvanced3 testadvanced4 testadvanced5 testadvanced6 testadvanced7 testadvancedinterleave
+build_tests: test1 test2 test3 test4 test5 testadvanced1 testadvanced2 testadvanced3 testadvanced4 testadvanced5 testadvanced6 testadvanced7 testadvanced8
 
 
 # Uses LLVM sanitizers
