@@ -95,7 +95,7 @@ void run(ijvm* m)
 
 // Below: methods needed by bonus assignments, see ijvm.h
 
-//int get_call_stack_size(void) 
+//int get_call_stack_size(ijvm* m) 
 //{
    // TODO: implement me
 //   return sp;
