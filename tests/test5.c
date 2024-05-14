@@ -55,13 +55,22 @@ void test_invoke2(void)
     steps(m, 5);
     int pc = get_program_counter(m);
     step(m);
-    assert(get_program_counter(m) != pc + 1);
+    assert(get_program_counter(m) != pc + 1); // did we go to method?
     step(m);
     assert(tos(m) == 0x2);
     step(m);
     assert(tos(m) == 0x3);
-    steps(m, 3);
-
+    steps(m, 2);
+    assert(tos(m) == 0x5);
+    step(m);
+    assert(tos(m) == 0x2);
+    step(m);
+    assert(tos(m) == 0x5);
+    step(m);
+    assert(tos(m) == 0x6);
+    step(m);
+    assert(tos(m) == 0x10);
+    step(m);
     destroy_ijvm(m);
 }
 
