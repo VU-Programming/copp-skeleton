@@ -1,11 +1,14 @@
 .main
-    BIPUSH 0x0
-    BIPUSH 0x0
+    BIPUSH 0x10
+    BIPUSH 0x6
     BIPUSH 0x0
     BIPUSH 0x2
     BIPUSH 0x3
     INVOKEVIRTUAL add
     BIPUSH 0x2
+    POP 
+    POP
+    POP
     HALT
 .end-main
 
