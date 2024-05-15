@@ -59,11 +59,9 @@
  * Initializes the IJVM with the binary file found at the provided argument.
  * input gives the file where the ijvm reads from for the IN command
  * output gives the file where the ijvm writes to for the OUT command
-
- * Note. You need to be able to re-initialize the IJVM after it has been started.
  *
- * Returns  0 on success
- *         -1 on failure
+ * Returns  - A pointer to an ijvm struct on success
+ *          - NULL on failure
  **/
 ijvm* init_ijvm(char *binary_path, FILE* input , FILE* output);
 
@@ -141,8 +139,8 @@ byte_t get_instruction(ijvm* m);
  * Initializes the IJVM with the binary file found at the provided argument using 
  * stdin as input and stdout as output 
 
- * Returns  0 on success
- *         -1 on failure
+ * Returns  - A pointer to an ijvm struct on success
+ *          - NULL on failure
  **/
 ijvm* init_ijvm_std(char *binary_path);
 
