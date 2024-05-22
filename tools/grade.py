@@ -4,12 +4,12 @@ basic_tests = [
     "test1", "test2", "test3", "test4", "test5"
 ]
 BASIC_NEEDED = len(basic_tests)
-BASIC_POINTS = 0.7
+BASIC_POINTS = 0.6
 
 advanced_tests = [
-    "testadvanced1", "testadvanced2", "testadvanced3", "testadvanced4", "testadvanced5", "testadvanced6", "testadvanced7"
+    "testadvanced1", "testadvanced2", "testadvanced3", "testadvanced4", "testadvanced5", "testadvanced6", "testadvanced7", "testadvanced8"
 ]
-ADVANCED_NEEDED = 4
+ADVANCED_NEEDED = 5
 ADVANCED_POINTS = 0.5
 
 def run_test(test_name):
