@@ -10,6 +10,10 @@ ijvm* init_ijvm(char *binary_path, FILE* input , FILE* output)
 {
   // do not change these first three lines
   ijvm* m = (ijvm *) malloc(sizeof(ijvm));
+  // note that malloc gives you memory, but gives no guarantees on the initial
+  // values of that memory. It might be all zeroes, or be random data.
+  // It is hence important that you initialize all variables in the ijvm
+  // struct and do not assume these are set to zero.
   m->in = input;
   m->out = output;
 
