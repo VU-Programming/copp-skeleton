@@ -2,7 +2,7 @@
 #define TESTUTIL_H
 #include <stdbool.h>
 #include <stdlib.h>
-
+#include <string.h>
 /**
  * DO NOT MODIFY THIS FILE.
  **/
@@ -10,35 +10,41 @@
 #define _GNU_SOURCE
 #define __USE_GNU
 #include <dlfcn.h>
-// if you want to make use of exit() in your tests, use orig_exit() instead
 
-void orig_exit(int status) __attribute__((__noreturn__));
-
+void *malloc(size_t size);
 void exit(int __status) __THROW __attribute__ ((__noreturn__));
 
 typedef void (*exit_handle)(int);
+typedef void *(*malloc_handle)(size_t size);
 
-void orig_exit(int status)
+void * malloc(size_t size)
+{
+  static malloc_handle _orig_malloc;
+  if (!_orig_malloc)
+    _orig_malloc = (malloc_handle)dlsym(RTLD_NEXT, "malloc");
+  void* mem = _orig_malloc(size);
+  // set memory to 0xFF to catch use of uninitialized memory
+  memset(mem, 0xFF, size);
+  return mem;
+}
+
+
+void exit(int __status)
 {
   static exit_handle _orig_exit;
   if (!_orig_exit)
     _orig_exit = (exit_handle)dlsym(RTLD_NEXT, "exit");
-  _orig_exit(status);
-  abort(); // will never be called, used to suppress a compiler warning!
-}
-
-void exit(int status)
-{
-  if(status == 0){
+  if(__status == 0){
     fprintf(stderr, "ALERT! INVALID USE OF EXIT() DETECTED. "
                   "You risk a failing grade if you submit "
                   "with exit(0) in your code.\n");
     abort();
   } else {
-    orig_exit(status);
+   _orig_exit(__status);
   }
-
+  abort();
 }
+
 
 // Disable abort on err using -DABORT_ON_ERR=0
 // E.g. USERFLAGS=-DABORT_ON_ERR=0 make test1
