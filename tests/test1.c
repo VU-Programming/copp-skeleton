@@ -11,6 +11,7 @@ void test_set_in_out(void)
     assert(m != NULL);
     assert(in == m->in);
     assert(out == m-> out);
+    destroy_ijvm(m);
     
 }
 
