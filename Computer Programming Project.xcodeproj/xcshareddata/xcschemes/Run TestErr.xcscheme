@@ -53,7 +53,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "$(PROJECT_DIR)/files/task2/TestPop1.ijvm"
+            argument = "$(PROJECT_DIR)/files/task2/TestErr.ijvm"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
