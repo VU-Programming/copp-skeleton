@@ -16,7 +16,7 @@ ijvm* init_ijvm(char *binary_path, FILE* input , FILE* output)
   // struct and do not assume these are set to zero.
   m->in = input;
   m->out = output;
-
+  
   // TODO: implement me
 
   return m;
