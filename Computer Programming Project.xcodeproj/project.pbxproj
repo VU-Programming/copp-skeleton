@@ -3,83 +3,101 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5327D38B2C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D38C2C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D38D2C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D38E2C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D38F2C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3902C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3912C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3922C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3932C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3942C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3952C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3962C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3972C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3982C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3992C0D048500D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D39F2C0D04F100D4D350 /* testutil.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC892A1CCB3F00F95B46 /* testutil.h */; };
+		5327D3A12C0D04F100D4D350 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
+		5327D3A22C0D04F100D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3A32C0D04F100D4D350 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
+		5327D3A42C0D04F100D4D350 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
+		5327D3AB2C0D050000D4D350 /* testadvanced8.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D39C2C0D04CA00D4D350 /* testadvanced8.c */; };
+		5327D3AE2C0D050A00D4D350 /* testutil.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC892A1CCB3F00F95B46 /* testutil.h */; };
+		5327D3B02C0D050A00D4D350 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
+		5327D3B12C0D050A00D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3B22C0D050A00D4D350 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
+		5327D3B32C0D050A00D4D350 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
+		5327D3BA2C0D051800D4D350 /* testbonusgarbage.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D39A2C0D04CA00D4D350 /* testbonusgarbage.c */; };
+		5327D3BD2C0D052400D4D350 /* testutil.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC892A1CCB3F00F95B46 /* testutil.h */; };
+		5327D3BF2C0D052400D4D350 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
+		5327D3C02C0D052400D4D350 /* ijvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D38A2C0D048500D4D350 /* ijvm.c */; };
+		5327D3C12C0D052400D4D350 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
+		5327D3C22C0D052400D4D350 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
+		5327D3C92C0D053100D4D350 /* testbonushardening.c in Sources */ = {isa = PBXBuildFile; fileRef = 5327D39B2C0D04CA00D4D350 /* testbonushardening.c */; };
 		5367AC772A1CC9B100F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367AC782A1CC9B100F95B46 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC752A1CC9B100F95B46 /* main.c */; };
-		5367AC792A1CC9B100F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367AC7A2A1CC9CE00F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367AC7B2A1CC9CE00F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
 		5367AC972A1CCBF500F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367AC982A1CCBF500F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367AC992A1CCBF500F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367AC9B2A1CCBF500F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367ACA22A1CCC2500F95B46 /* test1.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC842A1CCB3F00F95B46 /* test1.c */; };
 		5367ACA62A1CCC9500F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367ACA72A1CCC9500F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367ACA82A1CCC9500F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367ACA92A1CCC9500F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367ACB02A1CCC9B00F95B46 /* test2.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC8A2A1CCB3F00F95B46 /* test2.c */; };
 		5367ACB42A1CCCA000F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367ACB52A1CCCA000F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367ACB62A1CCCA000F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367ACB72A1CCCA000F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367ACBE2A1CCCA900F95B46 /* test3.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC7E2A1CCB3F00F95B46 /* test3.c */; };
 		5367ACC22A1CCCAB00F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367ACC32A1CCCAB00F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367ACC42A1CCCAB00F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367ACC52A1CCCAB00F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367ACCC2A1CCCB600F95B46 /* test4.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC7F2A1CCB3F00F95B46 /* test4.c */; };
 		5367ACD02A1CCCB700F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367ACD12A1CCCB700F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367ACD22A1CCCB700F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367ACD32A1CCCB700F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367ACDA2A1CCCBF00F95B46 /* test5.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC832A1CCB3F00F95B46 /* test5.c */; };
 		5367ACDE2A1CCCC500F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367ACDF2A1CCCC500F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367ACE02A1CCCC500F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367ACE12A1CCCC500F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367ACE82A1CCCDA00F95B46 /* testadvanced1.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC8B2A1CCB3F00F95B46 /* testadvanced1.c */; };
 		5367ACEC2A1CCCDC00F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367ACED2A1CCCDC00F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367ACEE2A1CCCDC00F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367ACEF2A1CCCDC00F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367ACF62A1CCCE500F95B46 /* testadvanced2.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC852A1CCB3F00F95B46 /* testadvanced2.c */; };
 		5367ACFA2A1CCCEA00F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367ACFB2A1CCCEA00F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367ACFC2A1CCCEA00F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367ACFD2A1CCCEA00F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367AD042A1CCCF200F95B46 /* testadvanced3.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC812A1CCB3F00F95B46 /* testadvanced3.c */; };
 		5367AD082A1CCCF500F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367AD092A1CCCF500F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367AD0A2A1CCCF500F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367AD0B2A1CCCF500F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367AD122A1CCCFD00F95B46 /* testadvanced4.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC7D2A1CCB3F00F95B46 /* testadvanced4.c */; };
 		5367AD162A1CCCFE00F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367AD172A1CCCFE00F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367AD182A1CCCFE00F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367AD192A1CCCFE00F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367AD202A1CCD0800F95B46 /* testadvanced5.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC872A1CCB3F00F95B46 /* testadvanced5.c */; };
 		5367AD242A1CCD0A00F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367AD252A1CCD0A00F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367AD262A1CCD0A00F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367AD272A1CCD0A00F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367AD2E2A1CCD1200F95B46 /* testadvanced6.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC822A1CCB3F00F95B46 /* testadvanced6.c */; };
 		5367AD322A1CCD1300F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367AD332A1CCD1300F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367AD342A1CCD1300F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367AD352A1CCD1300F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367AD3C2A1CCD1B00F95B46 /* testadvanced7.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC802A1CCB3F00F95B46 /* testadvanced7.c */; };
 		5367AD402A1CCD2000F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367AD412A1CCD2000F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367AD422A1CCD2000F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367AD432A1CCD2000F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367AD4A2A1CCD2D00F95B46 /* testbonusheap.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC862A1CCB3F00F95B46 /* testbonusheap.c */; };
 		5367AD4E2A1CCD2F00F95B46 /* util.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC712A1CC9B100F95B46 /* util.h */; };
 		5367AD4F2A1CCD2F00F95B46 /* ijvm.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC722A1CC9B100F95B46 /* ijvm.h */; };
-		5367AD502A1CCD2F00F95B46 /* machine.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC762A1CC9B100F95B46 /* machine.c */; };
 		5367AD512A1CCD2F00F95B46 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC742A1CC9B100F95B46 /* util.c */; };
 		5367AD582A1CCD3900F95B46 /* testbonustail.c in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC882A1CCB3F00F95B46 /* testbonustail.c */; };
 		5367AD592A1CCD4A00F95B46 /* testutil.h in Sources */ = {isa = PBXBuildFile; fileRef = 5367AC892A1CCB3F00F95B46 /* testutil.h */; };
@@ -99,6 +117,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		5327D3A62C0D04F100D4D350 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		5327D3B52C0D050A00D4D350 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		5327D3C42C0D052400D4D350 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		5367AC5A2A1CC7BB00F95B46 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,6 +282,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5327D38A2C0D048500D4D350 /* ijvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ijvm.c; sourceTree = "<group>"; };
+		5327D39A2C0D04CA00D4D350 /* testbonusgarbage.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = testbonusgarbage.c; sourceTree = "<group>"; };
+		5327D39B2C0D04CA00D4D350 /* testbonushardening.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = testbonushardening.c; sourceTree = "<group>"; };
+		5327D39C2C0D04CA00D4D350 /* testadvanced8.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = testadvanced8.c; sourceTree = "<group>"; };
+		5327D3AA2C0D04F100D4D350 /* Test Advanced 8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Advanced 8"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5327D3B92C0D050A00D4D350 /* Test Bonus Garbage */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Bonus Garbage"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5327D3C82C0D052400D4D350 /* Test Bonus Hardening */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Bonus Hardening"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5367AC5C2A1CC7BB00F95B46 /* Computer Programming Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Computer Programming Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5367AC692A1CC83300F95B46 /* bonus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = bonus.md; sourceTree = "<group>"; };
 		5367AC6A2A1CC83300F95B46 /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = "<group>"; };
@@ -246,7 +298,6 @@
 		5367AC722A1CC9B100F95B46 /* ijvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ijvm.h; sourceTree = "<group>"; };
 		5367AC742A1CC9B100F95B46 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
 		5367AC752A1CC9B100F95B46 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		5367AC762A1CC9B100F95B46 /* machine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = machine.c; sourceTree = "<group>"; };
 		5367AC7D2A1CCB3F00F95B46 /* testadvanced4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = testadvanced4.c; sourceTree = "<group>"; };
 		5367AC7E2A1CCB3F00F95B46 /* test3.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = test3.c; sourceTree = "<group>"; };
 		5367AC7F2A1CCB3F00F95B46 /* test4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = test4.c; sourceTree = "<group>"; };
@@ -279,6 +330,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5327D3A52C0D04F100D4D350 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5327D3B42C0D050A00D4D350 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5327D3C32C0D052400D4D350 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5367AC592A1CC7BB00F95B46 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,6 +491,9 @@
 				5367AD3B2A1CCD1300F95B46 /* Test Advanced 7 */,
 				5367AD492A1CCD2000F95B46 /* Test Bonus Heap */,
 				5367AD572A1CCD2F00F95B46 /* Test Bonus Tail */,
+				5327D3AA2C0D04F100D4D350 /* Test Advanced 8 */,
+				5327D3B92C0D050A00D4D350 /* Test Bonus Garbage */,
+				5327D3C82C0D052400D4D350 /* Test Bonus Hardening */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -436,7 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				5367AC752A1CC9B100F95B46 /* main.c */,
-				5367AC762A1CC9B100F95B46 /* machine.c */,
+				5327D38A2C0D048500D4D350 /* ijvm.c */,
 				5367AC742A1CC9B100F95B46 /* util.c */,
 			);
 			path = src;
@@ -457,8 +532,11 @@
 				5367AC872A1CCB3F00F95B46 /* testadvanced5.c */,
 				5367AC822A1CCB3F00F95B46 /* testadvanced6.c */,
 				5367AC802A1CCB3F00F95B46 /* testadvanced7.c */,
+				5327D39C2C0D04CA00D4D350 /* testadvanced8.c */,
 				5367AC862A1CCB3F00F95B46 /* testbonusheap.c */,
 				5367AC882A1CCB3F00F95B46 /* testbonustail.c */,
+				5327D39A2C0D04CA00D4D350 /* testbonusgarbage.c */,
+				5327D39B2C0D04CA00D4D350 /* testbonushardening.c */,
 				5367AC892A1CCB3F00F95B46 /* testutil.h */,
 			);
 			path = tests;
@@ -467,6 +545,57 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5327D39D2C0D04F100D4D350 /* Test Advanced 8 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5327D3A72C0D04F100D4D350 /* Build configuration list for PBXNativeTarget "Test Advanced 8" */;
+			buildPhases = (
+				5327D39E2C0D04F100D4D350 /* Sources */,
+				5327D3A52C0D04F100D4D350 /* Frameworks */,
+				5327D3A62C0D04F100D4D350 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Test Advanced 8";
+			productName = "Computer Programming Project";
+			productReference = 5327D3AA2C0D04F100D4D350 /* Test Advanced 8 */;
+			productType = "com.apple.product-type.tool";
+		};
+		5327D3AC2C0D050A00D4D350 /* Test Bonus Garbage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5327D3B62C0D050A00D4D350 /* Build configuration list for PBXNativeTarget "Test Bonus Garbage" */;
+			buildPhases = (
+				5327D3AD2C0D050A00D4D350 /* Sources */,
+				5327D3B42C0D050A00D4D350 /* Frameworks */,
+				5327D3B52C0D050A00D4D350 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Test Bonus Garbage";
+			productName = "Computer Programming Project";
+			productReference = 5327D3B92C0D050A00D4D350 /* Test Bonus Garbage */;
+			productType = "com.apple.product-type.tool";
+		};
+		5327D3BB2C0D052400D4D350 /* Test Bonus Hardening */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5327D3C52C0D052400D4D350 /* Build configuration list for PBXNativeTarget "Test Bonus Hardening" */;
+			buildPhases = (
+				5327D3BC2C0D052400D4D350 /* Sources */,
+				5327D3C32C0D052400D4D350 /* Frameworks */,
+				5327D3C42C0D052400D4D350 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Test Bonus Hardening";
+			productName = "Computer Programming Project";
+			productReference = 5327D3C82C0D052400D4D350 /* Test Bonus Hardening */;
+			productType = "com.apple.product-type.tool";
+		};
 		5367AC5B2A1CC7BB00F95B46 /* Computer Programming Project */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5367AC632A1CC7BB00F95B46 /* Build configuration list for PBXNativeTarget "Computer Programming Project" */;
@@ -762,20 +891,62 @@
 				5367AD132A1CCCFE00F95B46 /* Test Advanced 5 */,
 				5367AD212A1CCD0A00F95B46 /* Test Advanced 6 */,
 				5367AD2F2A1CCD1300F95B46 /* Test Advanced 7 */,
+				5327D39D2C0D04F100D4D350 /* Test Advanced 8 */,
 				5367AD3D2A1CCD2000F95B46 /* Test Bonus Heap */,
 				5367AD4B2A1CCD2F00F95B46 /* Test Bonus Tail */,
+				5327D3AC2C0D050A00D4D350 /* Test Bonus Garbage */,
+				5327D3BB2C0D052400D4D350 /* Test Bonus Hardening */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5327D39E2C0D04F100D4D350 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5327D39F2C0D04F100D4D350 /* testutil.h in Sources */,
+				5327D3AB2C0D050000D4D350 /* testadvanced8.c in Sources */,
+				5327D3A12C0D04F100D4D350 /* util.h in Sources */,
+				5327D3A22C0D04F100D4D350 /* ijvm.c in Sources */,
+				5327D3A32C0D04F100D4D350 /* ijvm.h in Sources */,
+				5327D3A42C0D04F100D4D350 /* util.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5327D3AD2C0D050A00D4D350 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5327D3AE2C0D050A00D4D350 /* testutil.h in Sources */,
+				5327D3BA2C0D051800D4D350 /* testbonusgarbage.c in Sources */,
+				5327D3B02C0D050A00D4D350 /* util.h in Sources */,
+				5327D3B12C0D050A00D4D350 /* ijvm.c in Sources */,
+				5327D3B22C0D050A00D4D350 /* ijvm.h in Sources */,
+				5327D3B32C0D050A00D4D350 /* util.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5327D3BC2C0D052400D4D350 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5327D3BD2C0D052400D4D350 /* testutil.h in Sources */,
+				5327D3C92C0D053100D4D350 /* testbonushardening.c in Sources */,
+				5327D3BF2C0D052400D4D350 /* util.h in Sources */,
+				5327D3C02C0D052400D4D350 /* ijvm.c in Sources */,
+				5327D3C12C0D052400D4D350 /* ijvm.h in Sources */,
+				5327D3C22C0D052400D4D350 /* util.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5367AC582A1CC7BB00F95B46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5327D38B2C0D048500D4D350 /* ijvm.c in Sources */,
 				5367AC7A2A1CC9CE00F95B46 /* util.h in Sources */,
 				5367AC7B2A1CC9CE00F95B46 /* ijvm.h in Sources */,
-				5367AC792A1CC9B100F95B46 /* machine.c in Sources */,
 				5367AC782A1CC9B100F95B46 /* main.c in Sources */,
 				5367AC772A1CC9B100F95B46 /* util.c in Sources */,
 			);
@@ -788,8 +959,8 @@
 				5367AD592A1CCD4A00F95B46 /* testutil.h in Sources */,
 				5367ACA22A1CCC2500F95B46 /* test1.c in Sources */,
 				5367AC972A1CCBF500F95B46 /* util.h in Sources */,
+				5327D38C2C0D048500D4D350 /* ijvm.c in Sources */,
 				5367AC982A1CCBF500F95B46 /* ijvm.h in Sources */,
-				5367AC992A1CCBF500F95B46 /* machine.c in Sources */,
 				5367AC9B2A1CCBF500F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -801,8 +972,8 @@
 				5367AD5A2A1CCD6000F95B46 /* testutil.h in Sources */,
 				5367ACB02A1CCC9B00F95B46 /* test2.c in Sources */,
 				5367ACA62A1CCC9500F95B46 /* util.h in Sources */,
+				5327D38D2C0D048500D4D350 /* ijvm.c in Sources */,
 				5367ACA72A1CCC9500F95B46 /* ijvm.h in Sources */,
-				5367ACA82A1CCC9500F95B46 /* machine.c in Sources */,
 				5367ACA92A1CCC9500F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -814,8 +985,8 @@
 				5367AD5B2A1CCD6500F95B46 /* testutil.h in Sources */,
 				5367ACBE2A1CCCA900F95B46 /* test3.c in Sources */,
 				5367ACB42A1CCCA000F95B46 /* util.h in Sources */,
+				5327D38E2C0D048500D4D350 /* ijvm.c in Sources */,
 				5367ACB52A1CCCA000F95B46 /* ijvm.h in Sources */,
-				5367ACB62A1CCCA000F95B46 /* machine.c in Sources */,
 				5367ACB72A1CCCA000F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -827,8 +998,8 @@
 				5367AD5C2A1CCD6A00F95B46 /* testutil.h in Sources */,
 				5367ACCC2A1CCCB600F95B46 /* test4.c in Sources */,
 				5367ACC22A1CCCAB00F95B46 /* util.h in Sources */,
+				5327D38F2C0D048500D4D350 /* ijvm.c in Sources */,
 				5367ACC32A1CCCAB00F95B46 /* ijvm.h in Sources */,
-				5367ACC42A1CCCAB00F95B46 /* machine.c in Sources */,
 				5367ACC52A1CCCAB00F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -840,8 +1011,8 @@
 				5367AD5D2A1CCD7000F95B46 /* testutil.h in Sources */,
 				5367ACDA2A1CCCBF00F95B46 /* test5.c in Sources */,
 				5367ACD02A1CCCB700F95B46 /* util.h in Sources */,
+				5327D3902C0D048500D4D350 /* ijvm.c in Sources */,
 				5367ACD12A1CCCB700F95B46 /* ijvm.h in Sources */,
-				5367ACD22A1CCCB700F95B46 /* machine.c in Sources */,
 				5367ACD32A1CCCB700F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -853,8 +1024,8 @@
 				5367AD5E2A1CCD7500F95B46 /* testutil.h in Sources */,
 				5367ACE82A1CCCDA00F95B46 /* testadvanced1.c in Sources */,
 				5367ACDE2A1CCCC500F95B46 /* util.h in Sources */,
+				5327D3912C0D048500D4D350 /* ijvm.c in Sources */,
 				5367ACDF2A1CCCC500F95B46 /* ijvm.h in Sources */,
-				5367ACE02A1CCCC500F95B46 /* machine.c in Sources */,
 				5367ACE12A1CCCC500F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -866,8 +1037,8 @@
 				5367AD5F2A1CCD7A00F95B46 /* testutil.h in Sources */,
 				5367ACF62A1CCCE500F95B46 /* testadvanced2.c in Sources */,
 				5367ACEC2A1CCCDC00F95B46 /* util.h in Sources */,
+				5327D3922C0D048500D4D350 /* ijvm.c in Sources */,
 				5367ACED2A1CCCDC00F95B46 /* ijvm.h in Sources */,
-				5367ACEE2A1CCCDC00F95B46 /* machine.c in Sources */,
 				5367ACEF2A1CCCDC00F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -879,8 +1050,8 @@
 				5367AD602A1CCD7F00F95B46 /* testutil.h in Sources */,
 				5367AD042A1CCCF200F95B46 /* testadvanced3.c in Sources */,
 				5367ACFA2A1CCCEA00F95B46 /* util.h in Sources */,
+				5327D3932C0D048500D4D350 /* ijvm.c in Sources */,
 				5367ACFB2A1CCCEA00F95B46 /* ijvm.h in Sources */,
-				5367ACFC2A1CCCEA00F95B46 /* machine.c in Sources */,
 				5367ACFD2A1CCCEA00F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -892,8 +1063,8 @@
 				5367AD612A1CCD8400F95B46 /* testutil.h in Sources */,
 				5367AD122A1CCCFD00F95B46 /* testadvanced4.c in Sources */,
 				5367AD082A1CCCF500F95B46 /* util.h in Sources */,
+				5327D3942C0D048500D4D350 /* ijvm.c in Sources */,
 				5367AD092A1CCCF500F95B46 /* ijvm.h in Sources */,
-				5367AD0A2A1CCCF500F95B46 /* machine.c in Sources */,
 				5367AD0B2A1CCCF500F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -905,8 +1076,8 @@
 				5367AD622A1CCD8800F95B46 /* testutil.h in Sources */,
 				5367AD202A1CCD0800F95B46 /* testadvanced5.c in Sources */,
 				5367AD162A1CCCFE00F95B46 /* util.h in Sources */,
+				5327D3952C0D048500D4D350 /* ijvm.c in Sources */,
 				5367AD172A1CCCFE00F95B46 /* ijvm.h in Sources */,
-				5367AD182A1CCCFE00F95B46 /* machine.c in Sources */,
 				5367AD192A1CCCFE00F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -918,8 +1089,8 @@
 				5367AD632A1CCD8D00F95B46 /* testutil.h in Sources */,
 				5367AD2E2A1CCD1200F95B46 /* testadvanced6.c in Sources */,
 				5367AD242A1CCD0A00F95B46 /* util.h in Sources */,
+				5327D3962C0D048500D4D350 /* ijvm.c in Sources */,
 				5367AD252A1CCD0A00F95B46 /* ijvm.h in Sources */,
-				5367AD262A1CCD0A00F95B46 /* machine.c in Sources */,
 				5367AD272A1CCD0A00F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,8 +1102,8 @@
 				5367AD642A1CCD9200F95B46 /* testutil.h in Sources */,
 				5367AD3C2A1CCD1B00F95B46 /* testadvanced7.c in Sources */,
 				5367AD322A1CCD1300F95B46 /* util.h in Sources */,
+				5327D3972C0D048500D4D350 /* ijvm.c in Sources */,
 				5367AD332A1CCD1300F95B46 /* ijvm.h in Sources */,
-				5367AD342A1CCD1300F95B46 /* machine.c in Sources */,
 				5367AD352A1CCD1300F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -944,8 +1115,8 @@
 				5367AD652A1CCDA100F95B46 /* testutil.h in Sources */,
 				5367AD4A2A1CCD2D00F95B46 /* testbonusheap.c in Sources */,
 				5367AD402A1CCD2000F95B46 /* util.h in Sources */,
+				5327D3982C0D048500D4D350 /* ijvm.c in Sources */,
 				5367AD412A1CCD2000F95B46 /* ijvm.h in Sources */,
-				5367AD422A1CCD2000F95B46 /* machine.c in Sources */,
 				5367AD432A1CCD2000F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -957,8 +1128,8 @@
 				5367AD662A1CCDA600F95B46 /* testutil.h in Sources */,
 				5367AD582A1CCD3900F95B46 /* testbonustail.c in Sources */,
 				5367AD4E2A1CCD2F00F95B46 /* util.h in Sources */,
+				5327D3992C0D048500D4D350 /* ijvm.c in Sources */,
 				5367AD4F2A1CCD2F00F95B46 /* ijvm.h in Sources */,
-				5367AD502A1CCD2F00F95B46 /* machine.c in Sources */,
 				5367AD512A1CCD2F00F95B46 /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -966,6 +1137,54 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		5327D3A82C0D04F100D4D350 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5327D3A92C0D04F100D4D350 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5327D3B72C0D050A00D4D350 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5327D3B82C0D050A00D4D350 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5327D3C62C0D052400D4D350 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5327D3C72C0D052400D4D350 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		5367AC612A1CC7BB00F95B46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1318,6 +1537,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5327D3A72C0D04F100D4D350 /* Build configuration list for PBXNativeTarget "Test Advanced 8" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5327D3A82C0D04F100D4D350 /* Debug */,
+				5327D3A92C0D04F100D4D350 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5327D3B62C0D050A00D4D350 /* Build configuration list for PBXNativeTarget "Test Bonus Garbage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5327D3B72C0D050A00D4D350 /* Debug */,
+				5327D3B82C0D050A00D4D350 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5327D3C52C0D052400D4D350 /* Build configuration list for PBXNativeTarget "Test Bonus Hardening" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5327D3C62C0D052400D4D350 /* Debug */,
+				5327D3C72C0D052400D4D350 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5367AC572A1CC7BB00F95B46 /* Build configuration list for PBXProject "Computer Programming Project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
