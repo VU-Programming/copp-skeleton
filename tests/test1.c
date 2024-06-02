@@ -81,7 +81,7 @@ void test_constants_2(void)
 // this test checks that init_ijvm return NULL when the magicnum is incorrect
 void test_magicnum(void)
 {
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     byte_t x = rand() % 255;
     FILE *fp = fopen("files/task1/badfile.ijvm", "wb");
     int random_num = 5 + rand() % 15;
