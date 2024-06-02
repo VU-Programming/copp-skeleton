@@ -46,7 +46,7 @@ void run_bfi(const char *bf_file, const char *expected)
         destroy_ijvm(m);
         eprintf("Couldn't read the output of the ijvm for program %s", bf_file);
         remove("tmp_output");
-        orig_exit(1);
+        exit(1);
     }
     /* add NIL byte at the end of the buffer */
     buffer[bytes_read] = 0;
@@ -54,7 +54,7 @@ void run_bfi(const char *bf_file, const char *expected)
     if (memcmp(buffer, expected, strlen(expected)+1) != 0)
     {
         eprintf("Incorrect output, got %s expected %s", buffer, expected);
-        orig_exit(1);
+        exit(1);
     }
     else
         eprintf("Successfully executed %s", bf_file);
