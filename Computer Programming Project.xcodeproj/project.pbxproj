@@ -289,6 +289,8 @@
 		5327D3AA2C0D04F100D4D350 /* Test Advanced 8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Advanced 8"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5327D3B92C0D050A00D4D350 /* Test Bonus Garbage */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Bonus Garbage"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5327D3C82C0D052400D4D350 /* Test Bonus Hardening */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Bonus Hardening"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5327D3CA2C0EFB6500D4D350 /* ijvm_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ijvm_struct.h; sourceTree = "<group>"; };
+		5327D3CB2C0EFB6500D4D350 /* ijvm_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ijvm_types.h; sourceTree = "<group>"; };
 		5367AC5C2A1CC7BB00F95B46 /* Computer Programming Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Computer Programming Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5367AC692A1CC83300F95B46 /* bonus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = bonus.md; sourceTree = "<group>"; };
 		5367AC6A2A1CC83300F95B46 /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = "<group>"; };
@@ -501,6 +503,8 @@
 		5367AC702A1CC9B100F95B46 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				5327D3CA2C0EFB6500D4D350 /* ijvm_struct.h */,
+				5327D3CB2C0EFB6500D4D350 /* ijvm_types.h */,
 				5367AC722A1CC9B100F95B46 /* ijvm.h */,
 				5367AC712A1CC9B100F95B46 /* util.h */,
 			);
