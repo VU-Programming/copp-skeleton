@@ -211,11 +211,48 @@ void testGC5(void) {
 	fclose(output_file);
 }
 
+/* tests a precise garbage collector */
+void testPreciseGC(void) {
+	FILE *output_file = tmpfile();
+
+	ijvm *m = init_ijvm("files/bonus/TestPreciseGC.ijvm", stdin, output_file);
+	assert(m != NULL);
+
+	step(m);
+	assert(tos(m) == 32);
+	step(m);
+	word_t ref1 = tos(m);
+	steps(m, 3);
+	assert(is_heap_freed(m, ref1));
+	steps(m, 3);
+	word_t ref2 = tos(m);
+	steps(m, 3);
+	assert(!is_heap_freed(m, ref2));
+	steps(m, 2);
+	assert(!is_heap_freed(m, ref2));
+	steps(m, 2);
+	assert(is_heap_freed(m, ref2));
+	step(m);
+	assert(tos(m) == 8);
+	step(m);
+	word_t ref3 = tos(m);
+	steps(m, 4);
+	assert(tos(m) == ref3);
+	assert(!is_heap_freed(m, ref3));
+	step(m);
+	assert(is_heap_freed(m, ref3));
+
+	destroy_ijvm(m);
+	fclose(output_file);
+}
+
 int main(void) {
 	RUN_TEST(testGC1);
 	RUN_TEST(testGC2);
 	RUN_TEST(testGC3);
 	RUN_TEST(testGC4);
 	RUN_TEST(testGC5);
+	// Uncomment below to test precise garbage collector implementation
+//	RUN_TEST(testPreciseGC);
 	return END_TEST();
 }
