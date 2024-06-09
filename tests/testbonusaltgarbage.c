@@ -189,7 +189,7 @@ void testGC5(void) {
 	assert(tos(m) == 8);
 	step(m);
 	word_t ref2 = tos(m);
-	steps(7);
+	steps(m, 7);
 	assert(tos(m) == ref2);
 	assert(!is_heap_freed(m, ref1));
 	assert(!is_heap_freed(m, ref2));
