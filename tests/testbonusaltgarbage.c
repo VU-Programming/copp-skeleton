@@ -85,7 +85,7 @@ void testGC2(void) {
 void testGC3(void) {
 	FILE *output_file = tmpfile();
 
-	ijvm *m = init_ijvm("files/bonus/TestGC3.ijvm", stdin, output_file);
+	ijvm *m = init_ijvm("files/bonus/TestAltGC3.ijvm", stdin, output_file);
 	assert(m != NULL);
 
 	step(m);
