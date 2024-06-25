@@ -54,6 +54,11 @@ void exit(int __status)
 
 #define RUN_TEST(fun) __run_test(fun, #fun);
 #define END_TEST() __print_test_result(__FILE__);
+
+// temporarily silence clang warnings about assert redefinition
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmacro-redefined"
+
 #define __assert(c) do { \
   if (!(c)) { \
     fprintf(stderr, "Assertion error '%s' in %s:%d\n", #c, __FILE__, __LINE__); \
@@ -63,6 +68,8 @@ void exit(int __status)
 } while (0);
 
 #define assert(c) __assert(c);
+
+#pragma clang diagnostic pop
 
 void steps(ijvm* m, int n);
 
