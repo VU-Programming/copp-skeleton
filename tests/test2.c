@@ -220,7 +220,9 @@ void test_halt(void)
 {
     ijvm* m = init_ijvm_std("files/task2/TestPop1.ijvm");
     assert(m != NULL);
-    run(m);
+    steps(m, 8);
+    assert(!finished(m));
+    step(m);
     assert(finished(m));
     destroy_ijvm(m);
 }
