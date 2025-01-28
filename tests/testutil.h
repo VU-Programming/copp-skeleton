@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+
 /**
  * DO NOT MODIFY THIS FILE.
  **/
@@ -61,6 +62,10 @@ void exit(int __status)
     if(ABORT_ON_ERR) abort(); \
   } \
 } while (0);
+
+#ifdef assert
+#  undef assert
+#endif
 
 #define assert(c) __assert(c);
 
