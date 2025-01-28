@@ -13,7 +13,7 @@ void testGC1(void) {
     step(m);
     assert(tos(m) == 32);
     step(m);
-    word_t reference = tos(m);
+    word reference = tos(m);
     steps(m, 2);
     assert(get_local_variable(m, 0) == reference);
     steps(m, 4);
@@ -42,7 +42,7 @@ void testGC2(void) {
     step(m);
     assert(tos(m) == 32);
     step(m);
-    word_t ref1 = tos(m);
+    word ref1 = tos(m);
     steps(m, 2);
     assert(get_local_variable(m, 0) == ref1);
     steps(m, 4);
@@ -53,7 +53,7 @@ void testGC2(void) {
     steps(m, 5);
     assert(tos(m) == 64);
     step(m);
-    word_t ref2 = tos(m);
+    word ref2 = tos(m);
     steps(m, 2);
     assert(!is_heap_freed(m,ref1));
     assert(!is_heap_freed(m,ref2));
@@ -91,7 +91,7 @@ void testGC3(void) {
     step(m);
     assert(tos(m) == 32);
     step(m);
-    word_t ref1 = tos(m);
+    word ref1 = tos(m);
     steps(m, 2);
     assert(get_local_variable(m, 0) == ref1);
     steps(m, 4);
@@ -102,7 +102,7 @@ void testGC3(void) {
     steps(m, 5);
     assert(tos(m) == 64);
     step(m);
-    word_t ref2 = tos(m);
+    word ref2 = tos(m);
     steps(m, 2);
     assert(!is_heap_freed(m,ref1));
     assert(!is_heap_freed(m,ref2));
@@ -123,7 +123,7 @@ void testGC3(void) {
     assert(is_heap_freed(m,ref2));
 
     steps(m, 3);
-    word_t ref3 = tos(m);
+    word ref3 = tos(m);
     steps(m, 10);
     assert(!is_heap_freed(m,ref3));
     steps(m, 5);
@@ -154,14 +154,14 @@ void testGC4(void) {
     step(m);
     assert(tos(m) == 32);
     step(m);
-    word_t reference1 = tos(m);
+    word reference1 = tos(m);
     steps(m, 2);
     assert(get_local_variable(m, 0) == reference1);
     
     steps(m, 2);
     assert(tos(m) == 64);
     step(m);
-    word_t reference2 = tos(m);
+    word reference2 = tos(m);
     steps(m, 2);
     assert(get_local_variable(m, 1) == reference2);
 

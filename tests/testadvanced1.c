@@ -86,8 +86,8 @@ void test_wide4(void)
     ijvm* m = init_ijvm("files/advanced/test-wide4.ijvm",stdin,output);
     assert(m != NULL);
 
-    word_t foo_const = 0xDEADBEEF;
-    word_t bar_const = 0xABADBABE;
+    word foo_const = 0xDEADBEEF;
+    word bar_const = 0xABADBABE;
 
 
     while (OP_IRETURN != get_instruction(m))

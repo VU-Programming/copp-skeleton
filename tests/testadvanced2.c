@@ -20,7 +20,7 @@
 
 /* function for debugging */
 static inline void
-_assert_equal(int line, const char *a_expr, word_t a, const char *b_expr, word_t b)
+_assert_equal(int line, const char *a_expr, word a, const char *b_expr, word b)
 {
     if (a != b)
     {

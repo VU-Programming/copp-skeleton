@@ -20,7 +20,7 @@ void test_program_1(void)
     ijvm* m = init_ijvm_std("files/task1/program1.ijvm");
     assert(m != NULL);
     assert(get_text_size(m) == 7);
-    byte_t *ip = get_text(m);
+    byte *ip = get_text(m);
 
     // If it fails here you haven't implemented get_text()
     assert(ip != NULL);
@@ -28,7 +28,7 @@ void test_program_1(void)
     assert(ip[0] == 0x10); // BIPUSH
     assert(ip[2] == 0x10); // BIPUSH
     assert(ip[4] == 0x60); // IADD
-    assert(ip[5] == (byte_t)0xFD); // OUT
+    assert(ip[5] == (byte)0xFD); // OUT
     destroy_ijvm(m);
 }
 
@@ -37,18 +37,18 @@ void test_program_2(void)
     ijvm* m = init_ijvm_std("files/task1/program2.ijvm");
     assert(m != NULL);
     assert(get_text_size(m) == 16);
-    byte_t *ip = get_text(m);
+    byte *ip = get_text(m);
 
     // Instructions in binary
     assert(ip[0] == 0x00);
-    assert(ip[1] == (byte_t)0x13);
-    assert(ip[4] == (byte_t)0x59);
-    assert(ip[5] == (byte_t)0x13);
-    assert(ip[8] == (byte_t)0x60);
-    assert(ip[9] == (byte_t)0x13);
-    assert(ip[12] == (byte_t)0x60);
-    assert(ip[13] == (byte_t)0xFD);
-    assert(ip[14] == (byte_t)0x00);
+    assert(ip[1] == (byte)0x13);
+    assert(ip[4] == (byte)0x59);
+    assert(ip[5] == (byte)0x13);
+    assert(ip[8] == (byte)0x60);
+    assert(ip[9] == (byte)0x13);
+    assert(ip[12] == (byte)0x60);
+    assert(ip[13] == (byte)0xFD);
+    assert(ip[14] == (byte)0x00);
     destroy_ijvm(m);
 }
 
@@ -82,7 +82,7 @@ void test_constants_2(void)
 void test_magicnum(void)
 {
     srand((unsigned int)time(NULL));
-    byte_t x = rand() % 255;
+    byte x = rand() % 255;
     FILE *fp = fopen("files/task1/badfile.ijvm", "wb");
     int random_num = 5 + rand() % 15;
     for (int i = 0; i < random_num; i++)
