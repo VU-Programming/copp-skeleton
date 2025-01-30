@@ -6,7 +6,7 @@
 
 // see ijvm.h for descriptions of the below functions
 
-ijvm* init_ijvm(char *binary_path, FILE* input , FILE* output) 
+ijvm* init_ijvm(char *binary_path, FILE* input, FILE* output)
 {
   // do not change these first three lines
   ijvm* m = (ijvm *) malloc(sizeof(ijvm));
@@ -114,4 +114,12 @@ bool is_heap_freed(ijvm* m, word reference)
 {
    // TODO: implement me if doing garbage collection bonus
    return 0;
+}
+
+// Checks if top of stack is a reference
+bool is_tos_reference(ijvm* m)
+{
+	// TODO: implement me if doing precise garbage collection bonus
+	//  using ANEWARRAY, AIALOAD and AIASTORE
+	return 0;
 }

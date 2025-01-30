@@ -20,12 +20,12 @@
 
     BIPUSH 1                // stack [ref2, 1]
     ILOAD array1            // stack [ref2, 1, ref1]
-    AASTORE                 // stack []
+    AIASTORE                // stack []
     GC                      // stack []
 
     BIPUSH 1                // stack [1]
     ILOAD array1            // stack [1, ref1]
-    AALOAD                  // stack [ref2]
+    AIALOAD                 // stack [ref2]
 
     BIPUSH 1                // stack [ref2, 1]
     SWAP                    // stack [1, ref2]

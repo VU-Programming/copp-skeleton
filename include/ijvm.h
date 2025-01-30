@@ -42,6 +42,10 @@
 #define OP_IALOAD         ((byte) 0xD2)
 #define OP_IASTORE        ((byte) 0xD3)
 
+#define OP_ANEWARRAY      ((byte) 0xBD)
+#define OP_AIALOAD        ((byte) 0x32)
+#define OP_AIASTORE       ((byte) 0x53)
+
 #define OP_GC             ((byte) 0xD4)
 
 #define OP_NETBIND        ((byte) 0xE1)
@@ -63,7 +67,7 @@
  * Returns  - A pointer to an ijvm struct on success
  *          - NULL on failure
  **/
-ijvm* init_ijvm(char *binary_path, FILE* input , FILE* output);
+ijvm* init_ijvm(char *binary_path, FILE* input, FILE* output);
 
 
 /**
@@ -169,6 +173,10 @@ int get_call_stack_size(ijvm* m);
 // this method must return true on a reference to that cell
 //  *until* the next NEWARRAY instruction (which may reuse the reference)
 //
-bool is_heap_freed(ijvm* m,word reference);
+bool is_heap_freed(ijvm* m, word reference);
+
+// Only needed for precise garbage collection bonus
+// using ANEWARRAY, AIALOAD and AIASTORE
+bool is_tos_reference(ijvm* m);
 
 #endif

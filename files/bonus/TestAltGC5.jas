@@ -19,7 +19,7 @@
 
     BIPUSH 2                // stack [ref2, 2]
     SWAP                    // stack [2, ref2]
-    AALOAD                  // stack [ref1]
+    AIALOAD                 // stack [ref1]
     GC                      // stack [ref1]
     BIPUSH 1                // stack [ref1, 1]
     SWAP                    // stack [1, ref1]
@@ -37,7 +37,7 @@
     SWAP                    // stack [ref2, ref1, ref2]
     BIPUSH 2                // stack [ref2, ref1, ref2, 2]
     SWAP                    // stack [ref2, ref1, 2, ref2]
-    AASTORE                 // stack [ref2]
+    AIASTORE                // stack [ref2]
     GC                      // stack [ref2]
     IRETURN
 .end-method
