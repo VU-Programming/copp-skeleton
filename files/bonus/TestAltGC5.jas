@@ -1,0 +1,43 @@
+.constant
+    objref 0xDEAD
+.end-constant
+
+.main
+    LDC_W objref            // stack [objref]
+    BIPUSH 0x20             // stack [objref, 32]
+    NEWARRAY                // stack [objref, ref1]
+    DUP                     // stack [objref, ref1, ref1]
+    BIPUSH 0x12             // stack [objref, ref1, ref1, 18]
+    SWAP                    // stack [objref, ref1, 18, ref1]
+    BIPUSH 1                // stack [objref, ref1, 18, ref1, 1]
+    SWAP                    // stack [objref, ref1, 18, 1, ref1]
+    IASTORE                 // stack [objref, ref1]
+    GC                      // stack [objref, ref1]
+
+    INVOKEVIRTUAL tester    // stack [ref2]
+    GC                      // stack [ref2]
+
+    BIPUSH 2                // stack [ref2, 2]
+    SWAP                    // stack [2, ref2]
+    AIALOAD                 // stack [ref1]
+    GC                      // stack [ref1]
+    BIPUSH 1                // stack [ref1, 1]
+    SWAP                    // stack [1, ref1]
+    IALOAD                  // stack [18]
+    GC                      // stack [18]
+    HALT
+.end-main
+
+.method tester(array1)
+    GC                      // stack []
+    BIPUSH 8                // stack [8]
+    ANEWARRAY               // stack [ref2]
+    DUP                     // stack [ref2, ref2]
+    ILOAD array1            // stack [ref2, ref2, ref1]
+    SWAP                    // stack [ref2, ref1, ref2]
+    BIPUSH 2                // stack [ref2, ref1, ref2, 2]
+    SWAP                    // stack [ref2, ref1, 2, ref2]
+    AIASTORE                // stack [ref2]
+    GC                      // stack [ref2]
+    IRETURN
+.end-method

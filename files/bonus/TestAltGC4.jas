@@ -1,0 +1,29 @@
+.main
+.var
+    array1
+.end-var
+    BIPUSH 0x20         // stack [32]
+    ANEWARRAY           // stack [ref1]
+    GC                  // stack [ref1]
+    ISTORE array1       // stack []
+    GC                  // stack []
+
+    BIPUSH 0x20         // stack [32]
+    ANEWARRAY           // stack [ref2]
+    GC                  // stack [ref2]
+    DUP                 // stack [ref2, ref2]
+    BIPUSH 1            // stack [ref2, ref2, 1]
+    ILOAD array1        // stack [ref2, ref2, 1, ref1]
+    AIASTORE            // stack [ref2]
+    ILOAD array1        // stack [ref2, ref1]
+    SWAP                // stack [ref1, ref2]
+    BIPUSH 1            // stack [ref1, ref2, 1]
+    SWAP                // stack [ref1, 1, ref2]
+    AIASTORE            // stack []
+    GC                  // stack []
+
+    BIPUSH 0            // stack [0]
+    ISTORE array1       // stack []
+    GC                  // stack []
+    HALT
+.end-main

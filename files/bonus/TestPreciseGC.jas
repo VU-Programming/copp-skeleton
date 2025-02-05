@@ -1,0 +1,44 @@
+.main
+    BIPUSH 0x20     // stack [32]
+    NEWARRAY        // stack [ref1]
+    BIPUSH 1        // stack [ref1, 0]
+    IADD            // stack [ref1 + 1] (unmarked)
+    GC              // stack [ref1 + 1]
+
+    POP             // stack []
+    BIPUSH 0x20     // stack [32]
+    NEWARRAY        // stack [ref2]
+    BIPUSH 0x2A     // stack [ref2, 42]
+    SWAP            // stack [42, ref2]
+    GC              // stack [42, ref2]
+    POP             // stack [42]
+    GC              // stack [42]
+
+    POP             // stack []
+    BIPUSH 0x20     // stack [32]
+    NEWARRAY        // stack [ref3]
+    DUP             // stack [ref3, ref3]
+    SWAP            // stack [ref3, ref3]
+    GC              // stack [ref3, ref3]
+    POP             // stack [ref3]
+    GC              // stack [ref3]
+    POP             // stack []
+    GC              // stack []
+
+    BIPUSH 8        // stack [8]
+    NEWARRAY        // stack [ref4]
+    BIPUSH 1        // stack [ref4, 1]
+    IADD            // stack [ref4 + 1]
+    BIPUSH 1        // stack [ref4 + 1, 1]
+    ISUB            // stack [ref4] (should be unmarked)
+    GC              // stack [ref4] (should be unmarked)
+
+    POP             // stack []
+    BIPUSH 8        // stack [8]
+    NEWARRAY        // stack [ref5]
+    BIPUSH 0        // stack [ref5, 0]
+    GC              // stack [ref5, 0]
+    IADD            // stack [ref5] (should be unmarked)
+    GC              // stack [ref5] (should be unmarked)
+    HALT
+.end-main

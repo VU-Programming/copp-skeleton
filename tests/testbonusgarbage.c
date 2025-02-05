@@ -5,10 +5,10 @@
 
 /* testing GC doesn't free used space */
 void testGC1(void) {
-    FILE* output_file =  tmpfile();
+	FILE *output_file = tmpfile();
 
-    ijvm *m = init_ijvm("files/bonus/TestGC1.ijvm",stdin,output_file);
-    assert(m != NULL);
+	ijvm *m = init_ijvm("files/bonus/TestGC1.ijvm", stdin, output_file);
+	assert(m != NULL);
 
     step(m);
     assert(tos(m) == 32);
@@ -24,8 +24,8 @@ void testGC1(void) {
     assert(!is_heap_freed(m, reference));
     steps(m, 2);
 
-    destroy_ijvm(m);
-    fclose(output_file);
+	destroy_ijvm(m);
+	fclose(output_file);
 }
 
 /*  testing that GC does free unused space. In this test:
@@ -34,10 +34,10 @@ void testGC1(void) {
     - after replacing array 1 with something other than ref1, array 1 should be freed
 */
 void testGC2(void) {
-    FILE* output_file =  tmpfile();
+	FILE *output_file = tmpfile();
 
-    ijvm *m = init_ijvm("files/bonus/TestGC2.ijvm",stdin,output_file);
-    assert(m != NULL);
+	ijvm *m = init_ijvm("files/bonus/TestGC2.ijvm", stdin, output_file);
+	assert(m != NULL);
 
     step(m);
     assert(tos(m) == 32);
@@ -77,16 +77,16 @@ void testGC2(void) {
     assert(is_heap_freed(m,ref2));
     step(m);
 
-    destroy_ijvm(m);
-    fclose(output_file);
+	destroy_ijvm(m);
+	fclose(output_file);
 }
 
 /* proves that GC checks non-freed heaps for reference */
 void testGC3(void) {
-    FILE* output_file =  tmpfile();
+	FILE *output_file = tmpfile();
 
-    ijvm *m = init_ijvm("files/bonus/TestGC3.ijvm",stdin,output_file);
-    assert(m != NULL);
+	ijvm *m = init_ijvm("files/bonus/TestGC3.ijvm", stdin, output_file);
+	assert(m != NULL);
 
     step(m);
     assert(tos(m) == 32);
@@ -134,22 +134,22 @@ void testGC3(void) {
     assert(is_heap_freed(m,ref3));
     assert(!is_heap_freed(m,ref1));
 
-    steps(m, 3);
-    assert(is_heap_freed(m,ref1));
-    assert(is_heap_freed(m,ref2));
-    assert(is_heap_freed(m,ref3));
-    step(m);
+	steps(m, 3);
+	assert(is_heap_freed(m, ref1));
+	assert(is_heap_freed(m, ref2));
+	assert(is_heap_freed(m, ref3));
+	step(m);
 
-    destroy_ijvm(m);
-    fclose(output_file);
+	destroy_ijvm(m);
+	fclose(output_file);
 }
 
 /* testing that GC removes heaps with only cyclic references */
 void testGC4(void) {
-    FILE* output_file =  tmpfile();
+	FILE *output_file = tmpfile();
 
-    ijvm *m = init_ijvm("files/bonus/TestGC4.ijvm",stdin,output_file);
-    assert(m != NULL);
+	ijvm *m = init_ijvm("files/bonus/TestGC4.ijvm", stdin, output_file);
+	assert(m != NULL);
 
     step(m);
     assert(tos(m) == 32);
@@ -165,29 +165,29 @@ void testGC4(void) {
     steps(m, 2);
     assert(get_local_variable(m, 1) == reference2);
 
-    steps(m, 9);
-    assert(!is_heap_freed(m,reference1));
-    assert(!is_heap_freed(m,reference2));
-    steps(m, 2);
-    assert(tos(m) == 1);
-    steps(m, 2);
-    assert(!is_heap_freed(m,reference1));
-    assert(!is_heap_freed(m,reference2));
-    step(m);
-    assert(tos(m) == 1);
-    steps(m, 2);
-    assert(is_heap_freed(m,reference1));
-    assert(is_heap_freed(m,reference2));
-    step(m);
+	steps(m, 9);
+	assert(!is_heap_freed(m, reference1));
+	assert(!is_heap_freed(m, reference2));
+	steps(m, 2);
+	assert(tos(m) == 1);
+	steps(m, 2);
+	assert(!is_heap_freed(m, reference1));
+	assert(!is_heap_freed(m, reference2));
+	step(m);
+	assert(tos(m) == 1);
+	steps(m, 2);
+	assert(is_heap_freed(m, reference1));
+	assert(is_heap_freed(m, reference2));
+	step(m);
 
-    destroy_ijvm(m);
-    fclose(output_file);
+	destroy_ijvm(m);
+	fclose(output_file);
 }
 
 int main(void) {
-    RUN_TEST(testGC1);
-    RUN_TEST(testGC2);
-    RUN_TEST(testGC3);
-    RUN_TEST(testGC4);
-    return END_TEST();
+	RUN_TEST(testGC1);
+	RUN_TEST(testGC2);
+	RUN_TEST(testGC3);
+	RUN_TEST(testGC4);
+	return END_TEST();
 }
