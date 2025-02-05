@@ -81,7 +81,7 @@ void test_constants_2(void)
 // test correct swap
 void test_magicnum_swap(void)
 {
-    ijvm* res = init_ijvm_std("files/task1/bad-magicnum-addfea1d");
+    ijvm* res = init_ijvm_std("files/task1/bad-magicnum-addfea1d.ijvm");
     assert(res == NULL);
 }
 
