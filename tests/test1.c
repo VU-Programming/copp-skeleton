@@ -78,6 +78,13 @@ void test_constants_2(void)
     destroy_ijvm(m);
 }
 
+// test correct swap
+void test_magicnum_swap(void)
+{
+    ijvm* res = init_ijvm_std("files/task1/bad-magicnum-addfea1d.ijvm");
+    assert(res == NULL);
+}
+
 // this test checks that init_ijvm return NULL when the magicnum is incorrect
 void test_magicnum(void)
 {
@@ -95,6 +102,7 @@ void test_magicnum(void)
     assert(res == NULL);
 }
 
+
 int main(void)
 {
     fprintf(stderr, "*** test1: BINARIES ..........\n");
@@ -103,6 +111,7 @@ int main(void)
     RUN_TEST(test_program_2);
     RUN_TEST(test_constants_1);
     RUN_TEST(test_constants_2);
-    RUN_TEST(test_magicnum); 
+    RUN_TEST(test_magicnum_swap);
+    RUN_TEST(test_magicnum);
     return END_TEST();
 }
