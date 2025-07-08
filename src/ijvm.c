@@ -29,31 +29,31 @@ void destroy_ijvm(ijvm* m)
   free(m); // free memory for struct
 }
 
-byte *get_text(ijvm* m) 
+uint8_t *get_text(ijvm* m) 
 {
   // TODO: implement me
   return NULL;
 }
 
-unsigned int get_text_size(ijvm* m) 
+uint32_t get_text_size(ijvm* m) 
 {
   // TODO: implement me
   return 0;
 }
 
-word get_constant(ijvm* m,int i) 
+int32_t get_constant(ijvm* m, uint32_t i) 
 {
   // TODO: implement me
   return 0;
 }
 
-unsigned int get_program_counter(ijvm* m) 
+uint32_t get_program_counter(ijvm* m) 
 {
   // TODO: implement me
   return 0;
 }
 
-word tos(ijvm* m) 
+int32_t tos(ijvm* m) 
 {
   // this operation should NOT pop (remove top element from stack)
   // TODO: implement me
@@ -66,7 +66,7 @@ bool finished(ijvm* m)
   return false;
 }
 
-word get_local_variable(ijvm* m, int i) 
+int32_t get_local_variable(ijvm* m, uint32_t i) 
 {
   // TODO: implement me
   return 0;
@@ -78,7 +78,7 @@ void step(ijvm* m)
 
 }
 
-byte get_instruction(ijvm* m) 
+uint8_t get_instruction(ijvm* m) 
 { 
   return get_text(m)[get_program_counter(m)]; 
 }
@@ -101,7 +101,7 @@ void run(ijvm* m)
 // You can leave these unimplemented if you are not doing these bonus 
 // assignments.
 
-int get_call_stack_size(ijvm* m) 
+uint32_t get_call_stack_size(ijvm* m) 
 {
    // TODO: implement me if doing tail call bonus
    return 0;
@@ -110,7 +110,7 @@ int get_call_stack_size(ijvm* m)
 
 // Checks if reference is a freed heap array. Note that this assumes that 
 // 
-bool is_heap_freed(ijvm* m, word reference) 
+bool is_heap_freed(ijvm* m, int32_t reference) 
 {
    // TODO: implement me if doing garbage collection bonus
    return 0;
