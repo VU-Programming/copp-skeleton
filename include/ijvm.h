@@ -5,7 +5,6 @@
 #include <stdint.h>  /* contains exact integer types int32_t, uint8_t */
 #include <stdbool.h> /* contains the boolean */
 
-#include "ijvm_types.h"
 #include "ijvm_struct.h"
 
 #define MAGIC_NUMBER 0x1DEADFAD
@@ -79,31 +78,31 @@ void destroy_ijvm(ijvm* m);
 /**
  * Returns the currently loaded program text as a byte array.
  **/
-byte *get_text(ijvm* m);
+uint8_t *get_text(ijvm* m);
 
 
 /**
  * Returns the size of the currently loaded program text.
  **/
-unsigned int get_text_size(ijvm* m);
+uint32_t get_text_size(ijvm* m);
 
 /**
  * @param i index of the constant to obtain
  * @return The constant at location i in the constant pool.
  **/
-word get_constant(ijvm* m, int i);
+int32_t get_constant(ijvm* m, uint32_t i);
 
 
 /**
  * Returns the value of the program counter (as an offset from the first instruction).
  **/
-unsigned int get_program_counter(ijvm* m);
+uint32_t get_program_counter(ijvm* m);
 
 /**
  * This function should return the word at the top of the stack of the current
  * frame, interpreted as a signed integer.
  **/
-word tos(ijvm* m);
+int32_t tos(ijvm* m);
 
 /**
  * Step (perform) one instruction and return.
@@ -130,14 +129,14 @@ bool finished(ijvm* m);
  * @param i index of variable to obtain.
  * @return Returns the i:th local variable of the current frame.
  **/
-word get_local_variable(ijvm* m, int i);
+int32_t get_local_variable(ijvm* m, uint32_t i);
 
 /**
  * @return The value of the current instruction represented as a byte.
  *
  * This should NOT increase the program counter.
  **/
-byte get_instruction(ijvm* m);
+uint8_t get_instruction(ijvm* m);
 
 /**
  * Initializes the IJVM with the binary file found at the provided argument using 
@@ -164,7 +163,7 @@ void run(ijvm* m);
 // Or it can be for example be the number of frames on the stack
 // We use this only to test stack depth when using tailcall is less
 // then when using regular calls. 
-int get_call_stack_size(ijvm* m);
+uint32_t get_call_stack_size(ijvm* m);
 
 
 // Only needed for garbage collection assignment
@@ -173,7 +172,7 @@ int get_call_stack_size(ijvm* m);
 // this method must return true on a reference to that cell
 //  *until* the next NEWARRAY instruction (which may reuse the reference)
 //
-bool is_heap_freed(ijvm* m, word reference);
+bool is_heap_freed(ijvm* m, int32_t reference);
 
 // Only needed for precise garbage collection bonus
 // using ANEWARRAY, AIALOAD and AIASTORE

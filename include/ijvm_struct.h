@@ -4,7 +4,6 @@
 
 #include <stdio.h>  /* contains type FILE * */
 
-#include "ijvm_types.h"
 /**
  * All the state of your IJVM machine goes in this struct!
  **/
